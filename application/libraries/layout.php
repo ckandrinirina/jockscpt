@@ -16,6 +16,7 @@ class Layout
         $this->CI = get_instance();
         $this->CI->load->helper('url');
         $this->var['output'] = '';
+        $this->var['base_url'] = base_url();
         $this->var['js'] = [
             base_url('assets/js/jquery.min.js'),
         ];
