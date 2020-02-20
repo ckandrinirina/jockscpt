@@ -14,7 +14,11 @@ class Layout
     public function __construct()
     {
         $this->CI = get_instance();
+        $this->CI->load->helper('url');
         $this->var['output'] = '';
+        $this->var['js'] = [
+            base_url('assets/js/jquery.min.js'),
+        ];
     }
 
     /*
