@@ -9,6 +9,7 @@ class ScriptModel extends CI_Model
         return $this->db->select('*')
                         ->from($this->table)
                         ->where('champs_num_step', $step)
+                        ->order_by('champs_order','ASC')
                         ->get()
                         ->result_array();
     }
