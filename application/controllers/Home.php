@@ -3,12 +3,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Home extends CI_Controller
 {
-
     public function __construct()
     {
         parent::__construct();
         $this->load->library('layout');
         $this->load->model('ScriptModel', 'script');
+        $this->load->helper('pdf');
+        $this->load->helper('mail');
     }
 
     //default home page
@@ -59,5 +60,14 @@ class Home extends CI_Controller
             'html' => $view,
             'data' => $data
         ]);
+    }
+
+    public function export_pdf() {
+        $html = $this->load->view('pdf/stats_pdf_view')->output->final_output;
+        generate_pdf($html);
+    }
+
+    public function send_email(){
+        sendEmail('test@test.com','test','test');
     }
 }
