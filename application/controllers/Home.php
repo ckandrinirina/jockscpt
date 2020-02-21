@@ -9,6 +9,7 @@ class Home extends CI_Controller
         $this->load->library('layout');
         $this->load->model('ScriptModel', 'script');
         $this->load->helper('pdf');
+        $this->load->helper('mail');
     }
 
     //default home page
@@ -56,5 +57,9 @@ class Home extends CI_Controller
     public function export_pdf() {
         $html = $this->load->view('pdf/stats_pdf_view')->output->final_output;
         generate_pdf($html);
+    }
+
+    public function send_email(){
+        sendEmail('test@test.com','test','test');
     }
 }
