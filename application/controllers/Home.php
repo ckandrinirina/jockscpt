@@ -69,7 +69,6 @@ class Home extends CI_Controller
 
 
             //automaticaly apend next if value = 1
-            $isAppendNext = $value['champs_is_append_next'];
         }
         $view = '<div class="col-md-4" id="' . $data[0]['champs_num_step'] . '">' . $view . '</div>';
         return $view;

@@ -113,7 +113,3 @@ function deleteAllNextIfExist(data,beginIndex){
     SCRIPT_VAL.splice((beginIndex+1),(lastIndex-beginIndex+1))
     //remove value register in SCRIPT
 }
-
-// function goToNextStep(nextStep){
-//     dataActualStep = initByStep(nextStep);
-// }
