@@ -13,4 +13,10 @@ class ScriptModel extends CI_Model
                         ->get()
                         ->result_array();
     }
+
+    public function getDataFormById($id)
+    {
+        return $this->db->get_where($this->table,['champs_id'=>$id])
+                        ->result_array();
+    }
 }

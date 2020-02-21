@@ -25,8 +25,16 @@ class Home extends CI_Controller
     {
         $step = $this->input->get('step');
         $data = $this->script->FindByStep($step);
-        $view = $this->generateViewFromData($data);
-        echo $view;
+        $this->generateViewFromData($data);
+    }
+    public function ajaxGetDataFormById()
+    {
+        $id = $this->input->get('id');
+        $data = $this->script->getDataFormById($id);
+        header('Content-type:application/json');
+        echo json_encode([
+            'data' => $data
+        ]);
     }
 
     //generate view from data via ajax
@@ -41,9 +49,9 @@ class Home extends CI_Controller
             //else an input => append input to view
             else {
                 $view .= '<div style="display:flex">' .
-                    '<input class="' . $value['champs_type'] . '" type="' . $value['champs_type'] . '" name="name_' . $value['champs_num_step'] . '" id="' . $value['champs_id'] . '" value="' . $value['champs_id'] . '"/>' .
-                    '<p>' . $value['champs_libelle'] . '</p>' .
-                    '</div>';
+                            '<input class="' . $value['champs_type'] . '" type="' . $value['champs_type'] . '" name="name_' . $value['champs_num_step'] . '" id="' . $value['champs_id'] . '" value="' . $value['champs_id'] . '"/>' .
+                            '<p>' . $value['champs_libelle'] . '</p>' .
+                        '</div>';
             }
         }
         header('Content-type:application/json');

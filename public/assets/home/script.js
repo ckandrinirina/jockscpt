@@ -1,18 +1,17 @@
 SCRIPT_VAL = [];
 $(document).ready(function () {
     //save actual data for best control
-    var dataActualStep = initByStep(1);
+    initByStep(1);
 
-    console.log(dataActualStep);
     //click on next step
     $('#content').on('click', '.radio', (e, v) => {
         var $e = $(e.target);
         //id of clicked element
         var clickId = $e.prop('id');
         //find data of clicked element
-        var dataActualClick = findResultInActualData(dataActualStep, clickId);
+        var dataActualClick = findResultInActualData(clickId);
         pushToScript(dataActualClick);
-        console.log(SCRIPT_VAL);
+        appendNextStep(dataActualClick);
         // goToNextStep();
     })
 });
@@ -36,14 +35,34 @@ function initByStep(step) {
     });
     return dataStep;
 }
+
+function appendNextStep(dataActualClick){
+    initByStep(dataActualClick.champs_next_step);
+}
 //used to find result of clicked radio
-function findResultInActualData(dataActual, id) {
+function findResultInActualData(id) {
+    var dataActual = getDataFormById(id);
     var thisData = [];
     dataActual.forEach((element, index) => {
         if (element.champs_id == id)
             thisData = element;
     });
     return thisData;
+}
+
+function getDataFormById(id){
+    var url = base_url+ 'home/ajaxGetDataFormById';
+    var dataActual = [];
+    $.ajax({
+        type: "GET",
+        url: url,
+        data: {id:id},
+        async:false,
+        success: function (response) {
+            dataActual = response.data;
+        }
+    });
+    return dataActual;
 }
 
 //used to update or push data to sript
