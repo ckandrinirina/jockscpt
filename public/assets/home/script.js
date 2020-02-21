@@ -4,7 +4,7 @@ $(document).ready(function () {
     initByStep(1);
 
     //click on next step
-    $('#content').on('click', '.radio', (e, v) => {
+    $('#content').on('click', '.next', (e, v) => {
         var $e = $(e.target);
         //id of clicked element
         var clickId = $e.prop('id');
