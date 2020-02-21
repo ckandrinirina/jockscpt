@@ -49,7 +49,7 @@ function findResultInActualData(id) {
     });
     return thisData;
 }
-
+//get data by id with ajax
 function getDataFormById(id){
     var url = base_url+ 'home/ajaxGetDataFormById';
     var dataActual = [];
@@ -69,25 +69,49 @@ function getDataFormById(id){
 function pushToScript(data) {
     var testIfExist = false;
     var idexIfExist;
+    var lastValue = null;
     //find if step is already saved in script
     SCRIPT_VAL.forEach((element, index) => {
         if (data.champs_num_step == element.script_num_step) {
             testIfExist = true;
             idexIfExist = index;
+            lastValue = element;
         }
     });
+    //delete all form and saved value
+    if(lastValue != null)
+        deleteAllNextIfExist(lastValue,idexIfExist);
+         
     //update
     if (testIfExist)
         SCRIPT_VAL[idexIfExist] = {
             script_num_step: data.champs_num_step,
-            script_step_fk: data.champs_id,
+            script_id_fk: data.champs_id,
+            script_next: data.champs_next_step
         };
     //insert
     else
         SCRIPT_VAL.push({
             script_num_step: data.champs_num_step,
-            script_step_fk: data.champs_id,
+            script_id_fk: data.champs_id,
+            script_next: data.champs_next_step
         });
+}
+
+function deleteAllNextIfExist(data,beginIndex){
+    //remove in first all form view
+    var lastIndex;
+    var nextStep = data.script_next;
+    SCRIPT_VAL.forEach((element,index) => {
+        $('#content').find('#'+nextStep).remove();
+        nextStep = element.script_next;
+        lastIndex = index;
+    });
+    //remove last child 
+    $('#content').find('#'+nextStep).remove();
+    //remove all next data start with beginIndex count    
+    SCRIPT_VAL.splice((beginIndex+1),(lastIndex-beginIndex+1))
+    //remove value register in SCRIPT
 }
 
 // function goToNextStep(nextStep){
