@@ -19,6 +19,10 @@ class Layout
         $this->var['base_url'] = base_url();
         $this->var['js'] = [
             base_url('assets/js/jquery.min.js'),
+            base_url('assets/js/bootstrap.min.js'),
+        ];
+        $this->var['css'] = [
+            base_url('assets/css/bootstrap.min.css'),
         ];
     }
 

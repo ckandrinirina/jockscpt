@@ -1,9 +1,17 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" > 
+<!DOCTYPE html> 
+<html> 
 	<head>
+		<title>script</title>
+		<!-- css from layout -->
+		<?php foreach ($css as $c):?>
+		<link rel="stylesheet" href="<?= $c ?>">
+		<?php endforeach ?>
+		<!-- css from layout -->
+		<!-- js from layout -->
 		<?php foreach ($js as $j):?>
 		<script src="<?= $j ?>"></script>
 		<?php endforeach ?>
+		<!-- js from layout -->
 		<script> base_url = '<?= $base_url ?>' </script>
 	</head>
 	<body>
