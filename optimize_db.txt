@@ -14,4 +14,12 @@
     Pas de point conseil disponible
 
 5 Coordonnées de l'appelant
-    uvrir la che contact
+    ouvrir la fiche contact
+
+
+45 Avant toute transmission il faut s\'assurer que les vérications ont été faites :</br><ul><li>Une coupure / remise en service du secteur sur le disjoncteur du volet roulant n\'a pas permis de résoudre la panne.</li><li>La pile de l’émetteur dispose d'un niveau de charge sufisant.</li><li>Le démontage du caisson est possible (Les vis sont apparentes et aucun obstacle ne se situe devant la trappe de visite).</li><li>Tous les composants du volet se trouvent sur le lieu de l'intervention (notamment l’émetteur).</li></ul>
+Demande
+    SAV – Volet Bubendor sous garantie (moins de 7 ans)
+    SAV – Volet Bubendor hors garantie (plus de 7 ans) 
+    SAV – Autres marques 
+    

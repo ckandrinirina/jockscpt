@@ -37,11 +37,7 @@ function initByStep(step) {
 }
 
 function appendNextStep(nextStep){
-    //append all next step
-    var key = nextStep.split(';')
-    key.forEach(element => {  
-        initByStep(element);
-    });
+    initByStep(nextStep);
 }
 //used to find result of clicked radio
 function findResultInActualData(id) {
