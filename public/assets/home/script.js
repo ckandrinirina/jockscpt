@@ -102,14 +102,13 @@ function deleteAllNextIfExist(data,beginIndex){
     //remove in first all form view
     var lastIndex;
     var nextStep = data.script_next;
-
     for(i=beginIndex+1;i<SCRIPT_VAL.length;i++){
-        $('#content').find('#'+nextStep).remove();
+        $('#content').find('#step_'+nextStep).remove();
         nextStep = SCRIPT_VAL[i].script_next;
         lastIndex = i;
     }
     //remove last child 
-    $('#content').find('#'+nextStep).remove();
+    $('#content').find('#step_'+nextStep).remove();
     //remove all next data start with beginIndex count    
     SCRIPT_VAL.splice((beginIndex+1),(lastIndex-beginIndex+1))
     //remove value register in SCRIPT

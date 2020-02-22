@@ -1,6 +1,6 @@
 <div class="container">
     <h3 class="text-center text-danger">SCRIPT</h3>
-    <h5 class="text-center"><?= $title[0]['champs_libelle'] ?></h5>
+    <h5 class="text-center">Service d'accueil Bubendor, Elise Bonjour.</h5>
     <!-- dynamic content -->
     <div id="content" class="row"></div>
     <!-- dynamic content -->

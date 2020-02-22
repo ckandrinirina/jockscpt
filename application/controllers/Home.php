@@ -81,7 +81,7 @@ class Home extends CI_Controller
 
             //automaticaly apend next if value = 1
         }
-        $view = '<div class="col-md-4" id="' . $data[0]['champs_num_step'] . '">' . $view . '</div>';
+        $view = '<div class="col-md-4" id="step_' . $data[0]['champs_num_step'] . '">' . $view . '</div>';
         return $view;
     }
 
