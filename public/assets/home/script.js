@@ -11,7 +11,7 @@ $(document).ready(function () {
         //find data of clicked element
         var dataActualClick = findResultInActualData(clickId);
         pushToScript(dataActualClick);
-        appendNextStep(dataActualClick);
+        appendNextStep(dataActualClick.champs_next_step);
         // goToNextStep();
     })
 });
@@ -36,8 +36,12 @@ function initByStep(step) {
     return dataStep;
 }
 
-function appendNextStep(dataActualClick){
-    initByStep(dataActualClick.champs_next_step);
+function appendNextStep(nextStep){
+    //append all next step
+    var key = nextStep.split(';')
+    key.forEach(element => {  
+        initByStep(element);
+    });
 }
 //used to find result of clicked radio
 function findResultInActualData(id) {
