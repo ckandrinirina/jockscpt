@@ -5,21 +5,114 @@
 
 3 Type de demande
     Installation (4)
-    SAV / Réparation
-    Autres ( hors bubendor)
+    SAV / Réparation (17)
+    Autres ( hors bubendor) (23)
 
 4 Le point conseil est il à proximité du lieu d'intervention ? 
-    Oui (5 et 46)
-    Non
-    Pas de point conseil disponible
-
-5 Coordonnées de l'appelant
-    ouvrir la fiche contact
+    Oui (6)
+    Non (14)
+    Pas de point conseil disponible (16)
 
 
-45 Avant toute transmission il faut s\'assurer que les vérications ont été faites :</br><ul><li>Une coupure / remise en service du secteur sur le disjoncteur du volet roulant n\'a pas permis de résoudre la panne.</li><li>La pile de l’émetteur dispose d'un niveau de charge sufisant.</li><li>Le démontage du caisson est possible (Les vis sont apparentes et aucun obstacle ne se situe devant la trappe de visite).</li><li>Tous les composants du volet se trouvent sur le lieu de l'intervention (notamment l’émetteur).</li></ul>
+5 Avant toute transmission il faut s\'assurer que les vérications ont été faites :</br><ul><li>Une coupure / remise en service du secteur sur le disjoncteur du volet roulant n\'a pas permis de résoudre la panne.</li><li>La pile de l’émetteur dispose d'un niveau de charge sufisant.</li><li>Le démontage du caisson est possible (Les vis sont apparentes et aucun obstacle ne se situe devant la trappe de visite).</li><li>Tous les composants du volet se trouvent sur le lieu de l'intervention (notamment l’émetteur).</li></ul>
 Demande
-    SAV – Volet Bubendor sous garantie (moins de 7 ans)
-    SAV – Volet Bubendor hors garantie (plus de 7 ans) 
-    SAV – Autres marques 
-    
+    SAV – Volet Bubendor sous garantie (moins de 7 ans) (10)
+    SAV – Volet Bubendor hors garantie (plus de 7 ans) (12)
+    SAV – Autres marques (13)
+
+6 Adresse
+    CP - Ville
+    Sélectionner une ville
+    Nombre de volet à poser ?
+    Type de travaux
+        Neuf (10)
+        Rénovation (10)
+        Extension (10)
+        Autre (télécommande,....) (9)
+
+7 Type de bien (8) all
+        Appartement
+        Maison individuelle
+        Immeuble
+        Commerce
+        Bureaux
+        Usine
+        Hôtel
+        Autre 
+
+8 Envoyer un message et enregistrer les donnés du script==============
+
+9 Commentaires et save
+
+
+10 Renvoi du particulier  :
+    1) Vers la demande en ligne, sur le site Bubendor où il
+    devra se munir de son numéro S/N. 
+    OU
+    2) vers le Service Consommateur au 03 89 69 63 63 (horaires
+    du lundi au vendredi de 8h30 à 11h et de 13h30 à 15h00
+    Enregistrer les données du script============
+
+12  Adresse
+    CP-Ville
+    ectionner une ville
+    Nombre de volets concernés par la demande de réparation
+    N°S/N ou NSP
+    Informations complémentaires
+    Envoyer un message et enregistrer les données du script==========
+
+13 Le point conseil est il réparateur qualié toutes marques
+    Oui (12)
+    Non (10)
+
+14 Faire une recherche avec l'adresse d'intervention, code postal et ville.  Remplir la fiche de demande en ligne  sur le site bubendor en prenant toutes les informations communiquées par le client (ne pas lacher le client)
+
+Typage (15) all
+    A raccroché
+    Redirection (Erreur de numéro)
+    Se déplace au point conseil 
+    Prospection Téléphonique 
+    Horaires / Livraison 
+    Autres
+
+15 Enregistrer donné du script
+
+16 Renvoyer vers le site ou le particulier fera sa demande en ligne, il sera recontacté par le Service Consommateur an de trouver une solution. Délai maximum 48h.
+Enregistrer les données du script ============
+
+17 SAV - Réparation
+    SAV - Volet marque Bubendor vendu par le point conseil (garanti ou non) (18)
+    SAV - Volet non vendu par le point conseil → Aller à l'étape (19)
+
+18 Transférez l'appel vers le point conseil. S'il n'y a pas de réponse, lui communiquez les coordonnées téléphonique (à gauche de l'écran sous le calendrier).
+    enregistrer ===== 
+
+19 Type de SAV
+    Volets de marque Bubendor (moins de 7 ans) – SOUS GARANTIE (10)
+    Volets de marque Bubendor (plus de 7 ans) – HORS GARANTIE (20)
+    Volets d'autres marques (21)
+
+20 Coordonnées de l'appelant (20)
+    Adresse
+    CP-Ville
+    Sélectionner une ville
+    Nombre de volet
+    N° de serie
+    Informations complémentaires
+    Envoye un message et enregistrer les donnés du script===
+
+21  Est ce que le point conseil est réparateur qualié ?
+    Oui (22)
+    Non (10)
+
+22 Coordonnées de l'appelant
+    Adresse
+    CP - Ville
+    Sélectionner une ville
+    Nombre de volets concernés par la demande de réparation
+    N°S/N ou NSP
+    Informations complémentaires (si télécommande mettre la quantité)
+    Envoyer un message et enregistrer les données du script==
+
+23 Appelez le point conseil, à défaut lui communiquez les coordonnées.
+   Enregistrer les données du script
