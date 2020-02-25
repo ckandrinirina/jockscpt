@@ -4,7 +4,6 @@
     <!-- dynamic content -->
     <div id="content" class="row"></div>
     <div class="contact"></div>
-    <div 
     <!-- dynamic content -->
     <script src="<?= base_url('assets/home/script.js') ?>"></script>
 </div>
