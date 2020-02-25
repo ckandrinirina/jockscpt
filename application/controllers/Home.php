@@ -8,6 +8,7 @@ class Home extends CI_Controller
         parent::__construct();
         $this->load->library('layout');
         $this->load->model('ScriptModel', 'script');
+        $this->load->model('ScriptSave', 'save');
         $this->load->model('AppelSurModel', 'appelSur');
         $this->load->helper('pdf');
         $this->load->helper('mail');
@@ -63,20 +64,24 @@ class Home extends CI_Controller
                 case 'contact':
                     $view_tmp = "<div class='frame-contact'>" .
                         "<p>Coordonnées de l'appelant</p>" .
-                        "<input type='text' placeholder='Nom'>" .
-                        "<input type='text' placeholder='Prénom'>" .
-                        "<input type='text' placeholder='Adresse'>" .
-                        "<input type='text' placeholder='CP'>" .
-                        "<input type='text' placeholder='Ville'>" .
-                        "<input type='text' placeholder='Sélectionner une ville'>" .
+                        "<input type='text' placeholder='Nom' id='nom_client'>" .
+                        "<input type='text' placeholder='Prénom' id='prenom_client'>" .
+                        "<input type='text' placeholder='Adresse' id=adresse_client>" .
+                        "<input type='text' placeholder='CP' id='cp_client'>" .
+                        "<input type='text' placeholder='Ville' id='ville_client'>" .
                         "</div>";
                     $view .= '<div class="col-md-4 step_' . $data[0]['champs_num_step'] . '">' . $view_tmp . '</div>';
-
                     break;
-                case 'nbr_volet';
+                case 'nbr_volet':
                     $view_tmp = "<p>Nombre de volet à poser?</p>" .
-                        "<input type='text'>";
+                        "<input type='text' id='nbr_volet'>";
                     $view .= '<div class="col-md-4 step_' . $data[0]['champs_num_step'] . '">' . $view_tmp . '</div>';
+                    break;
+                case 'save':
+                    $view .= '<div class="col-md-4 step_' . $data[0]['champs_num_step'] . '"><button class="btn btn-default" id="save">Enregistrer</button></div>';
+                    break;
+                case 'send_save':
+                    $view .= '<div class="col-md-4 step_' . $data[0]['champs_num_step'] . '"><button class="btn btn-default" id="send_save">Enregistrer et envoyer message</button></div>';
                     break;
                 default:
                     // default action
@@ -96,20 +101,20 @@ class Home extends CI_Controller
                     $view_tmp .= '<p>' . $libelle . '</p>';
                     break;
                 case 'button': //if type button
-                    $view_tmp .= '<button class="btn btn-default next" id="' . $champ_id . '">' . $libelle . '</button>';
+                    $view_tmp .= '<button class="btn btn-default next" id="' . $champ_id . '" libelle="' . $libelle . '">' . $libelle . '</button>';
                     break;
                 case 'text': //if type text
                     $view_tmp .= '<p>' . $libelle . '</p>' .
-                        '<input class="text" type="' . $type . '" name="name_' . $num_step . '" id="' . $champ_id . '"/>';
+                        '<input class="text" type="' . $type . '" name="name_' . $num_step . '" id="' . $champ_id . '" libelle="' . $libelle . '"/>';
                     break;
                 case 'textarea': //if type textarea
                     $view_tmp .= '<p>' . $libelle . '</p>' .
-                        '<textarea class="textarea" name="name_' . $num_step . '" id="' . $champ_id . '"></textarea>';
+                        '<textarea class="textarea" name="name_' . $num_step . '" id="' . $champ_id . '" libelle="' . $libelle . '"></textarea>';
                     break;
 
                 default: //else an input => append input to view_tmp
                     $view_tmp .= '<div class="block-puce">' .
-                        '<input class="next puce" type="' . $type . '" name="name_' . $num_step . '" id="' . $champ_id . '" value="' . $champ_id . '"/>' .
+                        '<input class="next puce" type="' . $type . '" name="name_' . $num_step . '" id="' . $champ_id . '" value="' . $champ_id . '" libelle="' . $libelle . '"/>' .
                         '<p>' . $libelle . '</p>' .
                         '</div>';
                     break;
@@ -132,11 +137,15 @@ class Home extends CI_Controller
     {
         $value = $this->input->get('value');
         $isRq = $this->appelSur->findIsRqByNumero($value);
-        if($isRq != null){
-            echo $isRq[0]['reparateur_qualifie_is_rep_q'];
-        }else{
-            echo 'false';
-        }
+        header('Content-type:application/json');
+        echo json_encode([
+            'data' => $isRq[0],
+        ]);
+        // if($isRq != null){
+        //     echo $isRq[0]['reparateur_qualifie_is_rep_q'];
+        // }else{
+        //     echo 'false';
+        // }
     }
 
     public function ajaxFindAllNumero()
@@ -144,8 +153,19 @@ class Home extends CI_Controller
         $data = $this->appelSur->findAllNumero();
         header('Content-type:application/json');
         echo json_encode([
-            'data'=>$data,
+            'data' => $data,
         ]);
+    }
+
+    public function saveData()
+    {
+        $script_data_child = $this->input->post('script_data_child');
+        $script_data = $this->input->post('script_data');
+        $script_data_id = $this->save->insertScript($script_data);
+        foreach ($script_data_child as $s) {
+            $s['script_data_child_parent_fk'] = $script_data_id;
+            $this->save->insertScriptChild($s);
+        }
     }
 
     public function send_email()
