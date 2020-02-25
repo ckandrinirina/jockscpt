@@ -132,10 +132,10 @@ class Home extends CI_Controller
     {
         $value = $this->input->get('value');
         $isRq = $this->appelSur->findIsRqByNumero($value);
-        if($isRq){
-            echo '1';
+        if($isRq != null){
+            echo $isRq[0]['reparateur_qualifie_is_rep_q'];
         }else{
-            echo '0';
+            echo 'false';
         }
     }
 

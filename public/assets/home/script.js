@@ -51,8 +51,11 @@ function testIfReQualifie(value){
         data: {value:value},
         async: false,
         success: function (response) {
+            console.log(response);
             if(response == 1){
                 $('#5').trigger('click');
+            }else if(response == 0){
+                $('#7').trigger('click');
             }
         }
     });
