@@ -23,6 +23,7 @@ class Layout
         ];
         $this->var['css'] = [
             base_url('assets/css/bootstrap.min.css'),
+            base_url('assets/css/style.css'),
         ];
     }
 
