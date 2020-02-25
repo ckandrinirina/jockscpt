@@ -64,16 +64,16 @@ class Home extends CI_Controller
             //if type text
             }elseif(($value['champs_type'] == 'text')){
                 $view .= '<p>' . $value['champs_libelle'] . '</p>'.
-                        '<input class="form-control" type="' . $value['champs_type'] . '" name="name_' . $value['champs_num_step'] . '" id="' . $value['champs_id'] . '"/>' ;
+                        '<input class="text" type="' . $value['champs_type'] . '" name="name_' . $value['champs_num_step'] . '" id="' . $value['champs_id'] . '"/>' ;
             //if textarea
             }elseif($value['champs_type'] == 'textarea'){
                 $view .= '<p>' . $value['champs_libelle'] . '</p>'.
-                        '<textarea class="form-control" name="name_' . $value['champs_num_step'] . '" id="' . $value['champs_id'] . '"></textarea>' ;
+                        '<textarea class="textarea" name="name_' . $value['champs_num_step'] . '" id="' . $value['champs_id'] . '"></textarea>' ;
             }
             //else an input => append input to view
             else {
-                $view .= '<div style="display:flex">' .
-                    '<input class="next" type="' . $value['champs_type'] . '" name="name_' . $value['champs_num_step'] . '" id="' . $value['champs_id'] . '" value="' . $value['champs_id'] . '"/>' .
+                $view .= '<div class="block-puce">' .
+                    '<input class="next puce" type="' . $value['champs_type'] . '" name="name_' . $value['champs_num_step'] . '" id="' . $value['champs_id'] . '" value="' . $value['champs_id'] . '"/>' .
                     '<p>' . $value['champs_libelle'] . '</p>' .
                     '</div>';
             }
