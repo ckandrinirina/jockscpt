@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-function sendEmail($email,$subject,$message,$file_url = 'none')
+function sendEmail($to,$from,$subject,$message,$file_path = 'none')
 {
     $ci =& get_instance();
     $ci->load->library('email');
@@ -17,12 +17,12 @@ function sendEmail($email,$subject,$message,$file_url = 'none')
 
     $ci->load->library('email', $config);
     $ci->email->set_newline("\r\n");
-    $ci->email->from('abc@gmail.com');
-    $ci->email->to($email);
+    $ci->email->from($from);
+    $ci->email->to($to);
     $ci->email->subject($subject);
     $ci->email->message($message);
-    if ($file_url != 'none'){
-        $ci->email->attach($file_url);
+    if ($file_path != 'none'){
+        $ci->email->attach($file_path);
     }
     if($ci->email->send()){
         echo 'Email send.';
