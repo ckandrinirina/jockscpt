@@ -35,14 +35,14 @@ CREATE TABLE `champs` (
   `champs_type` varchar(10) NOT NULL,
   `champs_next_step` int(11) DEFAULT NULL,
   `champs_order` int(11) NOT NULL,
-  `script_reference` varchar(255) NOT NULL
+  `champs_reference` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `champs`
 --
 
-INSERT INTO `champs` (`champs_id`, `champs_num_step`, `champs_libelle`, `champs_type`, `champs_next_step`, `champs_order`, `script_reference`) VALUES
+INSERT INTO `champs` (`champs_id`, `champs_num_step`, `champs_libelle`, `champs_type`, `champs_next_step`, `champs_order`, `champs_reference`) VALUES
 (1, 1, 'Choix type', 'libelle', 2, 1, ''),
 (2, 1, 'Mini-site', 'radio', 2, 2, ''),
 (3, 1, 'Page jaune', 'radio', 2, 3, ''),

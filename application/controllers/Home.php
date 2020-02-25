@@ -26,6 +26,7 @@ class Home extends CI_Controller
     {
         $step = $this->input->get('step');
         $data = $this->script->FindByStep($step);
+        // var_dump($data);die();
         $this->generateViewFromData($data);
     }
 
@@ -53,35 +54,68 @@ class Home extends CI_Controller
     private function viewHtml($data)
     {
         $view = '';
+        // $not_dynamic_frame = ['contact','nbr_volet'];
         foreach ($data as $value) {
-            //test if libelle => append text to view
-            if ($value['champs_type'] == 'libelle') {
-                $view .= '<p>' . $value['champs_libelle'] . '</p>';
-
-            //if type button
-            }elseif($value['champs_type'] == 'button'){
-                $view .= '<button class="btn btn-default next" id="' . $value['champs_id'] . '">' . $value['champs_libelle'] . '</button>';
-            //if type text
-            }elseif(($value['champs_type'] == 'text')){
-                $view .= '<p>' . $value['champs_libelle'] . '</p>'.
-                        '<input class="text" type="' . $value['champs_type'] . '" name="name_' . $value['champs_num_step'] . '" id="' . $value['champs_id'] . '"/>' ;
-            //if textarea
-            }elseif($value['champs_type'] == 'textarea'){
-                $view .= '<p>' . $value['champs_libelle'] . '</p>'.
-                        '<textarea class="textarea" name="name_' . $value['champs_num_step'] . '" id="' . $value['champs_id'] . '"></textarea>' ;
+            $reference = $value['champs_reference'];
+            $view_tmp = '';
+            switch ($reference) {
+                case 'contact':
+                    $view_tmp = "<div class='frame-contact'>".
+                            "<p>Coordonnées de l'appelant</p>".
+                            "<input type='text' placeholder='Nom'>".
+                            "<input type='text' placeholder='Prénom'>".
+                            "<input type='text' placeholder='Adresse'>".
+                            "<input type='text' placeholder='CP'>".
+                            "<input type='text' placeholder='Ville'>".
+                            "<input type='text' placeholder='Sélectionner une ville'>".
+                        "</div>";
+                    $view .= '<div class="col-md-4 step_' . $data[0]['champs_num_step'] . '">' . $view_tmp . '</div>';
+                    
+                break;
+                case 'nbr_volet';
+                $view_tmp = "<p>Nombre de volet à poser?</p>".
+                            "<input type='text'>";
+                        $view .= '<div class="col-md-4 step_' . $data[0]['champs_num_step'] . '">' . $view_tmp . '</div>';
+                    break;
+                default:
+                    // default action
+                    break;
             }
-            //else an input => append input to view
-            else {
-                $view .= '<div class="block-puce">' .
-                    '<input class="next puce" type="' . $value['champs_type'] . '" name="name_' . $value['champs_num_step'] . '" id="' . $value['champs_id'] . '" value="' . $value['champs_id'] . '"/>' .
-                    '<p>' . $value['champs_libelle'] . '</p>' .
-                    '</div>';
+        }
+        $view_tmp = '';
+        foreach ($data as $value) {
+            $type = $value['champs_type'];
+            $libelle = $value['champs_libelle'];
+            $champ_id = $value['champs_id'];
+            $num_step = $value['champs_num_step'];
+            switch ($type) {
+                case 'none': //test if libelle => append text to view
+                    break;
+                case 'libelle': //test if libelle => append text to view
+                    $view_tmp .= '<p>' . $libelle . '</p>';
+                    break;
+                case 'button': //if type button
+                    $view_tmp .= '<button class="btn btn-default next" id="' . $champ_id . '">' . $libelle . '</button>';                
+                    break;
+                case 'text': //if type text
+                    $view_tmp .= '<p>' . $libelle . '</p>'.
+                            '<input class="text" type="' . $type . '" name="name_' . $num_step . '" id="' . $champ_id . '"/>' ;        
+                    break;
+                case 'textarea': //if type textarea
+                    $view_tmp .= '<p>' . $libelle . '</p>'.
+                            '<textarea class="textarea" name="name_' . $num_step . '" id="' . $champ_id . '"></textarea>' ;              
+                    break;
+
+                default: //else an input => append input to view_tmp
+                    $view_tmp .= '<div class="block-puce">' .
+                                '<input class="next puce" type="' . $type . '" name="name_' . $num_step . '" id="' . $champ_id . '" value="' . $champ_id . '"/>' .
+                                '<p>' . $libelle . '</p>' .
+                                '</div>';
+                    break;
             }
-
-
             //automaticaly apend next if value = 1
         }
-        $view = '<div class="col-md-4" id="step_' . $data[0]['champs_num_step'] . '">' . $view . '</div>';
+        $view .= '<div class="col-md-4 step_' . $data[0]['champs_num_step'] . '">' . $view_tmp . '</div>';
         return $view;
     }
 
@@ -95,6 +129,6 @@ class Home extends CI_Controller
 
     public function send_email()
     {
-        sendEmail('test@test.com', 'test', 'test');
+        // sendEmail('test@test.com', 'test', 'test');
     }
 }
