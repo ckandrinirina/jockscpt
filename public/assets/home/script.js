@@ -3,6 +3,10 @@ $(document).ready(function () {
     //save actual data for best control
     initByStep(1);
 
+    isInput = false;
+    $('#101').attr('list','datalist');
+    var datalist = '<datalist id="datalist"><option value="erick" class="datalist"></datalist>';
+    $(datalist).insertAfter('#101');
     //click on next step
     $('#content').on('click', '.next', (e, v) => {
         var $e = $(e.target);
@@ -13,6 +17,12 @@ $(document).ready(function () {
         pushToScript(dataActualClick);
         appendNextStep(dataActualClick.champs_next_step);
         // goToNextStep();
+    })
+
+    $(document).on('keyup','#101',(e) => {
+        $input = $(e.target);
+        var value = $('#'+$input.prop('id')).val();
+        var isRq = testIfReQualifie()
     })
 });
 
