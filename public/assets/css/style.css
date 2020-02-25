@@ -1,7 +1,4 @@
-* img{
-  width:100%;
-  height: 100%;
-}
+
 
 *{
   font-family: montserrat;
@@ -17,12 +14,25 @@
           background-color: #A578AE !important;
         }
 
+      .link-nextcloud img{
+        display:inline!important;
+      }
+
+      .link-nextcloud a{
+        padding-right:4vw;
+      }
+
     /*LOGO CLIENT*/
 
       .listeclient{
         border-bottom: 10px solid #F8AE4E;
         text-align: right;
         margin-bottom:5vh;
+      }
+
+      .listeclient p{
+        text-align:left;
+        display:block;
       }
 
       .listeclient-item img{
@@ -48,6 +58,7 @@
         height:7vh;
         width: auto;
       }
+
 /*TEXTE*/
   h3, .text-danger{
     color:#D1371D !important;
@@ -59,22 +70,33 @@
 
   h5{
     font-size:26px;
-    padding-bottom: 2vh;
     border-bottom: 5px solid #D7D0D8;
+    padding-bottom: 2vh;
+    margin-bottom: 0;
   }
 
-  /*COLONE-LIGNE*/
-    .col-md-4{
-      border-right: 2px solid #D7D0D8;
-      padding : 2vh 2vw;
-    }
+  .col-md-4 p:first-child{
+    font-weight: 550;
+  }
 
-    .col-md-4:nth-child(3), .col-md-4:nth-child(6){
-      border-right: 0px;
-    }
+/*COLONE-LIGNE*/
+  .col-md-4{
+    border-right: 2px solid #D7D0D8;
+    border-bottom: 5px solid #D7D0D8;
+    padding : 3vh 1.5vw;
+  }
 
-    .row{
-      padding-bottom: 2vh;
-      border-bottom: 5px solid #D7D0D8;
-      margin-bottom: 1vh;
-    }
+  .col-md-4:nth-child(3), .col-md-4:nth-child(6), .col-md-4:nth-child(9){
+    border-right: 0px;
+  }
+  .row{
+    padding-bottom: 2vh;
+  }
+
+  .block-puce{
+    display: flex !important;
+    align-items: baseline;
+  }
+  input{
+    margin-right: 0.5vw;
+  }
