@@ -8,6 +8,7 @@ class Home extends CI_Controller
         parent::__construct();
         $this->load->library('layout');
         $this->load->model('ScriptModel', 'script');
+        $this->load->model('AppelSurModel', 'appelSur');
         $this->load->helper('pdf');
         $this->load->helper('mail');
     }
@@ -60,22 +61,22 @@ class Home extends CI_Controller
             $view_tmp = '';
             switch ($reference) {
                 case 'contact':
-                    $view_tmp = "<div class='frame-contact'>".
-                            "<p>Coordonnées de l'appelant</p>".
-                            "<input type='text' placeholder='Nom'>".
-                            "<input type='text' placeholder='Prénom'>".
-                            "<input type='text' placeholder='Adresse'>".
-                            "<input type='text' placeholder='CP'>".
-                            "<input type='text' placeholder='Ville'>".
-                            "<input type='text' placeholder='Sélectionner une ville'>".
+                    $view_tmp = "<div class='frame-contact'>" .
+                        "<p>Coordonnées de l'appelant</p>" .
+                        "<input type='text' placeholder='Nom'>" .
+                        "<input type='text' placeholder='Prénom'>" .
+                        "<input type='text' placeholder='Adresse'>" .
+                        "<input type='text' placeholder='CP'>" .
+                        "<input type='text' placeholder='Ville'>" .
+                        "<input type='text' placeholder='Sélectionner une ville'>" .
                         "</div>";
                     $view .= '<div class="col-md-4 step_' . $data[0]['champs_num_step'] . '">' . $view_tmp . '</div>';
-                    
-                break;
+
+                    break;
                 case 'nbr_volet';
-                $view_tmp = "<p>Nombre de volet à poser?</p>".
-                            "<input type='text'>";
-                        $view .= '<div class="col-md-4 step_' . $data[0]['champs_num_step'] . '">' . $view_tmp . '</div>';
+                    $view_tmp = "<p>Nombre de volet à poser?</p>" .
+                        "<input type='text'>";
+                    $view .= '<div class="col-md-4 step_' . $data[0]['champs_num_step'] . '">' . $view_tmp . '</div>';
                     break;
                 default:
                     // default action
@@ -95,22 +96,22 @@ class Home extends CI_Controller
                     $view_tmp .= '<p>' . $libelle . '</p>';
                     break;
                 case 'button': //if type button
-                    $view_tmp .= '<button class="btn btn-default next" id="' . $champ_id . '">' . $libelle . '</button>';                
+                    $view_tmp .= '<button class="btn btn-default next" id="' . $champ_id . '">' . $libelle . '</button>';
                     break;
                 case 'text': //if type text
-                    $view_tmp .= '<p>' . $libelle . '</p>'.
-                            '<input class="text" type="' . $type . '" name="name_' . $num_step . '" id="' . $champ_id . '"/>' ;        
+                    $view_tmp .= '<p>' . $libelle . '</p>' .
+                        '<input class="text" type="' . $type . '" name="name_' . $num_step . '" id="' . $champ_id . '"/>';
                     break;
                 case 'textarea': //if type textarea
-                    $view_tmp .= '<p>' . $libelle . '</p>'.
-                            '<textarea class="textarea" name="name_' . $num_step . '" id="' . $champ_id . '"></textarea>' ;              
+                    $view_tmp .= '<p>' . $libelle . '</p>' .
+                        '<textarea class="textarea" name="name_' . $num_step . '" id="' . $champ_id . '"></textarea>';
                     break;
 
                 default: //else an input => append input to view_tmp
                     $view_tmp .= '<div class="block-puce">' .
-                                '<input class="next puce" type="' . $type . '" name="name_' . $num_step . '" id="' . $champ_id . '" value="' . $champ_id . '"/>' .
-                                '<p>' . $libelle . '</p>' .
-                                '</div>';
+                        '<input class="next puce" type="' . $type . '" name="name_' . $num_step . '" id="' . $champ_id . '" value="' . $champ_id . '"/>' .
+                        '<p>' . $libelle . '</p>' .
+                        '</div>';
                     break;
             }
             //automaticaly apend next if value = 1
@@ -119,12 +120,32 @@ class Home extends CI_Controller
         return $view;
     }
 
-    
+
 
     public function export_pdf()
     {
         $html = $this->load->view('pdf/stats_pdf_view')->output->final_output;
         generate_pdf($html);
+    }
+
+    public function ajaxTestIsRq()
+    {
+        $value = $this->input->get('value');
+        $isRq = $this->appelSur->findIsRqByNumero($value);
+        if($isRq){
+            echo '1';
+        }else{
+            echo '0';
+        }
+    }
+
+    public function ajaxFindAllNumero()
+    {
+        $data = $this->appelSur->findAllNumero();
+        header('Content-type:application/json');
+        echo json_encode([
+            'data'=>$data,
+        ]);
     }
 
     public function send_email()

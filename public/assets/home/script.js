@@ -2,13 +2,10 @@ SCRIPT_VAL = [];
 $(document).ready(function () {
     //save actual data for best control
     initByStep(1);
-
-    isInput = false;
-    $('#101').attr('list','datalist');
-    var datalist = '<datalist id="datalist"><option value="erick" class="datalist"></datalist>';
-    $(datalist).insertAfter('#101');
+    generateDataList();
     //click on next step
     $('#content').on('click', '.next', (e, v) => {
+        $('#101').attr('disabled',false);
         var $e = $(e.target);
         //id of clicked element
         var clickId = $e.prop('id');
@@ -22,11 +19,45 @@ $(document).ready(function () {
     $(document).on('keyup','#101',(e) => {
         $input = $(e.target);
         var value = $('#'+$input.prop('id')).val();
-        var isRq = testIfReQualifie()
+        var isRq = testIfReQualifie(value);
     })
 });
 
 //used to get content from the back-end
+function generateDataList(){
+    $('#101').attr('disabled',true);
+    $('#101').attr('list','datalist');
+    var url = base_url + 'home/ajaxFindAllNumero';
+    var datalist = '';
+    $.ajax({
+        type: "get",
+        url: url,
+        async: false,
+        success: function (response) {
+            response.data.forEach(element => {
+                datalist += '<option value="'+element.reparateur_qualifie_numero+'">'
+            });
+        }
+    });
+    var datalist = '<datalist id="datalist">'+datalist+'</datalist>';
+    $(datalist).insertAfter('#101');
+}
+
+function testIfReQualifie(value){
+    var url = base_url + 'home/ajaxTestIsRq';
+    $.ajax({
+        type: "GET",
+        url: url,
+        data: {value:value},
+        async: false,
+        success: function (response) {
+            if(response == 1){
+                $('#5').trigger('click');
+            }
+        }
+    });
+}
+
 function initByStep(step) {
     var url = base_url + 'home/ajaxGetContentByStep';
     var dataStep;
@@ -114,7 +145,6 @@ function deleteAllNextIfExist(data,beginIndex){
     var nextStep = data.script_next;
     for(i=beginIndex+1;i<SCRIPT_VAL.length;i++){
         $('#content').find('.step_'+nextStep).remove();
-        debugger
         nextStep = SCRIPT_VAL[i].script_next;
         lastIndex = i;
     }
