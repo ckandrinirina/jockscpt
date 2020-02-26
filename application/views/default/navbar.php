@@ -15,20 +15,25 @@
 </nav>
     <!-- nav with all the client links -->
 <div class="listeclient">
-  <div>
-    <a href="#"><p>Voir tous les clients</p></a>
+  <div class="flex">
+    <div>
+      <img src="<?= base_url('assets/img/voir.png') ?>" alt="">
+      <a href="#"><p>Voir tous les clients</p></a>
+    </div>
+    <div>
+      <a class="listeclient-item" href="#">
+        <img src="<?= base_url('assets/img/actiglass.png') ?>" class="actiglass" alt="">
+      </a>
+      <a class="listeclient-item" href="#">
+        <img src="<?= base_url('assets/img/bubendorff.png') ?>" class="bubendorff" alt="">
+      </a>
+      <a class="listeclient-item" href="#">
+        <img src="<?= base_url('assets/img/cif.png') ?>" class="cif" alt="">
+      </a>
+      <a class="listeclient-item" href="#">
+        <img src="<?= base_url('assets/img/socrif.jpg') ?>" class="socrif" alt="">
+      </a>
+    </div>
   </div>
-  <a class="listeclient-item" href="#">
-    <img src="<?= base_url('assets/img/actiglass.png') ?>" class="actiglass" alt="">
-  </a>
-  <a class="listeclient-item" href="#">
-    <img src="<?= base_url('assets/img/bubendorff.png') ?>" class="bubendorff" alt="">
-  </a>
-  <a class="listeclient-item" href="#">
-    <img src="<?= base_url('assets/img/cif.png') ?>" class="cif" alt="">
-  </a>
-  <a class="listeclient-item" href="#">
-    <img src="<?= base_url('assets/img/socrif.jpg') ?>" class="socrif" alt="">
-  </a>
 </div>
 

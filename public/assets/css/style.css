@@ -8,6 +8,11 @@
     /*NAVIGATION FONCTIONNELLE*/
       nav, .navbar-brand{
         padding:0px 0px 0px 10px !important;
+        display: absolute !important;
+        position: -webkit-sticky !important; /* Safari */
+        position: sticky !important;
+        top:0vh;
+        z-index:1;
       }
 
       .bg-light{
@@ -25,14 +30,37 @@
     /*LOGO CLIENT*/
 
       .listeclient{
+        background-color: #fff;
         border-bottom: 10px solid #F8AE4E;
-        text-align: right;
-        margin-bottom:5vh;
+        display: absolute !important;
+        position: -webkit-sticky !important; /* Safari */
+        position: sticky !important;
+        top:8vh;
+        z-index:1;
       }
 
-      .listeclient p{
-        text-align:left;
-        display:block;
+      .flex{
+        display:flex !important;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.5vh 5vw;
+      }
+
+      .flex div:nth-child(1){
+        display:flex;
+        align-items: center;
+      }
+
+      .flex div:nth-child(1) img{
+        width:3vw;
+      }
+
+      .flex div:nth-child(1) a{
+        color:#D1371D;
+        text-transform: uppercase;
+        font-weight: 600;
+        margin-top: 17px;
+        padding-left: 1vw;
       }
 
       .listeclient-item img{
@@ -40,22 +68,22 @@
       }
 
       .actiglass{
-        height :5vh;
+        height :3vh;
         width: auto;
       }
 
       .bubendorff{
-        height :10vh;
+        height :7vh;
         width: auto;
       }
 
       .cif{
-        height :12vh;
+        height :9vh;
         width: auto;
       }
 
       .socrif{
-        height:7vh;
+        height:5vh;
         width: auto;
       }
 
@@ -77,6 +105,38 @@
 
   .col-md-4 p:first-child{
     font-weight: 550;
+  }
+
+/*BOUTONS*/
+
+  .btn{
+    background: rgb(165,120,174);
+      background: -moz-linear-gradient(180deg, rgba(165,120,174,1) 6%, rgba(98,75,101,1) 100%);
+      background: -webkit-linear-gradient(180deg, rgba(165,120,174,1) 6%, rgba(98,75,101,1) 100%);
+      background: linear-gradient(180deg, rgba(165,120,174,1) 6%, rgba(98,75,101,1) 100%);
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#a578ae",endColorstr="#624b65",GradientType=1);
+    border:0;
+    border-radius:50px;
+    padding:1vh 2vw;
+    color:#fff !important;
+    font-weight: 500;
+    font-size: 14px;
+    text-transform: uppercase;
+    margin:auto;
+  }
+
+  .btn-search .btn{
+    margin:0vh 1vw 8vh 0vw !important;
+  }
+
+  .btn-search{
+    background-color: #fff;
+    display:absolute;
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top:29.7vh;
+    z-index:1;
+    padding-top: 5vh;
   }
 
 /*COLONE-LIGNE*/
