@@ -93,8 +93,6 @@ $(document).ready(function () {
         else
             var info_comp = '';
 
-        console.log(nbr_volet)
-        debugger;
         var cordAppelant = {
             script_data_c_app_nom: nom_client,
             script_data_c_app_prenom: prenom_client,
