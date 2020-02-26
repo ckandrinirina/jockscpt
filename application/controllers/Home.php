@@ -140,6 +140,7 @@ class Home extends CI_Controller
         header('Content-type:application/json');
         echo json_encode([
             'data' => $isRq[0],
+            'size' => count($isRq)
         ]);
         // if($isRq != null){
         //     echo $isRq[0]['reparateur_qualifie_is_rep_q'];
@@ -161,6 +162,12 @@ class Home extends CI_Controller
     {
         $script_data_child = $this->input->post('script_data_child');
         $script_data = $this->input->post('script_data');
+        $data = $this->appelSur->findIsRqByNumero($script_data['script_data_numero_client'])[0];
+        if ($data['reparateur_qualifie_mail_sav'] != '') {
+            $this->send_mail_script($script_data_child, $data['reparateur_qualifie_mail_sav']);
+        } else {
+            $this->send_mail_script($script_data_child, $data['reparateur_qualifie_mail_resp']);
+        }
         $script_data_id = $this->save->insertScript($script_data);
         foreach ($script_data_child as $s) {
             $s['script_data_child_parent_fk'] = $script_data_id;
@@ -168,8 +175,13 @@ class Home extends CI_Controller
         }
     }
 
-    public function send_email()
+    public function send_mail_script($script_data_child, $from)
     {
-        // sendEmail('test@test.com', 'test', 'test');
+        $message = '';
+        foreach($script_data_child as $data)
+        {
+            $message .= '<div style="display:flex"><p>'.$data['script_data_child_choix'].' : '.$data['script_data_child_libelle'].'</p></div></br>';
+        }
+        sendEmail('test@test.com',$from, 'Resultat du script',$message);
     }
 }

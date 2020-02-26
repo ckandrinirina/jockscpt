@@ -105,6 +105,7 @@ $(document).ready(function () {
             script_data_n_serie: numero_serie,
             script_data_info_comp: info_comp,
             script_data_reparateur_qualifie_fk: dataClient.reparateur_qualifie_id,
+            script_data_numero_client: dataClient.reparateur_qualifie_numero
         }
         saveData(cordAppelant);
     })
@@ -123,7 +124,7 @@ function saveData(cordAppelant) {
         async: false,
         success: function (response) {
             alert('Script enregistrer');
-            location.reload();
+            //location.reload();
         },
     });
 }
@@ -158,12 +159,43 @@ function testIfReQualifie(value) {
         },
         async: false,
         success: function (response) {
-            if (response.data.reparateur_qualifie_is_rep_q == 1) {
-                $('#5').trigger('click');
-            } else if (response.data.reparateur_qualifie_is_rep_q == 0) {
+            if(response.size == 2 ){
                 $('#7').trigger('click');
+            }else{
+                if (response.data.reparateur_qualifie_is_rep_q == 1) {
+                    $('#5').trigger('click');
+                } else if (response.data.reparateur_qualifie_is_rep_q == 0) {
+                    $('#7').trigger('click');
+                }
             }
-            dataClient = response.data
+            dataClient = response.data;
+            var list = `
+            <table class="table">
+            <tbody>
+              <tr>
+                <th scope="row">NOM</th>
+                <td>` + dataClient.reparateur_qualifie_nom + `</td>
+              </tr>
+              <tr>
+                <th scope="row">ADRESSE</th>
+                <td>` + dataClient.reparateur_qualifie_num_adresse + ` ` + dataClient.reparateur_qualifie_adresse_complement + ` ` + dataClient.reparateur_qualifie_rue + `</td>
+              </tr>
+              <tr>
+                <th scope="row">Ville et code postal</th>
+                <td>` + dataClient.reparateur_qualifie_ville + ` ` + dataClient.reparateur_qualifie_code_postal + `</td>
+              </tr>
+              <tr>
+                <th scope="row">Telephone</th>
+                <td>` + dataClient.reparateur_qualifie_tel + `</td>
+              </tr>
+              <tr>
+                <th scope="row">Mail responsable</th>
+                <td>` + dataClient.reparateur_qualifie_mail_resp + `</td>
+              </tr>
+            </tbody>
+          </table>
+            `
+            $('.step_1').append(list);
         }
     });
 }
@@ -241,7 +273,8 @@ function pushToScript(data) {
             script_data_child_num_step: data.champs_num_step,
             script_data_child_champs_fk: data.champs_id,
             script_data_child_next: data.champs_next_step,
-            script_data_child_libelle: data.champs_libelle
+            script_data_child_libelle: data.champs_libelle,
+            script_data_child_choix: data.champs_choix,
         };
     //insert
     else
@@ -249,7 +282,8 @@ function pushToScript(data) {
             script_data_child_num_step: data.champs_num_step,
             script_data_child_champs_fk: data.champs_id,
             script_data_child_next: data.champs_next_step,
-            script_data_child_libelle: data.champs_libelle
+            script_data_child_libelle: data.champs_libelle,
+            script_data_child_choix: data.champs_choix,
         });
 }
 

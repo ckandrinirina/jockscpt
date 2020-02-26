@@ -6,16 +6,16 @@ function sendEmail($to,$from,$subject,$message,$file_path = 'none')
     $ci->load->library('email');
     $config = Array(
         'protocol' => 'smtp',
-        'smtp_host' => 'localhost:8080',
+        'smtp_host' => 'localhost',
         'smtp_port' => 25,
         'smtp_user' => '', 
         'smtp_pass' => '', 
         'mailtype' => 'html',
-        'charset' => 'iso-8859-1',
+        'charset' => 'utf-8',
         'wordwrap' => TRUE
     );
 
-    $ci->load->library('email', $config);
+    $ci->email->initialize($config);
     $ci->email->set_newline("\r\n");
     $ci->email->from($from);
     $ci->email->to($to);
