@@ -123,7 +123,7 @@ function saveData(cordAppelant) {
         async: false,
         success: function (response) {
             alert('Script enregistrer');
-            // location.reload();
+            location.reload();
         },
     });
 }
