@@ -120,13 +120,13 @@
     padding:1vh 2vw;
     color:#fff !important;
     font-weight: 500;
-    font-size: 14px;
+    font-size: 12px;
     text-transform: uppercase;
     margin:auto;
   }
 
   .btn-search .btn{
-    margin:0vh 1vw 8vh 0vw !important;
+    margin:0vh 1vw 4vh 0vw !important;
   }
 
   .btn-search{
@@ -134,7 +134,7 @@
     display:absolute;
     position: -webkit-sticky; /* Safari */
     position: sticky;
-    top:29.7vh;
+    top:23.2vh;
     z-index:1;
     padding-top: 5vh;
   }
@@ -159,4 +159,7 @@
   }
   input{
     margin-right: 0.5vw;
+  }
+
+  .step_1 p:nth-child(2) {
   }
