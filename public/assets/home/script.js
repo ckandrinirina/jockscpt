@@ -140,7 +140,7 @@ function saveData(cordAppelant,param) {
         async: false,
         success: function (response) {
             alert('Script enregistrer');
-            //location.reload();
+            location.reload();
         },
     });
 }
