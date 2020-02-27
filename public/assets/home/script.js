@@ -3,6 +3,7 @@ $(document).ready(function () {
     //save actual data for best control
     dataClient = [];
     initByStep(1);
+    initByStep(2);
     generateDataList();
     //click on next step
     $('#content').on('click', '.next', (e, v) => {
@@ -46,7 +47,9 @@ $(document).ready(function () {
     })
 
     //send or save script
-    $(document).on('click', '#send_save,#save', () => {
+    $(document).on('click', '.save', (e) => {
+        $button = $(e.target);
+        var param = $button.prop('id');
         if (typeof $('#nom_client').val() == 'undefined')
             var nom_client = '';
         else
@@ -93,6 +96,11 @@ $(document).ready(function () {
         else
             var info_comp = '';
 
+        if (typeof $('[libelle="Commentaires"]').val() != 'undefined')
+            var commentaires = $('[libelle="Commentaires"]').val()
+        else
+            var commentaires = '';
+
         var cordAppelant = {
             script_data_c_app_nom: nom_client,
             script_data_c_app_prenom: prenom_client,
@@ -105,33 +113,41 @@ $(document).ready(function () {
             script_data_n_serie: numero_serie,
             script_data_info_comp: info_comp,
             script_data_reparateur_qualifie_fk: dataClient.reparateur_qualifie_id,
-            script_data_numero_client: dataClient.reparateur_qualifie_numero
+            script_data_numero_client: dataClient.reparateur_qualifie_numero,
+            script_data_commentaires: commentaires
         }
-        saveData(cordAppelant);
+        saveData(cordAppelant,param);
     })
 });
 
 //function to save script
-function saveData(cordAppelant) {
+function saveData(cordAppelant,param) {
     var url = base_url + 'home/saveData';
+    if(typeof $('#message').text()){
+        var message = $('#message').text();
+    }else{
+        var message = '';
+    }
     $.ajax({
         type: "POST",
         url: url,
         data: {
             script_data_child: SCRIPT_VAL,
-            script_data: cordAppelant
+            script_data: cordAppelant,
+            param:param,
+            message:message
         },
         async: false,
         success: function (response) {
             alert('Script enregistrer');
-            location.reload();
+            //location.reload();
         },
     });
 }
 
 //used to get content from the back-end
 function generateDataList() {
-    $('#101').attr('disabled', true);
+    //$('#101').attr('disabled', true);
     $('#101').attr('list', 'datalist');
     var url = base_url + 'home/ajaxFindAllNumero';
     var datalist = '';

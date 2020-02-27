@@ -59,6 +59,7 @@ class Home extends CI_Controller
         // $not_dynamic_frame = ['contact','nbr_volet'];
         foreach ($data as $value) {
             $reference = $value['champs_reference'];
+            $value = $value['champs_libelle'];
             $view_tmp = '';
             switch ($reference) {
                 case 'contact':
@@ -78,10 +79,16 @@ class Home extends CI_Controller
                     $view .= '<div class="col-md-4 step_' . $data[0]['champs_num_step'] . '">' . $view_tmp . '</div>';
                     break;
                 case 'save':
-                    $view .= '<div class="col-md-4 step_' . $data[0]['champs_num_step'] . '"><button class="btn btn-default" id="save">Enregistrer</button></div>';
+                    $view .= '<div class="col-md-4 step_' . $data[0]['champs_num_step'] . '"><button class="btn btn-default save" id="save">Enregistrer</button></div>';
                     break;
                 case 'send_save':
-                    $view .= '<div class="col-md-4 step_' . $data[0]['champs_num_step'] . '"><button class="btn btn-default" id="send_save">Enregistrer et envoyer message</button></div>';
+                    $view .= '<div class="col-md-4 step_' . $data[0]['champs_num_step'] . '"><button class="btn btn-default save" id="send_save">Enregistrer et envoyer message</button></div>';
+                    break;
+                case 'rq_dem':
+                    $view .= '<div class="col-md-4 step_' . $data[0]['champs_num_step'] . '"><button class="btn btn-default save" id="rq_dem">Enregistrer et envoyer message</button></div>';
+                    break;
+                case 'message':
+                    $view .= '<div class="col-md-4 step_' . $data[0]['champs_num_step'] . '" id="message"><p>'.$value.'</p></div>';
                     break;
                 default:
                     // default action
@@ -162,11 +169,21 @@ class Home extends CI_Controller
     {
         $script_data_child = $this->input->post('script_data_child');
         $script_data = $this->input->post('script_data');
+        $param = $this->input->post('param');
+        $message = $this->input->post('message');
         $data = $this->appelSur->findIsRqByNumero($script_data['script_data_numero_client'])[0];
         if ($data['reparateur_qualifie_mail_sav'] != '') {
-            $this->send_mail_script($script_data_child, $data['reparateur_qualifie_mail_sav']);
+            if($param == 'rq_dem'){
+                $this->send_mail_rq($script_data_child, $data['reparateur_qualifie_mail_sav'],$message);
+            }else{
+                $this->send_mail_script($script_data_child, $data['reparateur_qualifie_mail_sav'],$message);
+            }
         } else {
-            $this->send_mail_script($script_data_child, $data['reparateur_qualifie_mail_resp']);
+            if($param == 'rq_dem'){
+                $this->send_mail_rq($script_data_child, $data['reparateur_qualifie_mail_sav'],$message);
+            }else{
+                $this->send_mail_script($script_data_child, $data['reparateur_qualifie_mail_resp'],$message);
+            }
         }
         $script_data_id = $this->save->insertScript($script_data);
         foreach ($script_data_child as $s) {
@@ -175,13 +192,24 @@ class Home extends CI_Controller
         }
     }
 
-    public function send_mail_script($script_data_child, $from)
+    public function send_mail_script($script_data_child, $from,$message_plus)
     {
         $message = '';
         foreach($script_data_child as $data)
         {
             $message .= '<div style="display:flex"><p>'.$data['script_data_child_choix'].' : '.$data['script_data_child_libelle'].'</p></div></br>';
         }
-        sendEmail('fiche@elise.fe',$from, 'Resultat du script',$message);
+        $message .= '<p>'.$message_plus.'</p>';
+        sendEmail($from, 'fiche@elise.fr','Resultat du script',$message);
+    }
+    public function send_mail_rq($script_data_child,$from,$message_plus)
+    {
+        $message = '';
+        foreach($script_data_child as $data)
+        {
+            $message .= '<div style="display:flex"><p>'.$data['script_data_child_choix'].' : '.$data['script_data_child_libelle'].'</p></div></br>';
+        }
+        $message .= '<p>'.$message_plus.'</p>';
+        sendEmail($from, 'fiche@elise.fr','RQ demande d’installation',$message);
     }
 }

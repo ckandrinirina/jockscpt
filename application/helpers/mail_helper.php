@@ -6,10 +6,10 @@ function sendEmail($to,$from,$subject,$message,$file_path = 'none')
     $ci->load->library('email');
     $config = Array(
         'protocol' => 'smtp',
-        'smtp_host' => 'localhost',
-        'smtp_port' => 25,
-        'smtp_user' => '', 
-        'smtp_pass' => '', 
+        'smtp_host' => 'MAIL.GANDI.NET',
+        'smtp_port' => 587,
+        'smtp_user' => 'ficher@elise.fr', 
+        'smtp_pass' => 'ControleGC@1', 
         'mailtype' => 'html',
         'charset' => 'utf-8',
         'wordwrap' => TRUE
