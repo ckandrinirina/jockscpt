@@ -182,6 +182,6 @@ class Home extends CI_Controller
         {
             $message .= '<div style="display:flex"><p>'.$data['script_data_child_choix'].' : '.$data['script_data_child_libelle'].'</p></div></br>';
         }
-        sendEmail('test@test.com',$from, 'Resultat du script',$message);
+        sendEmail('fiche@elise.fe',$from, 'Resultat du script',$message);
     }
 }

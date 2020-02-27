@@ -159,42 +159,50 @@ function testIfReQualifie(value) {
         },
         async: false,
         success: function (response) {
-            if(response.size == 2 ){
+            if (response.size == 2) {
                 $('#7').trigger('click');
-            }else{
+                var type = 'Réparateur qualifié et Point conseil';
+            } else {
                 if (response.data.reparateur_qualifie_is_rep_q == 1) {
                     $('#5').trigger('click');
+                    var type = 'Reparateur qualifié';
                 } else if (response.data.reparateur_qualifie_is_rep_q == 0) {
                     $('#7').trigger('click');
+                    var type = 'Point conseil';
                 }
             }
             dataClient = response.data;
             var list = `
-            <table class="table">
+            <table class="table table_fiche">
             <tbody>
-              <tr>
-                <th scope="row">NOM</th>
-                <td>` + dataClient.reparateur_qualifie_nom + `</td>
-              </tr>
-              <tr>
-                <th scope="row">ADRESSE</th>
-                <td>` + dataClient.reparateur_qualifie_num_adresse + ` ` + dataClient.reparateur_qualifie_adresse_complement + ` ` + dataClient.reparateur_qualifie_rue + `</td>
-              </tr>
-              <tr>
-                <th scope="row">Ville et code postal</th>
-                <td>` + dataClient.reparateur_qualifie_ville + ` ` + dataClient.reparateur_qualifie_code_postal + `</td>
-              </tr>
-              <tr>
-                <th scope="row">Telephone</th>
-                <td>` + dataClient.reparateur_qualifie_tel + `</td>
-              </tr>
-              <tr>
-                <th scope="row">Mail responsable</th>
-                <td>` + dataClient.reparateur_qualifie_mail_resp + `</td>
-              </tr>
-            </tbody>
-          </table>
+                <tr>
+                    <th scope="row">Type</th>
+                    <td>` + type+ `</td>
+                </tr>
+                <tr>
+                    <th scope="row">NOM</th>
+                    <td>` + dataClient.reparateur_qualifie_nom + `</td>
+                </tr>
+                <tr>
+                    <th scope="row">ADRESSE</th>
+                    <td>` + dataClient.reparateur_qualifie_num_adresse + ` ` + dataClient.reparateur_qualifie_adresse_complement + ` ` + dataClient.reparateur_qualifie_rue + `</td>
+                </tr>
+                <tr>
+                    <th scope="row">Ville et code postal</th>
+                    <td>` + dataClient.reparateur_qualifie_ville + ` ` + dataClient.reparateur_qualifie_code_postal + `</td>
+                </tr>
+                <tr>
+                    <th scope="row">Telephone</th>
+                    <td>` + dataClient.reparateur_qualifie_tel + `</td>
+                </tr>
+                <tr>
+                    <th scope="row">Mail responsable</th>
+                    <td>` + dataClient.reparateur_qualifie_mail_resp + `</td>
+                </tr>
+                </tbody>
+            </table>
             `
+            $('.table_fiche').remove();
             $('.step_1').append(list);
         }
     });
