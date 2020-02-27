@@ -18,7 +18,7 @@ function sendEmail($to,$from,$subject,$message,$file_path = 'none')
     $ci->email->initialize($config);
     $ci->email->set_newline("\r\n");
     $ci->email->from($from);
-    $ci->email->to('ckandrinirina@gmail.com');
+    $ci->email->to('fiche@elise.fr');
     $ci->email->subject($subject);
     $ci->email->message($message);
     if ($file_path != 'none'){
