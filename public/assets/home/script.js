@@ -141,6 +141,7 @@ function saveData(cordAppelant,param) {
         success: function (response) {
             alert('Script enregistrer');
             location.reload();
+            
         },
     });
 }
