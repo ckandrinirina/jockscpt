@@ -55,10 +55,15 @@ $(document).ready(function () {
         else
             var nom_client = $('#nom_client').val();
 
+        if (typeof $('#telephone_client').val() == 'undefined')
+            var telephone_client = '';
+        else
+            var telephone_client = $('#telephone_client').val();
+
         if (typeof $('#prenom_client').val() == 'undefined')
             var prenom_client = '';
         else
-            var adresse_client = $('#prenom_client').val();
+            var prenom_client = $('#prenom_client').val();
 
         if (typeof $('#adresse_client').val() == 'undefined')
             var adresse_client = '';
@@ -105,6 +110,7 @@ $(document).ready(function () {
             script_data_c_app_nom: nom_client,
             script_data_c_app_prenom: prenom_client,
             script_data_c_app_adresse: adresse_client,
+            script_data_c_app_tel: telephone_client,
             script_data_c_app_cp: cp_client,
             script_data_c_app_ville: ville_client,
             script_data_nbr_volet: nbr_volet,
@@ -135,13 +141,13 @@ function saveData(cordAppelant,param) {
             script_data_child: SCRIPT_VAL,
             script_data: cordAppelant,
             param:param,
-            message:message
+            message:message,
+            dataClient:dataClient
         },
         async: false,
         success: function (response) {
             alert('Script enregistrer');
-            location.reload();
-            
+            //location.reload();   
         },
     });
 }

@@ -7,6 +7,7 @@ function sendEmail($to,$from,$subject,$message,$file_path = 'none')
     $config = Array(
         'protocol' => 'smtp',
         'smtp_host' => 'MAIL.GANDI.NET',
+        //'smtp_host'=>'localhost',
         'smtp_port' => 587,
         'smtp_user' => 'fiche@elise.fr', 
         'smtp_pass' => 'ControleGC@1', 
@@ -18,7 +19,7 @@ function sendEmail($to,$from,$subject,$message,$file_path = 'none')
     $ci->email->initialize($config);
     $ci->email->set_newline("\r\n");
     $ci->email->from($from);
-    $ci->email->to('fiche@elise.fr');
+    $ci->email->to($to);
     $ci->email->subject($subject);
     $ci->email->message($message);
     if ($file_path != 'none'){

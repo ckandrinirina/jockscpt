@@ -61,13 +61,16 @@ class Home extends CI_Controller
             $reference = $value['champs_reference'];
             $value = $value['champs_libelle'];
             $view_tmp = '';
+            //pour les chapms qui sont particulier
             switch ($reference) {
                 case 'contact':
+                    //recuperer les contacts du client
                     $view_tmp = "<div class='frame-contact'>" .
                         "<p>Coordonnées de l'appelant</p>" .
                         "<input type='text' placeholder='Nom' id='nom_client'>" .
                         "<input type='text' placeholder='Prénom' id='prenom_client'>" .
-                        "<input type='text' placeholder='Adresse' id=adresse_client>" .
+                        "<input type='text' placeholder='Adresse' id='adresse_client'>" .
+                        "<input type='text' placeholder='Téléphone' id='telephone_client'>" .
                         "<input type='text' placeholder='CP' id='cp_client'>" .
                         "<input type='text' placeholder='Ville' id='ville_client'>" .
                         "</div>";
@@ -101,6 +104,7 @@ class Home extends CI_Controller
             $libelle = $value['champs_libelle'];
             $champ_id = $value['champs_id'];
             $num_step = $value['champs_num_step'];
+            //generer dynamiquement le view en fonction de l'étape
             switch ($type) {
                 case 'none': //test if libelle => append text to view
                     break;
@@ -132,14 +136,14 @@ class Home extends CI_Controller
         return $view;
     }
 
-
-
+    //generer un pdf
     public function export_pdf()
     {
         $html = $this->load->view('pdf/stats_pdf_view')->output->final_output;
         generate_pdf($html);
     }
 
+    //tester si Reparateur qualifier et envoyer les donnés du client 
     public function ajaxTestIsRq()
     {
         $value = $this->input->get('value');
@@ -156,6 +160,7 @@ class Home extends CI_Controller
         // }
     }
 
+    //prendre tous le numero
     public function ajaxFindAllNumero()
     {
         $data = $this->appelSur->findAllNumero();
@@ -165,24 +170,26 @@ class Home extends CI_Controller
         ]);
     }
 
+    //sauvegarder puis envoyer un mail
     public function saveData()
     {
         $script_data_child = $this->input->post('script_data_child');
         $script_data = $this->input->post('script_data');
         $param = $this->input->post('param');
         $message = $this->input->post('message');
+        $dataClient = $this->input->post('dataClient');
         $data = $this->appelSur->findIsRqByNumero($script_data['script_data_numero_client'])[0];
         if ($data['reparateur_qualifie_mail_sav'] != '') {
             if($param == 'rq_dem'){
-                $this->send_mail_rq($script_data_child, $data['reparateur_qualifie_mail_sav'],$message);
+                $this->send_mail_rq($script_data_child, $data['reparateur_qualifie_mail_sav'],$message,$script_data,$dataClient);
             }else{
-                $this->send_mail_script($script_data_child, $data['reparateur_qualifie_mail_sav'],$message);
+                $this->send_mail_script($script_data_child, $data['reparateur_qualifie_mail_sav'],$message,$script_data,$dataClient);
             }
         } else {
             if($param == 'rq_dem'){
-                $this->send_mail_rq($script_data_child, $data['reparateur_qualifie_mail_sav'],$message);
+                $this->send_mail_rq($script_data_child, $data['reparateur_qualifie_mail_sav'],$message,$script_data,$dataClient);
             }else{
-                $this->send_mail_script($script_data_child, $data['reparateur_qualifie_mail_resp'],$message);
+                $this->send_mail_script($script_data_child, $data['reparateur_qualifie_mail_resp'],$message,$script_data,$dataClient);
             }
         }
         $script_data_id = $this->save->insertScript($script_data);
@@ -192,17 +199,29 @@ class Home extends CI_Controller
         }
     }
 
-    public function send_mail_script($script_data_child, $from,$message_plus)
+    public function send_mail_script($script_data_child, $from,$message_plus,$script_data,$dataClient)
     {
         $message = '';
+        $message = '<p>Bonjour</p><br><br>'
+                  .'<p>Je vous prie de trouver ci-dessous les informations clients : </p><br><br>';
+
         foreach($script_data_child as $data)
         {
             $message .= '<div style="display:flex"><p>'.$data['script_data_child_choix'].' : '.$data['script_data_child_libelle'].'</p></div></br>';
         }
-        $message .= '<p>'.$message_plus.'</p>';
+        
+        if($script_data["script_data_c_app_nom"] != '' && $script_data["script_data_c_app_prenom"] != '')
+            $message .= '<p>De Mme/Mr '. $script_data["script_data_c_app_prenom"].' '.$script_data["script_data_c_app_nom"].'</p>';
+        if($script_data["script_data_c_app_tel"] != '')
+            $message  .='<p>T.privé:  '.$script_data['script_data_c_app_tel'].'</p>';
+        $message .= '<p>'.$message_plus.'</p><br><br>';
+        $message .= '<p>Bien à vous </p><br><br>';
+        $message .= '<p>Élise Secrétariat </p><br><br>';
+        $message .= '<p>Pour le compte :  '.$dataClient['reparateur_qualifie_nom'].'</p><br><br>';
         sendEmail($from, 'fiche@elise.fr','Resultat du script',$message);
     }
-    public function send_mail_rq($script_data_child,$from,$message_plus)
+
+    public function send_mail_rq($script_data_child,$from,$message_plus,$script_data,$dataClient)
     {
         $message = '';
         foreach($script_data_child as $data)
