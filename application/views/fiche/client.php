@@ -42,5 +42,68 @@
         <a class="btn btn-success" href="<?= base_url('home') ?>">Voir le script</a>
         <a class="btn btn-warning" href="#">Acceder au dossier</a>
     </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="block-puce">
+                <h6 class="info-title">Rechercher une agence</h6>
+                <p class="info-content"><input type="text" id="agence"></p>
+            </div>
+            <div class="block-puce">
+                <h6 class="info-title">Nom de l'agence</h6>
+                <p class="info-content" id="nom_agence"></p>
+            </div>
+            <div class="block-puce">
+                <h6 class="info-title">Nom du contact</h6>
+                <p class="info-content" id="contact_agence"></p>
+            </div>
+            <div class="block-puce">
+                <h6 class="info-title">Fonction</h6>
+                <p class="info-content" id="fonction_agence"></p>
+            </div>
+            <div class="block-puce">
+                <h6 class="info-title">Adresse mail</h6>
+                <p class="info-content" id="mail_agence"></p>
+            </div>
+            <div class="block-puce">
+                <h6 class="info-title">Numéro de téléphone</h6>
+                <p class="info-content" id="tel_agence"></p>
+            </div>
+            <div class="block-puce">
+                <h6 class="info-title">Adresse</h6>
+                <p class="info-content" id="adresse_agence"></p>
+            </div>
+            <div class="block-puce">
+                <h6 class="info-title">Horraires</h6>
+                <p class="info-content" id="horraire_agence"></p>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <h3 class="text-center text-danger">CONSIGNES GENERALES</h3>
+            <p>Brave heart<p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <h3 class="text-center text-danger">STATISTIQUES DE FEVRIER</h3>
+            <div class="col-sm-6"><span class="stat"> 27%</span> appel</div>
+            <div class="col-sm-6">
+                <p><span class="stat"> 30%</span> point conseil</p>
+                <p><span class="stat"> 30%</span> reparateur qualifié</p>
+                <p><span class="stat"> 40%</span> reparateur typage</p>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h3 class="text-center text-danger">13/02/2020</h3>
+                    <p>Brave heart<p>
+                </div>
+                <div class="col-sm-6">
+                    <h3 class="text-center text-danger">13/02/2020</h3>
+                    <p>Brave heart<p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 </div>
