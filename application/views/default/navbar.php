@@ -24,7 +24,7 @@
       <a class="listeclient-item" href="#">
         <img src="<?= base_url('assets/img/actiglass.png') ?>" class="actiglass" alt="">
       </a>
-      <a class="listeclient-item" href="#">
+      <a class="listeclient-item" href="<?= base_url('fiche/client/Bundendorff') ?>">
         <img src="<?= base_url('assets/img/bubendorff.png') ?>" class="bubendorff" alt="">
       </a>
       <a class="listeclient-item" href="#">
