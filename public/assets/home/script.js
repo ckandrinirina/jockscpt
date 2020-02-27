@@ -96,6 +96,11 @@ $(document).ready(function () {
         else
             var info_comp = '';
 
+        if (typeof $('[libelle="Commentaires"]').val() != 'undefined')
+            var commentaires = $('[libelle="Commentaires"]').val()
+        else
+            var commentaires = '';
+
         var cordAppelant = {
             script_data_c_app_nom: nom_client,
             script_data_c_app_prenom: prenom_client,
@@ -108,7 +113,8 @@ $(document).ready(function () {
             script_data_n_serie: numero_serie,
             script_data_info_comp: info_comp,
             script_data_reparateur_qualifie_fk: dataClient.reparateur_qualifie_id,
-            script_data_numero_client: dataClient.reparateur_qualifie_numero
+            script_data_numero_client: dataClient.reparateur_qualifie_numero,
+            script_data_commentaires: commentaires
         }
         saveData(cordAppelant,param);
     })

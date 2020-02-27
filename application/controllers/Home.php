@@ -200,7 +200,7 @@ class Home extends CI_Controller
             $message .= '<div style="display:flex"><p>'.$data['script_data_child_choix'].' : '.$data['script_data_child_libelle'].'</p></div></br>';
         }
         $message .= '<p>'.$message_plus.'</p>';
-        sendEmail('fiche@elise.fr',$from, 'Resultat du script',$message);
+        sendEmail($from, 'fiche@elise.fr','Resultat du script',$message);
     }
     public function send_mail_rq($script_data_child,$from,$message_plus)
     {
@@ -210,6 +210,6 @@ class Home extends CI_Controller
             $message .= '<div style="display:flex"><p>'.$data['script_data_child_choix'].' : '.$data['script_data_child_libelle'].'</p></div></br>';
         }
         $message .= '<p>'.$message_plus.'</p>';
-        sendEmail('fiche@elise.fr',$from, 'RQ demande d’installation',$message);
+        sendEmail($from, 'fiche@elise.fr','RQ demande d’installation',$message);
     }
 }
