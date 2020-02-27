@@ -3,6 +3,7 @@ $(document).ready(function () {
     //save actual data for best control
     dataClient = [];
     initByStep(1);
+    initByStep(2);
     generateDataList();
     //click on next step
     $('#content').on('click', '.next', (e, v) => {
@@ -46,7 +47,9 @@ $(document).ready(function () {
     })
 
     //send or save script
-    $(document).on('click', '#send_save,#save', () => {
+    $(document).on('click', '.save', (e) => {
+        $button = $(e.target);
+        var param = $button.prop('id');
         if (typeof $('#nom_client').val() == 'undefined')
             var nom_client = '';
         else
@@ -107,31 +110,38 @@ $(document).ready(function () {
             script_data_reparateur_qualifie_fk: dataClient.reparateur_qualifie_id,
             script_data_numero_client: dataClient.reparateur_qualifie_numero
         }
-        saveData(cordAppelant);
+        saveData(cordAppelant,param);
     })
 });
 
 //function to save script
-function saveData(cordAppelant) {
+function saveData(cordAppelant,param) {
     var url = base_url + 'home/saveData';
+    if(typeof $('#message').text()){
+        var message = $('#message').text();
+    }else{
+        var message = '';
+    }
     $.ajax({
         type: "POST",
         url: url,
         data: {
             script_data_child: SCRIPT_VAL,
-            script_data: cordAppelant
+            script_data: cordAppelant,
+            param:param,
+            message:message
         },
         async: false,
         success: function (response) {
             alert('Script enregistrer');
-            location.reload();
+            //location.reload();
         },
     });
 }
 
 //used to get content from the back-end
 function generateDataList() {
-    $('#101').attr('disabled', true);
+    //$('#101').attr('disabled', true);
     $('#101').attr('list', 'datalist');
     var url = base_url + 'home/ajaxFindAllNumero';
     var datalist = '';
