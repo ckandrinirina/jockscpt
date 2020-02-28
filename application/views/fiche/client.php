@@ -42,11 +42,11 @@
         <a class="btn btn-success" href="<?= base_url('home') ?>">Voir le script</a>
         <a class="btn btn-warning" href="#">Acceder au dossier</a>
     </div>
-    <div class="row">
-        <div class="col-sm-6">
+    <div class="row flex-client">
+        <div class="col-sm-6 bloc-2">
+            <h3 class="info-title">Rechercher un distributeur</h3>
             <div class="block-puce">
-                <h6 class="info-title">Rechercher une agence</h6>
-                <p class="info-content"><input type="text" id="agence"></p>
+                <p class=""><input type="text" id="agence"></p>
             </div>
             <div class="block-puce">
                 <h6 class="info-title">Nom de l'agence</h6>
@@ -76,28 +76,36 @@
                 <h6 class="info-title">Horraires</h6>
                 <p class="info-content" id="horraire_agence"></p>
             </div>
+            <a class="btn btn-warning btn-center" href="#">Ajouter un distributeur</a>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-6 bloc-2">
             <h3 class="text-center text-danger">CONSIGNES GENERALES</h3>
             <p>Brave heart<p>
         </div>
     </div>
-    <div class="row">
-        <div class="col-sm-6">
-            <h3 class="text-center text-danger">STATISTIQUES DE FEVRIER</h3>
-            <div class="col-sm-6"><span class="stat"> 27%</span> appel</div>
-            <div class="col-sm-6">
-                <p><span class="stat"> 30%</span> point conseil</p>
-                <p><span class="stat"> 30%</span> reparateur qualifié</p>
-                <p><span class="stat"> 40%</span> reparateur typage</p>
+    <div class="row flex-client">
+        <div class="col-sm-6 bloc-2">
+            <h3 class="text-center text-danger">STATISTIQUES</h3>
+            <h6 class="text-center date-stat">du 01/02/2020 au 29/02/2020</h6>
+            <div class="statistique">
+                <div class="col-sm-6"><p><span class="stat">27%</span> appel</p></div>
+                <div class="col-sm-6">
+                    <p><span class="stat">30%</span> point conseil</p>
+                    <p><span class="stat">30%</span> reparateur qualifié</p>
+                    <p><span class="stat">40%</span> reparateur typage</p>
+                </div>
             </div>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-6 bloc-2 bloc-3">
             <div class="row">
                 <div class="col-sm-6">
                     <h3 class="text-center text-danger">13/02/2020</h3>
                     <p>Brave heart<p>
                 </div>
+            </div>
+        </div>
+        <div class="col-sm-6 bloc-2 bloc-3">
+            <div class="row">
                 <div class="col-sm-6">
                     <h3 class="text-center text-danger">13/02/2020</h3>
                     <p>Brave heart<p>
