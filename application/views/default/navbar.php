@@ -16,7 +16,7 @@
     <!-- nav with all the client links -->
 <div class="listeclient">
   <div class="flex">
-    <div>
+    <div class="hide">
       <img src="<?= base_url('assets/img/voir.png') ?>" alt="">
       <a href="#"><p>Voir tous les clients</p></a>
     </div>
