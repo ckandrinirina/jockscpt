@@ -12,6 +12,7 @@ class Home extends CI_Controller
         $this->load->model('AppelSurModel', 'appelSur');
         $this->load->helper('pdf');
         $this->load->helper('mail');
+        $this->load->helper('string');
     }
 
     //default home page
@@ -147,17 +148,12 @@ class Home extends CI_Controller
     public function ajaxTestIsRq()
     {
         $value = $this->input->get('value');
-        $isRq = $this->appelSur->findIsRqByNumero($value);
+        $isRq = $this->appelSur->findIsRqByNumero($value)[0];
         header('Content-type:application/json');
         echo json_encode([
-            'data' => $isRq[0],
+            'data' => $isRq,
             'size' => count($isRq)
         ]);
-        // if($isRq != null){
-        //     echo $isRq[0]['reparateur_qualifie_is_rep_q'];
-        // }else{
-        //     echo 'false';
-        // }
     }
 
     //prendre tous le numero
@@ -199,7 +195,7 @@ class Home extends CI_Controller
         }
     }
 
-    public function send_mail_script($script_data_child, $from,$message_plus,$script_data,$dataClient)
+    public function send_mail_script($script_data_child, $to,$message_plus,$script_data,$dataClient)
     {
         $message = '';
         $message = '<p>Bonjour</p><br><br>'
@@ -218,10 +214,11 @@ class Home extends CI_Controller
         $message .= '<p>Bien à vous </p><br><br>';
         $message .= '<p>Élise Secrétariat </p><br><br>';
         $message .= '<p>Pour le compte :  '.$dataClient['reparateur_qualifie_nom'].'</p><br><br>';
-        sendEmail($from, 'fiche@elise.fr','Resultat du script',$message);
+        sendEmail($to, 'fiche@elise.fr','Resultat du script',$message);
+        sendEmail('fiche@elise.fr', 'fiche@elise.fr','Resultat du script',$message);
     }
 
-    public function send_mail_rq($script_data_child,$from,$message_plus,$script_data,$dataClient)
+    public function send_mail_rq($script_data_child,$to,$message_plus,$script_data,$dataClient)
     {
         $message = '';
         foreach($script_data_child as $data)
@@ -229,6 +226,7 @@ class Home extends CI_Controller
             $message .= '<div style="display:flex"><p>'.$data['script_data_child_choix'].' : '.$data['script_data_child_libelle'].'</p></div></br>';
         }
         $message .= '<p>'.$message_plus.'</p>';
-        sendEmail($from, 'fiche@elise.fr','RQ demande d’installation',$message);
+        sendEmail($to, 'fiche@elise.fr','RQ demande d’installation',$message);
+        sendEmail('fiche@elise.fr', 'fiche@elise.fr','RQ demande d’installation',$message);
     }
 }
