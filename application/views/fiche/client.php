@@ -73,7 +73,7 @@
                 <p class="info-content" id="adresse_agence"></p>
             </div>
             <div class="block-puce">
-                <h6 class="info-title">Horraires</h6>
+                <h6 class="info-title">Horaires</h6>
                 <p class="info-content" id="horraire_agence"></p>
             </div>
             <a class="btn btn-warning btn-center" href="#">Ajouter un distributeur</a>
