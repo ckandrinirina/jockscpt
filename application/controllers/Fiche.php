@@ -9,9 +9,8 @@ class Fiche extends CI_Controller
         $this->load->library('layout');
         $this->load->library('stat');
         $this->load->model('ClientModel', 'client');
-        // $this->load->model('StatModel', 'stat');
+        $this->load->model('StatModel', 'statistique');
         $this->load->helper('pdf');
-        $this->load->helper('mail');
     }
 
     public function client($client)
@@ -32,8 +31,24 @@ class Fiche extends CI_Controller
         ]);
     }
 
-    public function generateStat()
+    public function generateStat($start,$end)
     {
-        
+        $start = $this->stat->explodeDate($start,'-');
+        $end = $this->stat->explodeDate($end,'-');
+        //get all page jaune point conseil
+        $pjpc = count($this->statistique->findpjpc($start,$end));
+        //get all page jaune reparateur qualifié
+        $pjrq = count($this->statistique->findpjrq($start,$end));
+        //get all mini site point conseil
+        $mspc = count($this->statistique->findmspc($start,$end));
+        //get all mini site reparateur qualifié
+        $msrq = count($this->statistique->findmsrq($start,$end));
+        $option = [
+            'filename' => 'stat_'.$start.$end,
+            'action' => 'download'
+        ];
+        $html = $this->load->view('stat/stat')->output->final_output;
+        $html = '';
+        generate_pdf($html,$option);
     }
 }

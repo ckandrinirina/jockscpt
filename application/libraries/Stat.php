@@ -9,8 +9,8 @@ class Stat
     }
     public function generateStat($start, $end)
     {
-        $start = $this->explodeDate($start);
-        $end = $this->explodeDate($end);
+        $start = $this->explodeDate($start,'/');
+        $end = $this->explodeDate($end,'/');
         $total = count($this->CI->statique->findBetween($start, $end));
         $pc = count($this->CI->statique->findBetweenPc($start, $end));
         $rq = count($this->CI->statique->findBetweenRq($start, $end));
@@ -23,9 +23,9 @@ class Stat
         return $stat;
     }
 
-    public function explodeDate($date)
+    public function explodeDate($date,$c)
     {
-        $dataExplode = explode('/',$date);
+        $dataExplode = explode($c,$date);
         return $dataExplode[2].'-'.$dataExplode[1].'-'.$dataExplode[0];
     }
 }
