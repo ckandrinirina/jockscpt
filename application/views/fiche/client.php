@@ -1,25 +1,25 @@
 <div class="container">
     <img src="<?= base_url('assets/img/bubendorff.png') ?>" alt="" class="logo">
     <div class="row bloc">
-       <a href=""><img src="<?= base_url('assets/img/edit.svg') ?>" alt="" class="edit "></a>
+        <a href=""><img src="<?= base_url('assets/img/edit.svg') ?>" alt="" class="edit "></a>
         <div class="flex-client">
             <div class="col-sm-4 info-client">
-            <div class="block-puce">
-                <h6 class="info-title">Nom du contact</h6>
-                <p class="info-content"><?= $client_name ?></p>
-            </div>
-            <div class="block-puce">
-                <h6 class="info-title">Fonction</h6>
-                <p class="info-content"><?= $client_fonction ?></p>
-            </div>
-            <div class="block-puce">
-                <h6 class="info-title">Adresse mail</h6>
-                <p class="info-content"><?= $client_mail ?></p>
-            </div>
-            <div class="block-puce">
-                <h6 class="info-title">Numéro téléphone</h6>
-                <p class="info-content"><?= $client_tel ?></p>
-            </div>
+                <div class="block-puce">
+                    <h6 class="info-title">Nom du contact</h6>
+                    <p class="info-content"><?= $client_name ?></p>
+                </div>
+                <div class="block-puce">
+                    <h6 class="info-title">Fonction</h6>
+                    <p class="info-content"><?= $client_fonction ?></p>
+                </div>
+                <div class="block-puce">
+                    <h6 class="info-title">Adresse mail</h6>
+                    <p class="info-content"><?= $client_mail ?></p>
+                </div>
+                <div class="block-puce">
+                    <h6 class="info-title">Numéro téléphone</h6>
+                    <p class="info-content"><?= $client_tel ?></p>
+                </div>
             </div>
             <div class="col-sm-4 info-client">
                 <div class="block-puce">
@@ -86,16 +86,24 @@
         <div class="col-sm-6 bloc-2">
             <h3 class="text-center text-danger">CONSIGNES GENERALES</h3>
             <p class="cg-info">Brave heart, Clara. Goodbye, Clara. Geronimo! No idea. Just do what I do: hold tight and pretend it's a plan. There are fixed points throughout time where things must stay exactly the way they are. This is not one of them. This is an opportunity! Whatever happens here will create its own timeline, its own reality, a temporal tipping point. The future revolves around you, here, now, so do good! Thank you, Strax. And if I'm ever in need of advice from a psychotic potato dwarf, you'll certainly be the first to know. <br><br>Brave heart, Clara. Goodbye, Clara. Geronimo! No idea. Just do what I do: hold tight and pretend it's a plan. There are fixed points throughout time where things must stay exactly the way they are. This is not one of them. This is an opportunity! Whatever happens here will create its own timeline, its own reality, a temporal tipping point. The future revolves around you, here, now, so do good! Thank you, Strax. And if I'm ever in need of advice from a psychotic potato dwarf, you'll certainly be the first to know.<p>
-            <a href=""><img src="<?= base_url('assets/img/edit.svg') ?>" alt="" class="edit"></a>
-            <a href="" class="pj-texte"><img src="<?= base_url('assets/img/clip-outline.svg') ?>" alt="" class="pj"> <p>Voir la pièce jointe</p></a>
+                    <a href=""><img src="<?= base_url('assets/img/edit.svg') ?>" alt="" class="edit"></a>
+                    <a href="" class="pj-texte"><img src="<?= base_url('assets/img/clip-outline.svg') ?>" alt="" class="pj">
+                        <p>Voir la pièce jointe</p>
+                    </a>
         </div>
     </div>
     <div class="row flex-client">
         <div class="col-sm-6 bloc-2-3">
             <h3 class="text-center text-danger">STATISTIQUES</h3>
-            <h6 class="text-center date-stat">du 01/02/2020 au 29/02/2020 <a href=""><img src="<?= base_url('assets/img/calendar.svg') ?>" alt="" class="calendar"></a></h6>
+            <h6 class="text-center date-stat block-puce">du
+                <input type="text" id="start" class="span2 datepicker form-control" placeholder="Date debut" name="date"> au
+                <input type="text" id="end" class="span2 datepicker form-control" placeholder="Date debut" name="date"> 
+                <button id="get-stat"><img src="<?= base_url('assets/img/calendar.svg') ?>" alt="" class="calendar"></a>
+            </h6>
             <div class="statistique">
-                <div class="col-sm-6"><p><span class="stat">2 568</span> appel</p></div>
+                <div class="col-sm-6">
+                    <p><span class="stat">2 568</span> appel</p>
+                </div>
                 <div class="col-sm-6">
                     <p><span class="stat">30%</span> point conseil</p>
                     <p><span class="stat">30%</span> réparateur qualité</p>
@@ -110,8 +118,10 @@
                     <h4 class="text-center">Titre consigne</h4>
                     <h6 class="date-ct">Valable du 01/02/2020 au 29/02/2020</h6>
                     <p class="ct-info">Brave heart, Clara. Goodbye, Clara. Geronimo! No idea. Just do what I do: hold tight and pretend it's a plan. There are fixed points throughout time where things must stay exactly the way they are. This is not one of them. This is an opportunity! Whatever happens here will create its own timeline, its own reality, a temporal tipping point. The future revolves around you, here, now, so do good! Thank you, Strax. And if I'm ever in need of advice from a psychotic potato dwarf, you'll certainly be the first to know.<p>
-                    <a href="" class="pj-texte"><img src="<?= base_url('assets/img/bin.svg') ?>" alt="" class="bin "></a>
-                    <a href="" class="pj-texte"><img src="<?= base_url('assets/img/clip-outline.svg') ?>" alt="" class="pj"> <p>Voir la pièce jointe</p></a>
+                            <a href="" class="pj-texte"><img src="<?= base_url('assets/img/bin.svg') ?>" alt="" class="bin "></a>
+                            <a href="" class="pj-texte"><img src="<?= base_url('assets/img/clip-outline.svg') ?>" alt="" class="pj">
+                                <p>Voir la pièce jointe</p>
+                            </a>
                 </div>
             </div>
         </div>
@@ -121,11 +131,15 @@
                     <h4 class="text-center">Titre consigne</h4>
                     <h6 class=" date-ct">Valable du 01/02/2020 au 29/02/2020</h6>
                     <p class="ct-info">Brave heart, Clara. Goodbye, Clara. Geronimo! No idea. Just do what I do: hold tight and pretend it's a plan. There are fixed points throughout time where things must stay exactly the way they are. This is not one of them. This is an opportunity! Whatever happens here will create its own timeline, its own reality, a temporal tipping point. The future revolves around you, here, now, so do good! Thank you, Strax. And if I'm ever in need of advice from a psychotic potato dwarf, you'll certainly be the first to know.<p>
-                    <a href="" class="pj-texte"><img src="<?= base_url('assets/img/bin.svg') ?>" alt="" class="bin"></a>
-                    <a href="" class="pj-texte"><img src="<?= base_url('assets/img/clip-outline.svg') ?>" alt="" class="pj"> <p>Voir la pièce jointe</p></a>
+                            <a href="" class="pj-texte"><img src="<?= base_url('assets/img/bin.svg') ?>" alt="" class="bin"></a>
+                            <a href="" class="pj-texte"><img src="<?= base_url('assets/img/clip-outline.svg') ?>" alt="" class="pj">
+                                <p>Voir la pièce jointe</p>
+                            </a>
                 </div>
             </div>
         </div>
     </div>
 </div>
 </div>
+<!-- <script src="https://unpkg.com/gijgo@1.9.13/js/messages/messages.fr-fr.js" type="text/javascript"> -->
+<script src="<?= base_url('assets/fiche/script.js') ?>"></script>

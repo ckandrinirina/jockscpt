@@ -20,6 +20,7 @@ class Layout
         $this->var['js'] = [
             base_url('assets/js/jquery.min.js'),
             base_url('assets/js/bootstrap.min.js'),
+            base_url('assets/js/bootstrap-datepicker.js'),
         ];
         $this->var['css'] = [
             base_url('assets/css/bootstrap.min.css'),

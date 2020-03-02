@@ -149,6 +149,10 @@ function saveData(cordAppelant,param) {
             alert('Script enregistrer');
             //location.reload();   
         },
+        erorr: function () {  
+            alert('Adresse mail invalide');
+            // location.reload();
+        }
     });
 }
 
