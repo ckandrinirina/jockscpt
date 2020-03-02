@@ -9,7 +9,7 @@ $(document).ready(function () {
         var start = $('#start').val();
         var end = $('#end').val();
         var url = base_url + 'fiche/ajaxGetStat';
-        if (start.replace('/','') < end.replace('/','')) {
+        if (start.replace('/','') < end.replace('/','') && start != '' && end != '') {
             $.ajax({
                 type: "GET",
                 url: url,
@@ -26,14 +26,18 @@ $(document).ready(function () {
                 }
             });
         }else{
-            alert('La date de debut doit être supérieur à la date de fin');
+            alert('La date de debut doit être supérieur à la date de fin et non vide');
         }
     })
 
     $('#generate-stat').click(()=>{
-        var start = $('#start').val();
-        var end = $('#end').val();
-        window.open(base_url+"fiche/generateStat/"+start.replaceAll('/','-')+"/"+end.replaceAll('/','-'));
+        if(start.replace('/','') < end.replace('/','') && start != '' && end != ''){
+            var start = $('#start').val();
+            var end = $('#end').val();
+            window.open(base_url+"fiche/generateStat/"+start.replaceAll('/','-')+"/"+end.replaceAll('/','-'));
+        }else{
+            alert('La date de debut doit être supérieur à la date de fin et non vide');
+        }
     })
 });
 
