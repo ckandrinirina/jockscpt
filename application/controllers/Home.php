@@ -83,7 +83,7 @@ class Home extends CI_Controller
                     $view .= '<div class="col-md-4 step_' . $data[0]['champs_num_step'] . '">' . $view_tmp . '</div>';
                     break;
                 case 'save':
-                    $view .= '<div class="col-md-4 step_' . $data[0]['champs_num_step'] . '"><button class="btn btn-default save" id="save">Enregistrer</button></div>';
+                    $view .= '<div class="col-md-4 step_' . $data[0]['champs_num_step'] . '"><button class="btn btn-default save" id="save">Enregistrer et envoyer message</button></div>';
                     break;
                 case 'send_save':
                     $view .= '<div class="col-md-4 step_' . $data[0]['champs_num_step'] . '"><button class="btn btn-default save" id="send_save">Enregistrer et envoyer message</button></div>';
@@ -144,7 +144,7 @@ class Home extends CI_Controller
         generate_pdf($html);
     }
 
-    //tester si Reparateur qualifier et envoyer les donnés du client 
+    //tester si Reparateur qualifier et envoyer les donnés du client
     public function ajaxTestIsRq()
     {
         $value = $this->input->get('value');
@@ -208,7 +208,7 @@ class Home extends CI_Controller
         {
             $message .= '<div style="display:flex"><p>'.$data['script_data_child_choix'].' : '.$data['script_data_child_libelle'].'</p></div></br>';
         }
-        
+
         if($script_data["script_data_c_app_nom"] != '' && $script_data["script_data_c_app_prenom"] != '')
             $message .= '<p>De Mme/Mr '. $script_data["script_data_c_app_prenom"].' '.$script_data["script_data_c_app_nom"].'</p>';
         if($script_data["script_data_c_app_tel"] != '')

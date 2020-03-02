@@ -123,6 +123,33 @@
       font-weight: 550;
     }
 
+    .step_1, .step_12, .step_22, .col-md-4:nth-child(6).step_6{
+      display:flex !important;
+      flex-wrap:wrap;
+    }
+
+    .step_1 p:first-child, .step_12 p, .step_22 p, .col-md-4:nth-child(6).step_6 p{
+      width:48%;
+    }
+
+    .step_1 p, .step_1 .block-puce{
+      width:60%;
+    }
+   .step_1 input.next.puce{
+     margin-left:-14%;
+     margin-right: -10%;
+   }
+
+     #nbr_volet{
+      height:15%!important;
+     }
+
+    input[name="name_1"], input[name="name_12"], input[name="name_22"], #nbr_volet{
+      width:35%;
+      margin: 0 0 20px 25px;
+    }
+
+
   /*BOUTONS*/
 
     .btn{
