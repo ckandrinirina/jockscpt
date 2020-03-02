@@ -1,6 +1,9 @@
 SCRIPT_VAL = [];
 $(document).ready(function () {
     //save actual data for best control
+    totalSeconds = 0;
+    //duréee d'un appel
+    setInterval(setTime, 1000);
     dataClient = [];
     initByStep(1);
     initByStep(2);
@@ -120,18 +123,22 @@ $(document).ready(function () {
             script_data_info_comp: info_comp,
             script_data_reparateur_qualifie_fk: dataClient.reparateur_qualifie_id,
             script_data_numero_client: dataClient.reparateur_qualifie_numero,
-            script_data_commentaires: commentaires
+            script_data_commentaires: commentaires,
+            script_data_timer: totalSeconds
         }
-        saveData(cordAppelant,param);
+        saveData(cordAppelant, param);
     })
 });
-
+//timer pour la calcul du durée d'un appel
+function setTime(){
+    totalSeconds++;
+}
 //function to save script
-function saveData(cordAppelant,param) {
+function saveData(cordAppelant, param) {
     var url = base_url + 'home/saveData';
-    if(typeof $('#message').text()){
+    if (typeof $('#message').text()) {
         var message = $('#message').text();
-    }else{
+    } else {
         var message = '';
     }
     $.ajax({
@@ -140,16 +147,16 @@ function saveData(cordAppelant,param) {
         data: {
             script_data_child: SCRIPT_VAL,
             script_data: cordAppelant,
-            param:param,
-            message:message,
-            dataClient:dataClient
+            param: param,
+            message: message,
+            dataClient: dataClient
         },
         async: false,
         success: function (response) {
             alert('Script enregistrer');
-            location.reload();   
+            location.reload();
         },
-        erorr: function () {  
+        erorr: function () {
             alert('Adresse mail invalide');
             location.reload();
         }
@@ -186,7 +193,6 @@ function testIfReQualifie(value) {
         },
         async: false,
         success: function (response) {
-            console.log(response);
             if (response.size == 2) {
                 $('#7').trigger('click');
                 var type = 'Réparateur qualifié et Point conseil';
@@ -205,7 +211,7 @@ function testIfReQualifie(value) {
             <tbody>
                 <tr>
                     <th scope="row">Type</th>
-                    <td>` + type+ `</td>
+                    <td>` + type + `</td>
                 </tr>
                 <tr>
                     <th scope="row">NOM</th>
