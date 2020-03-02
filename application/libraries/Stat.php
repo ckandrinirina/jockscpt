@@ -19,6 +19,7 @@ class Stat
             'pc' => number_format(($pc/$total)*100,2,',',''),
             'rq' => number_format(($rq/$total)*100,2,',',''),
             'typage' => number_format(($typage/$total)*100,2,',',''),
+            'appel' => $total
         ];
         return $stat;
     }

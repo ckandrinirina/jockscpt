@@ -22,6 +22,7 @@ $(document).ready(function () {
                     $('#pc').val(response.stat.pc+'%');
                     $('#rq').val(response.stat.rq+'%');
                     $('#typage').val(response.stat.typage+'%');
+                    $('#appel').val(response.stat.appel);
                 }
             });
         }else{

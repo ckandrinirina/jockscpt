@@ -102,12 +102,12 @@
             </h6>
             <div class="statistique">
                 <div class="col-sm-6">
-                    <p><span class="stat">2 568</span> appel</p>
+                    <div class="block-puce"><input class="hidden-input-stat" type="text" id="appel" disabled> appel</div>
                 </div>
                 <div class="col-sm-6">
-                    <div class="block-puce" style="width:10px"><span class="stat"><input name="" id='pc' disabled></span> point conseil</div>
-                    <div class="block-puce" style="width:10px"><span class="stat"><input name="" id='rq' disabled></span> réparateur qualifié</div>
-                    <div class="block-puce" style="width:10px"><span class="stat"><input name="" id='typage' disabled></span> typage</div>
+                    <div class="block-puce"><span class="stat"><input class="hidden-input-stat" name="" id='pc' disabled></span> point conseil</div>
+                    <div class="block-puce"><span class="stat"><input class="hidden-input-stat" name="" id='rq' disabled></span> réparateur qualifié</div>
+                    <div class="block-puce"><span class="stat"><input class="hidden-input-stat" name="" id='typage' disabled></span> typage</div>
                 </div>
             </div>
             <br>

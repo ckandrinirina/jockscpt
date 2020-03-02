@@ -53,6 +53,7 @@ $(document).ready(function () {
     $(document).on('click', '.save', (e) => {
         $button = $(e.target);
         var param = $button.prop('id');
+
         if (typeof $('#nom_client').val() == 'undefined')
             var nom_client = '';
         else
@@ -136,11 +137,18 @@ function setTime(){
 //function to save script
 function saveData(cordAppelant, param) {
     var url = base_url + 'home/saveData';
-    if (typeof $('#message').text()) {
-        var message = $('#message').text();
-    } else {
-        var message = '';
-    }
+    var message = '';
+    if (typeof $('.message')) {
+        if($('.message').length > 1){
+            arrayMessage = $('.message');
+            for (var i = 0; i < arrayMessage.length; i++) {
+                message += arrayMessage[i].innerText;
+                message += '<br>'
+            }
+        }else{
+            var message = $('.message').text();
+        }
+    } 
     $.ajax({
         type: "POST",
         url: url,
@@ -256,6 +264,10 @@ function initByStep(step) {
             //append view to content html
             $('#content').append(response.html);
             dataStep = response.data;
+            if(response.isSave == 1)
+                $('#content').append('<div class="col-md-4 step_'+step+'"><button class="btn save" id="save">Enregistrer et envoyer message</button></div>');
+            if(response.isSave == 2)
+                $('#content').append('<div class="col-md-4 step_'+step+'"><button class="btn save" id="rq_dem">Enregistrer et envoyer message</button></div>');
         }
     });
     return dataStep;

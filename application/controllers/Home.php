@@ -46,17 +46,22 @@ class Home extends CI_Controller
     //generate view from data via ajax
     private function generateViewFromData($data)
     {
-        $view = $this->viewHtml($data);
+        $dataView = $this->viewHtml($data);
+        $view = $dataView['view'];
+        $isSave = $dataView['isSave'];
         header('Content-type:application/json');
         echo json_encode([
             'html' => $view,
-            'data' => $data
+            'data' => $data,
+            'isSave' => $isSave
         ]);
     }
 
     private function viewHtml($data)
     {
         $view = '';
+        $isSave = 0;
+        $idMessage = 0;
         // $not_dynamic_frame = ['contact','nbr_volet'];
         foreach ($data as $value) {
             $reference = $value['champs_reference'];
@@ -83,19 +88,22 @@ class Home extends CI_Controller
                     $view .= '<div class="col-md-4 step_' . $data[0]['champs_num_step'] . '">' . $view_tmp . '</div>';
                     break;
                 case 'save':
-                    $view .= '<div class="col-md-4 step_' . $data[0]['champs_num_step'] . '"><button class="btn btn-default save" id="save">Enregistrer et envoyer message</button></div>';
+                    // $view .= '<div class="col-md-4 step_' . $data[0]['champs_num_step'] . '"><button class="btn btn-default save" id="save">Enregistrer et envoyer message</button></div>';
+                    $isSave = 1;
                     break;
                 case 'send_save':
-                    $view .= '<div class="col-md-4 step_' . $data[0]['champs_num_step'] . '"><button class="btn btn-default save" id="send_save">Enregistrer et envoyer message</button></div>';
+                    // $view .= '<div class="col-md-4 step_' . $data[0]['champs_num_step'] . '"><button class="btn btn-default save" id="send_save">Enregistrer et envoyer message</button></div>';
+                    $isSave = 1;
                     break;
                 case 'rq_dem':
-                    $view .= '<div class="col-md-4 step_' . $data[0]['champs_num_step'] . '"><button class="btn btn-default save" id="rq_dem">Enregistrer et envoyer message</button></div>';
+                    // $view .= '<div class="col-md-4 step_' . $data[0]['champs_num_step'] . '"><button class="btn btn-default save" id="rq_dem">Enregistrer et envoyer message</button></div>';
+                    $isSave = 2;
                     break;
                 case 'message':
-                    $view .= '<div class="col-md-4 step_' . $data[0]['champs_num_step'] . '" id="message"><p>'.$value.'</p></div>';
+                    $view .= '<div class="col-md-4 step_' . $data[0]['champs_num_step'] . ' message"><p>' . $value . '</p></div>';
+                    $idMessage++;
                     break;
                 default:
-                    // default action
                     break;
             }
         }
@@ -134,7 +142,10 @@ class Home extends CI_Controller
             //automaticaly apend next if value = 1
         }
         $view .= '<div class="col-md-4 step_' . $data[0]['champs_num_step'] . '">' . $view_tmp . '</div>';
-        return $view;
+        return [
+            'view' => $view,
+            'isSave' => $isSave
+        ];
     }
 
     //generer un pdf
@@ -184,57 +195,55 @@ class Home extends CI_Controller
         }
 
         if ($data['reparateur_qualifie_mail_sav'] != '') {
-            if($param == 'rq_dem'){
-                $this->send_mail_rq($script_data_child, $data['reparateur_qualifie_mail_sav'],$message,$script_data,$dataClient);
-            }else{
-                $this->send_mail_script($script_data_child, $data['reparateur_qualifie_mail_sav'],$message,$script_data,$dataClient);
+            if ($param == 'rq_dem') {
+                $this->send_mail_rq($script_data_child, $data['reparateur_qualifie_mail_sav'], $message, $script_data, $dataClient);
+            } else {
+                $this->send_mail_script($script_data_child, $data['reparateur_qualifie_mail_sav'], $message, $script_data, $dataClient);
             }
         } else {
-            if($param == 'rq_dem'){
-                $this->send_mail_rq($script_data_child, $data['reparateur_qualifie_mail_sav'],$message,$script_data,$dataClient);
-            }else{
-                $this->send_mail_script($script_data_child, $data['reparateur_qualifie_mail_resp'],$message,$script_data,$dataClient);
+            if ($param == 'rq_dem') {
+                $this->send_mail_rq($script_data_child, $data['reparateur_qualifie_mail_sav'], $message, $script_data, $dataClient);
+            } else {
+                $this->send_mail_script($script_data_child, $data['reparateur_qualifie_mail_resp'], $message, $script_data, $dataClient);
             }
         }
     }
 
-    public function send_mail_script($script_data_child, $to,$message_plus,$script_data,$dataClient)
+    public function send_mail_script($script_data_child, $to, $message_plus, $script_data, $dataClient)
     {
         $message = '';
         $message = '<p>Bonjour</p><br><br>'
-                  .'<p>Je vous prie de trouver ci-dessous les informations clients : </p><br><br>';
+            . '<p>Je vous prie de trouver ci-dessous les informations clients : </p><br><br>';
 
-        foreach($script_data_child as $data)
-        {
-            $message .= '<div style="display:flex"><p>'.$data['script_data_child_choix'].' : '.$data['script_data_child_libelle'].'</p></div></br>';
+        foreach ($script_data_child as $data) {
+            $message .= '<div style="display:flex"><p>' . $data['script_data_child_choix'] . ' : ' . $data['script_data_child_libelle'] . '</p></div></br>';
         }
 
-        if($script_data["script_data_c_app_nom"] != '' && $script_data["script_data_c_app_prenom"] != '')
-            $message .= '<p>De Mme/Mr '. $script_data["script_data_c_app_prenom"].' '.$script_data["script_data_c_app_nom"].'</p>';
-        if($script_data["script_data_c_app_tel"] != '')
-        $message  .='<p>T.privé:  '.$script_data['script_data_c_app_tel'].'</p>';
-        $message .= '<p>'.$message_plus.'</p><br><br>';
+        if ($script_data["script_data_c_app_nom"] != '' && $script_data["script_data_c_app_prenom"] != '')
+            $message .= '<p>De Mme/Mr ' . $script_data["script_data_c_app_prenom"] . ' ' . $script_data["script_data_c_app_nom"] . '</p>';
+        if ($script_data["script_data_c_app_tel"] != '')
+            $message  .= '<p>T.privé:  ' . $script_data['script_data_c_app_tel'] . '</p>';
+        $message .= '<p>' . $message_plus . '</p><br><br>';
         $message .= '<p>Bien à vous </p><br><br>';
         $message .= '<p>Élise Secrétariat </p><br><br>';
-        $message .= '<p>Pour le compte :  '.$dataClient['reparateur_qualifie_nom'].'</p><br><br>';
-        sendEmail($to, 'fiche@elise.fr','FICHE ELISE BUNDENDORFF',$message);
-        sendEmail('fiche@elise.fr', 'fiche@elise.fr','FICHE ELISE BUNDENDORFF',$message);
+        $message .= '<p>Pour le compte :  ' . $dataClient['reparateur_qualifie_nom'] . '</p><br><br>';
+        sendEmail($to, 'fiche@elise.fr', 'FICHE ELISE BUNDENDORFF', $message);
+        sendEmail('fiche@elise.fr', 'fiche@elise.fr', 'FICHE ELISE BUNDENDORFF', $message);
     }
 
-    public function send_mail_rq($script_data_child,$to,$message_plus,$script_data,$dataClient)
+    public function send_mail_rq($script_data_child, $to, $message_plus, $script_data, $dataClient)
     {
         $message = '';
         $message = '<p>Bonjour</p><br><br>'
-        .'<p>Je vous prie de trouver ci-dessous les informations clients : </p><br><br>';
-        foreach($script_data_child as $data)
-        {
-            $message .= '<div style="display:flex"><p>'.$data['script_data_child_choix'].' : '.$data['script_data_child_libelle'].'</p></div></br>';
+            . '<p>Je vous prie de trouver ci-dessous les informations clients : </p><br><br>';
+        foreach ($script_data_child as $data) {
+            $message .= '<div style="display:flex"><p>' . $data['script_data_child_choix'] . ' : ' . $data['script_data_child_libelle'] . '</p></div></br>';
         }
-        $message .= '<p>'.$message_plus.'</p>';
+        $message .= '<p>' . $message_plus . '</p>';
         $message .= '<p>Bien à vous </p><br><br>';
         $message .= '<p>Élise Secrétariat </p><br><br>';
-        $message .= '<p>Pour le compte :  '.$dataClient['reparateur_qualifie_nom'].'</p><br><br>';
-        sendEmail($to, 'fiche@elise.fr','RQ demande d’installation',$message);
-        sendEmail('fiche@elise.fr', 'fiche@elise.fr','RQ demande d’installation',$message);
+        $message .= '<p>Pour le compte :  ' . $dataClient['reparateur_qualifie_nom'] . '</p><br><br>';
+        sendEmail($to, 'fiche@elise.fr', 'RQ demande d’installation', $message);
+        sendEmail('fiche@elise.fr', 'fiche@elise.fr', 'RQ demande d’installation', $message);
     }
 }
