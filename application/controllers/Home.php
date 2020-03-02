@@ -148,10 +148,10 @@ class Home extends CI_Controller
     public function ajaxTestIsRq()
     {
         $value = $this->input->get('value');
-        $isRq = $this->appelSur->findIsRqByNumero($value)[0];
+        $isRq = $this->appelSur->findIsRqByNumero($value);
         header('Content-type:application/json');
         echo json_encode([
-            'data' => $isRq,
+            'data' => $isRq[0],
             'size' => count($isRq)
         ]);
     }
@@ -217,8 +217,8 @@ class Home extends CI_Controller
         $message .= '<p>Bien à vous </p><br><br>';
         $message .= '<p>Élise Secrétariat </p><br><br>';
         $message .= '<p>Pour le compte :  '.$dataClient['reparateur_qualifie_nom'].'</p><br><br>';
-        sendEmail($to, 'fiche@elise.fr','Resultat du script',$message);
-        sendEmail('fiche@elise.fr', 'fiche@elise.fr','Resultat du script',$message);
+        sendEmail($to, 'fiche@elise.fr','FICHE ELISE BUNDENDORFF',$message);
+        sendEmail('fiche@elise.fr', 'fiche@elise.fr','FICHE ELISE BUNDENDORFF',$message);
     }
 
     public function send_mail_rq($script_data_child,$to,$message_plus,$script_data,$dataClient)

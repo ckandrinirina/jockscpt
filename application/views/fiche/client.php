@@ -105,12 +105,13 @@
                     <p><span class="stat">2 568</span> appel</p>
                 </div>
                 <div class="col-sm-6">
-                    <p><span class="stat">30%</span> point conseil</p>
-                    <p><span class="stat">30%</span> réparateur qualité</p>
-                    <p><span class="stat">40%</span> typage</p>
+                    <div class="block-puce" style="width:10px"><span class="stat"><input name="" id='pc' disabled></span> point conseil</div>
+                    <div class="block-puce" style="width:10px"><span class="stat"><input name="" id='rq' disabled></span> réparateur qualifié</div>
+                    <div class="block-puce" style="width:10px"><span class="stat"><input name="" id='typage' disabled></span> typage</div>
                 </div>
             </div>
-            <a class="btn btn-warning btn-stat" href="#">Générer les statistiques</a>
+            <br>
+            <button class="btn btn-warning btn-stat" id="generate-stat">Générer les statistiques</button>
         </div>
         <div class="col-sm-6 bloc-3">
             <div class="row">

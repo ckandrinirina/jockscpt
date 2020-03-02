@@ -186,6 +186,7 @@ function testIfReQualifie(value) {
         },
         async: false,
         success: function (response) {
+            console.log(response);
             if (response.size == 2) {
                 $('#7').trigger('click');
                 var type = 'Réparateur qualifié et Point conseil';

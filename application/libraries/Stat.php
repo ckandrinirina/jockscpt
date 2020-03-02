@@ -9,12 +9,23 @@ class Stat
     }
     public function generateStat($start, $end)
     {
-        $allData = $this->CI->statique->findBetween($start, $end);
-        var_dump($data);die();
-        $stat = [];
-        // $nbrPc = countPc();
-        // $nbrRq = countRq();
-        // $nbTypage = countTypae();
+        $start = $this->explodeDate($start);
+        $end = $this->explodeDate($end);
+        $total = count($this->CI->statique->findBetween($start, $end));
+        $pc = count($this->CI->statique->findBetweenPc($start, $end));
+        $rq = count($this->CI->statique->findBetweenRq($start, $end));
+        $typage = count($this->CI->statique->findBetweenTypage($start, $end));
+        $stat = [
+            'pc' => number_format(($pc/$total)*100,2,',',''),
+            'rq' => number_format(($rq/$total)*100,2,',',''),
+            'typage' => number_format(($typage/$total)*100,2,',',''),
+        ];
         return $stat;
+    }
+
+    public function explodeDate($date)
+    {
+        $dataExplode = explode('/',$date);
+        return $dataExplode[2].'-'.$dataExplode[1].'-'.$dataExplode[0];
     }
 }

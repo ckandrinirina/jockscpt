@@ -9,7 +9,7 @@ $(document).ready(function () {
         var start = $('#start').val();
         var end = $('#end').val();
         var url = base_url + 'fiche/ajaxGetStat';
-        if (1) {
+        if (start.replace('/','') < end.replace('/','')) {
             $.ajax({
                 type: "GET",
                 url: url,
@@ -17,13 +17,19 @@ $(document).ready(function () {
                     start: start,
                     end: end,
                 },
-                dataType: "dataType",
+                async:false,
                 success: function (response) {
-                    console.log(response);
+                    $('#pc').val(response.stat.pc+'%');
+                    $('#rq').val(response.stat.rq+'%');
+                    $('#typage').val(response.stat.typage+'%');
                 }
             });
         }else{
             alert('La date de debut doit être supérieur à la date de fin');
         }
+    })
+
+    $('#generate-stat').click(()=>{
+        
     })
 });

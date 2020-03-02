@@ -26,9 +26,14 @@ class Fiche extends CI_Controller
         $start = $this->input->get('start');
         $end = $this->input->get('end');
         $stat = $this->stat->generateStat($start,$end);
-        // header('Content-type:application/json');
-        // echo json_encode([
-        //     'data' => $data
-        // ]);
+        header('Content-type:application/json');
+        echo json_encode([
+            'stat' => $stat
+        ]);
+    }
+
+    public function generateStat()
+    {
+        
     }
 }
