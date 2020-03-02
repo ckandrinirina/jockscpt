@@ -22,6 +22,7 @@
             <td><?= $msrq ?></td>
             <td><?= $msrq + $mspc ?></td>
         </tr>
+        
         <tr>
             <td>Total</td>
             <td><?= $pjpc + $mspc ?></td>
