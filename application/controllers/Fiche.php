@@ -43,12 +43,19 @@ class Fiche extends CI_Controller
         $mspc = count($this->statistique->findmspc($start,$end));
         //get all mini site reparateur qualifié
         $msrq = count($this->statistique->findmsrq($start,$end));
-        $option = [
-            'filename' => 'stat_'.$start.$end,
-            'action' => 'download'
+        $data = [
+            'pjpc'=>$pjpc,
+            'pjrq'=>$pjrq,
+            'mspc'=>$mspc,
+            'msrq'=>$msrq,
         ];
-        $html = $this->load->view('stat/stat')->output->final_output;
-        $html = '';
+        $option = [
+            'stylesheet_url'=>'default',
+            'filename' => 'stat_'.$start.$end,
+            'action' => 'download',
+            'save_folder'=>__DIR__ . '/../../uploads/pdf_temp/'
+        ];
+        $html = $this->load->view('stat/stat',$data)->output->final_output;
         generate_pdf($html,$option);
     }
 }

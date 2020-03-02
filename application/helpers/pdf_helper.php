@@ -7,7 +7,7 @@ require_once __DIR__ . '/../../vendor/autoload.php';
  * @var $option array
  */
 function generate_pdf(
-    string $html,
+    $html,
     $option = [
         'stylesheet_url'=>'default',
         'action'=>'save',
@@ -29,6 +29,6 @@ function generate_pdf(
     if($option['action'] == 'save'){
         $mpdf->Output($option['save_folder'] . $option['filename'] . ".pdf");
     }else if($option['action'] == 'download'){
-        $mpdf->Output($option['filename'] . ".pdf");
+        $mpdf->Output($option['filename'] . ".pdf",'D');
     }
 }
