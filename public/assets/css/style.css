@@ -27,10 +27,11 @@
 
     .link-nextcloud img {
       display: inline !important;
+      height: 2.5vh;
     }
 
     .link-nextcloud a {
-      padding-right: 4vw;
+      padding-right: 1vw;
     }
 
   /*LOGO CLIENT*/
@@ -487,4 +488,10 @@ width: 120px;
     /*ADD*/
     .add-content{
       background-color: #fff !important;
+      margin-bottom: 10px;
     }
+
+    .info-title.add-title{
+      text-align: right!important;
+    }
+
