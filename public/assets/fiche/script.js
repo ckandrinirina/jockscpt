@@ -67,71 +67,71 @@ $(document).ready(function () {
             title: "<h2>Ajouter un distributeur</h2>",
             html: `
                     <div class="block-puce">
-                        <h6 class="info-title add-title">Nom de l'agence:</h6>
+                        <h6 class="info-title add-title">Nom de l'agence </h6>
                         <input type="text" class="info-content add-content" id="reparateur_qualifie_nom">
                     </div>
                     <div class="block-puce">
-                        <h6 class="info-title add-title">Adresse :</h6>
+                        <h6 class="info-title add-title">Adresse  </h6>
                         <input type="text" class="info-content add-content" id="reparateur_qualifie_num_adresse">
                     </div>
                     <div class="block-puce">
-                        <h6 class="info-title add-title">Adresse complement:</h6>
+                        <h6 class="info-title add-title">Adresse complement </h6>
                         <input type="text" class="info-content add-content" id="reparateur_qualifie_adresse_complement">
                     </div>
                     <div class="block-puce">
-                        <h6 class="info-title add-title">Rue:</h6>
+                        <h6 class="info-title add-title">Rue </h6>
                         <input type="text" class="info-content add-content" id="reparateur_qualifie_rue">
                     </div>
                     <div class="block-puce">
-                        <h6 class="info-title add-title">Localité:</h6>
+                        <h6 class="info-title add-title">Localité </h6>
                         <input type="text" class="info-content add-content" id="reparateur_qualifie_localite">
                     </div>
                     <div class="block-puce">
-                        <h6 class="info-title add-title">Code postal:</h6>
+                        <h6 class="info-title add-title">Code postal </h6>
                         <input type="text" class="info-content add-content" id="reparateur_qualifie_code_postal">
                     </div>
                     <div class="block-puce">
-                        <h6 class="info-title add-title">Ville:</h6>
+                        <h6 class="info-title add-title">Ville </h6>
                         <input type="text" class="info-content add-content" id="reparateur_qualifie_ville">
                     </div>
                     <div class="block-puce">
-                        <h6 class="info-title add-title">Téléphone:</h6>
+                        <h6 class="info-title add-title">Téléphone </h6>
                         <input type="text" class="info-content add-content" id="reparateur_qualifie_tel">
                     </div>
                     <div class="block-puce">
-                        <h6 class="info-title add-title">Téléphone mini site:</h6>
+                        <h6 class="info-title add-title">Téléphone mini site </h6>
                         <input type="text" class="info-content add-content" id="reparateur_qualifie_tel_mini_site">
                     </div>
                     <div class="block-puce">
-                        <h6 class="info-title add-title">Téléphone page jaunes:</h6>
+                        <h6 class="info-title add-title">Téléphone page jaunes </h6>
                         <input type="text" class="info-content add-content" id="reparateur_qualifie_tel_page_jaune">
                     </div>
                     <div class="block-puce">
-                        <h6 class="info-title add-title">Mail SAV:</h6>
+                        <h6 class="info-title add-title">Mail SAV </h6>
                         <input type="text" class="info-content add-content" id="reparateur_qualifie_mail_sav">
                     </div>
                     <div class="block-puce">
-                        <h6 class="info-title add-title">Mail RESP:</h6>
+                        <h6 class="info-title add-title">Mail RESP </h6>
                         <input type="text" class="info-content add-content" id="reparateur_qualifie_mail_resp">
                     </div>
                     <div class="block-puce">
-                        <h6 class="info-title add-title">Mail BVR:</h6>
+                        <h6 class="info-title add-title">Mail BVR </h6>
                         <input type="text" class="info-content add-content" id="reparateur_qualifie_mail_com_bvr">
                     </div>
                     <div class="block-puce">
-                        <h6 class="info-title add-title">Code secteur:</h6>
+                        <h6 class="info-title add-title">Code secteur </h6>
                         <input type="text" class="info-content add-content" id="reparateur_qualifie_code_sect">
                     </div>
                     <div class="block-puce">
-                        <h6 class="info-title add-title">Numéro:</h6>
+                        <h6 class="info-title add-title">Numéro </h6>
                         <input type="text" class="info-content add-content" id="reparateur_qualifie_numero">
                     </div>
                     <div class="block-puce">
-                        <h6 class="info-title add-title">Horaires:</h6>
+                        <h6 class="info-title add-title">Horaires </h6>
                         <input type="text" class="info-content add-content" id="reparateur_qualifie_horraire">
                     </div>
                     <div class="block-puce">
-                        <h6 class="info-title add-title">Fonction:</h6>
+                        <h6 class="info-title add-title">Fonction </h6>
                         <select class="info-content add-content" id="reparateur_qualifie_is_rep_q">
                             <option value="1">Réparateur qualifié</option>
                             <option value="0">Point Conseil</option>
@@ -141,9 +141,9 @@ $(document).ready(function () {
                     <button class="btn" id="save_dist">Enregistrer</button>
             `,
             showCancelButton: true,
+            showConfirmButton: false,
             cancelButtonText: "Annuler",
             width: '120vh',
-            confirmButtonText: "Enregistrer",
         });
     })
 
