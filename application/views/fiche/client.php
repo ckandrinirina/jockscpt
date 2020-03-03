@@ -49,7 +49,7 @@
     <div class="row flex-client">
         <div class="col-sm-6 bloc-2">
             <h3 class="info-title">Rechercher un distributeur</h3>
-            <button id="open-edit-dist" disabled><img src="<?= base_url('assets/img/edit.svg') ?>" alt="" class="edit"></button>
+            <button id="open-edit-dist" class="link" disabled><img src="<?= base_url('assets/img/edit.svg') ?>" alt="" class="edit"></button>
             <div class="block-puce search-dist">
                 <input type="text" id="agence">
                 <button class="btn">Rechercher</button>
@@ -99,7 +99,7 @@
             <h6 class="text-center date-stat block-puce">du
                 <input type="text" id="start" class="span2 datepicker form-control" placeholder="Date debut" name="date"> au
                 <input type="text" id="end" class="span2 datepicker form-control" placeholder="Date debut" name="date"> 
-                <button id="get-stat"><img src="<?= base_url('assets/img/calendar.svg') ?>" alt="" class="calendar"></a>
+                <button id="get-stat" class="link"><img src="<?= base_url('assets/img/calendar.svg') ?>" alt="" class="calendar"></a>
             </h6>
             <div class="statistique">
                 <div class="col-sm-6">
