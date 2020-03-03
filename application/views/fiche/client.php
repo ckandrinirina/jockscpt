@@ -49,7 +49,7 @@
     <div class="row flex-client">
         <div class="col-sm-6 bloc-2">
             <h3 class="info-title">Rechercher un distributeur</h3>
-            <a href=""><img src="<?= base_url('assets/img/edit.svg') ?>" alt="" class="edit"></a>
+            <button id="open-edit-dist" disabled><img src="<?= base_url('assets/img/edit.svg') ?>" alt="" class="edit"></button>
             <div class="block-puce search-dist">
                 <input type="text" id="agence">
                 <button class="btn">Rechercher</button>

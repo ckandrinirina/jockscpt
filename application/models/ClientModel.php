@@ -34,18 +34,23 @@ class  ClientModel extends CI_Model
 
     public function saveDist($data)
     {
-        if($data['reparateur_qualifie_is_rep_q'] == 2)
-        {
+        if ($data['reparateur_qualifie_is_rep_q'] == 2) {
             $data1 = $data;
             $data2 = $data;
             $data1['reparateur_qualifie_is_rep_q'] = 0;
             $data2['reparateur_qualifie_is_rep_q'] = 0;
-            $this->db->insert($this->table2,$data1);
-            $this->db->insert($this->table2,$data2);
+            $this->db->insert($this->table2, $data1);
+            $this->db->insert($this->table2, $data2);
+        } else {
+            $this->db->insert($this->table2, $data);
         }
-        else
-        {
-            $this->db->insert($this->table2,$data);
+    }
+
+    public function editDist($data, $lastData)
+    {
+        foreach ($lastData as $key => $value) {
+            $this->db->where('reparateur_qualifie_id', $value['reparateur_qualifie_id'])
+                ->update($this->table2, $data);
         }
     }
 }

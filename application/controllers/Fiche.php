@@ -10,6 +10,7 @@ class Fiche extends CI_Controller
         $this->load->library('stat');
         $this->load->model('ClientModel', 'client');
         $this->load->model('StatModel', 'statistique');
+        $this->load->model('AppelSurModel', 'appelSur');
         $this->load->helper('pdf');
         $this->load->helper('string');
     }
@@ -89,5 +90,11 @@ class Fiche extends CI_Controller
     {
         $data = $this->input->post('data');
         $this->client->saveDist($data);
+    }
+    public function editDist()
+    {
+        $data = $this->input->post('data');
+        $lastData = $this->appelSur->findIsRqByNumero($data['reparateur_qualifie_numero']);
+        $this->client->editDist($data,$lastData);
     }
 }

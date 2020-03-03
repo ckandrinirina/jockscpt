@@ -1,3 +1,4 @@
+ACTUAL_DIST = {};
 $(document).ready(function () {
     //create date picker
 
@@ -147,6 +148,84 @@ $(document).ready(function () {
         });
     })
 
+    //edit dist
+    $('#open-edit-dist').click(() => {
+        Swal.fire({
+            title: "<h2>Modifier un distributeur</h2>",
+            html: `
+                    <div class="block-puce">
+                        <h6 class="info-title add-title">Nom de l'agence </h6>
+                        <input type="text" class="info-content add-content" id="reparateur_qualifie_nom" value="` + ACTUAL_DIST.reparateur_qualifie_nom + `">
+                    </div>
+                    <div class="block-puce">
+                        <h6 class="info-title add-title">Adresse  </h6>
+                        <input type="text" class="info-content add-content" id="reparateur_qualifie_num_adresse" value="` + ACTUAL_DIST.reparateur_qualifie_num_adresse + `">
+                    </div>
+                    <div class="block-puce">
+                        <h6 class="info-title add-title">Adresse complement </h6>
+                        <input type="text" class="info-content add-content" id="reparateur_qualifie_adresse_complement" value="` + ACTUAL_DIST.reparateur_qualifie_adresse_complement + `">
+                    </div>
+                    <div class="block-puce">
+                        <h6 class="info-title add-title">Rue </h6>
+                        <input type="text" class="info-content add-content" id="reparateur_qualifie_rue" value="` + ACTUAL_DIST.reparateur_qualifie_rue + `">
+                    </div>
+                    <div class="block-puce">
+                        <h6 class="info-title add-title">Localité </h6>
+                        <input type="text" class="info-content add-content" id="reparateur_qualifie_localite" value="` + ACTUAL_DIST.reparateur_qualifie_localite + `">
+                    </div>
+                    <div class="block-puce">
+                        <h6 class="info-title add-title">Code postal </h6>
+                        <input type="text" class="info-content add-content" id="reparateur_qualifie_code_postal" value="` + ACTUAL_DIST.reparateur_qualifie_code_postal + `">
+                    </div>
+                    <div class="block-puce">
+                        <h6 class="info-title add-title">Ville </h6>
+                        <input type="text" class="info-content add-content" id="reparateur_qualifie_ville" value="` + ACTUAL_DIST.reparateur_qualifie_ville + `">
+                    </div>
+                    <div class="block-puce">
+                        <h6 class="info-title add-title">Téléphone </h6>
+                        <input type="text" class="info-content add-content" id="reparateur_qualifie_tel" value="` + ACTUAL_DIST.reparateur_qualifie_tel + `">
+                    </div>
+                    <div class="block-puce">
+                        <h6 class="info-title add-title">Téléphone mini site </h6>
+                        <input type="text" class="info-content add-content" id="reparateur_qualifie_tel_mini_site" value="` + ACTUAL_DIST.reparateur_qualifie_tel_mini_site + `">
+                    </div>
+                    <div class="block-puce">
+                        <h6 class="info-title add-title">Téléphone page jaunes </h6>
+                        <input type="text" class="info-content add-content" id="reparateur_qualifie_tel_page_jaune" value="` + ACTUAL_DIST.reparateur_qualifie_tel_page_jaune + `">
+                    </div>
+                    <div class="block-puce">
+                        <h6 class="info-title add-title">Mail SAV </h6>
+                        <input type="text" class="info-content add-content" id="reparateur_qualifie_mail_sav" value="` + ACTUAL_DIST.reparateur_qualifie_mail_sav + `">
+                    </div>
+                    <div class="block-puce">
+                        <h6 class="info-title add-title">Mail RESP </h6>
+                        <input type="text" class="info-content add-content" id="reparateur_qualifie_mail_resp" value="` + ACTUAL_DIST.reparateur_qualifie_mail_resp + `">
+                    </div>
+                    <div class="block-puce">
+                        <h6 class="info-title add-title">Mail BVR </h6>
+                        <input type="text" class="info-content add-content" id="reparateur_qualifie_mail_com_bvr" value="` + ACTUAL_DIST.reparateur_qualifie_mail_com_bvr + `">
+                    </div>
+                    <div class="block-puce">
+                        <h6 class="info-title add-title">Code secteur </h6>
+                        <input type="text" class="info-content add-content" id="reparateur_qualifie_code_sect" value="` + ACTUAL_DIST.reparateur_qualifie_code_sect + `">
+                    </div>
+                    <div class="block-puce">
+                        <h6 class="info-title add-title">Numéro </h6>
+                        <input type="text" class="info-content add-content" id="reparateur_qualifie_numero" value="` + ACTUAL_DIST.reparateur_qualifie_numero + `">
+                    </div>
+                    <div class="block-puce">
+                        <h6 class="info-title add-title">Horaires </h6>
+                        <input type="text" class="info-content add-content" id="reparateur_qualifie_horraire" value="` + ACTUAL_DIST.reparateur_qualifie_horraire + `">
+                    </div>
+                    <button class="btn" id="edit_dist">Enregistrer</button>
+            `,
+            showCancelButton: true,
+            showConfirmButton: false,
+            cancelButtonText: "Annuler",
+            width: '120vh',
+        });
+    })
+
     $(document).on('click', '#save_dist', () => {
         var data = $('[id^=reparateur_qualifie_]');
         var dist = {};
@@ -164,13 +243,40 @@ $(document).ready(function () {
             type: "post",
             url: url,
             data: {
-                data:dist,
+                data: dist,
             },
-            async:false,
+            async: false,
             success: function (response) {
                 Swal.fire(
                     'Succès',
                     'Distributeur enregistrer avec succés',
+                    'success'
+                )
+            }
+        });
+    })
+
+    $(document).on('click', '#edit_dist', () => {
+        var data = $('[id^=reparateur_qualifie_]');
+        var dist = {};
+        var url = base_url + 'fiche/editDist';
+        //get all data from input
+        $.each(data, function (indexInArray, valueOfElement) {
+            element = $(valueOfElement);
+            dist[element.prop('id')] = element.val();
+        });
+        //send and save data with ajax
+        $.ajax({
+            type: "post",
+            url: url,
+            data: {
+                data: dist,
+            },
+            async: false,
+            success: function (response) {
+                Swal.fire(
+                    'Succès',
+                    'Distributeur modifier avec succés',
                     'success'
                 )
             }
@@ -198,6 +304,12 @@ $(document).ready(function () {
                 } else if (response.data.reparateur_qualifie_is_rep_q == 0) {
                     var fonction = "Point conseil";
                 }
+                // ACTUAL_DIST = response.data;
+                // if (ACTUAL_DIST.length > 0)
+                //     $('#open-edit-dist').attr('disabled', false);
+                // else
+                //     $('#open-edit-dist').attr('disabled', true);
+
                 $('#nom_agence').val(response.data.reparateur_qualifie_nom);
                 // $('#contact_agence').val(response.data.reparateur_qualifie_)
                 $('#fonction_agence').val(fonction);
