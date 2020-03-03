@@ -14,6 +14,7 @@ class Fiche extends CI_Controller
         $this->load->helper('string');
     }
 
+    //Page d'accueil du fiche
     public function client($client)
     {
         $data = $this->client->findClientByName($client);
@@ -82,5 +83,11 @@ class Fiche extends CI_Controller
             'data' => $data,
             'count' => $count
         ]);
+    }
+
+    public function saveDist()
+    {
+        $data = $this->input->post('data');
+        $this->client->saveDist($data);
     }
 }
