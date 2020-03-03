@@ -3,7 +3,7 @@
     <header>
         <img src="<?= base_url('assets/img/bubendorff.png') ?>" alt="" class="logo">
         <h1>Statistiques</h1>
-        <h2>du 00/00/2020 au 00/00/2020</h2>
+        <h2>du <?= $start ?> au <?= $end ?></h2>
     </header>
     <table class="statistiques">
     <thead>

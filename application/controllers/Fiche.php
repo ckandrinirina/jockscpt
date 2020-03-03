@@ -53,6 +53,8 @@ class Fiche extends CI_Controller
             'pjrq' => $pjrq,
             'mspc' => $mspc,
             'msrq' => $msrq,
+            'start' => $start,
+            'end' => $end
         ];
         $option = [
             'stylesheet_url' => 'default',

@@ -304,11 +304,11 @@ $(document).ready(function () {
                 } else if (response.data.reparateur_qualifie_is_rep_q == 0) {
                     var fonction = "Point conseil";
                 }
-                // ACTUAL_DIST = response.data;
-                // if (ACTUAL_DIST.length > 0)
-                //     $('#open-edit-dist').attr('disabled', false);
-                // else
-                //     $('#open-edit-dist').attr('disabled', true);
+                ACTUAL_DIST = response.data;
+                if (ACTUAL_DIST)
+                    $('#open-edit-dist').attr('disabled', false);
+                else
+                    $('#open-edit-dist').attr('disabled', true);
 
                 $('#nom_agence').val(response.data.reparateur_qualifie_nom);
                 // $('#contact_agence').val(response.data.reparateur_qualifie_)
