@@ -341,6 +341,13 @@
       float: right;
     }
 
+    #open-edit-dist.link{
+      float: right;
+      border:none;
+      margin-left: 10px;
+      background-color: #fff;
+    }
+
     .calendar {
       width: 1vw;
     }
