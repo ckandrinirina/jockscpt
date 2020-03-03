@@ -13,8 +13,10 @@ $(document).ready(function () {
     $('#get-stat').click(() => {
         var start = $('#start').val();
         var end = $('#end').val();
+        var startTest = new Date(start);
+        var endTest = new Date(end);
         var url = base_url + 'fiche/ajaxGetStat';
-        if (start.replaceAll('/', '') < end.replaceAll('/', '') && start != '' && end != '') {
+        if (start != '' && end != '') {
             $.ajax({
                 type: "GET",
                 url: url,
@@ -43,7 +45,9 @@ $(document).ready(function () {
     $('#generate-stat').click(() => {
         var start = $('#start').val();
         var end = $('#end').val();
-        if (start.replaceAll('/', '') < end.replaceAll('/', '') && start != '' && end != '') {
+        var startTest = new Date(start);
+        var endTest = new Date(end);
+        if (start != '' && end != '') {
             var start = $('#start').val();
             var end = $('#end').val();
             window.open(base_url + "fiche/generateStat/" + start.replaceAll('/', '-') + "/" + end.replaceAll('/', '-'));
@@ -62,8 +66,16 @@ $(document).ready(function () {
             title: "<h2>Ajouter un distributeur</h2>",
             html: `
                     <div class="block-puce">
-                        <h6 class="info-title add-title">Nom de l'agence</h6>
-                        <input type="text" class="info-content add-content" id="add_nom_agence">
+                        <h6 class="info-title add-title">Nom de l'agence:</h6>
+                        <input type="text" class="info-content add-content" id="reparateur_qualifie_nom">
+                    </div>
+                    <div class="block-puce">
+                        <h6 class="info-title add-title">Adresse :</h6>
+                        <input type="text" class="info-content add-content" id="reparateur_qualifie_num_adresse">
+                    </div>
+                    <div class="block-puce">
+                        <h6 class="info-title add-title">Adresse :</h6>
+                        <input type="text" class="info-content add-content" id="reparateur_qualifie_adresse_complement">
                     </div>
             `,
             showCancelButton: true,
