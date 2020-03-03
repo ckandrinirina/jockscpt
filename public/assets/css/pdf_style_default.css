@@ -1,4 +1,72 @@
-table{
-    border-collapse: collapse;
-    width: 100%;
+
+*{
+  font-family: arial !important;
+  box-sizing: border-box;
 }
+/* HEADER */
+  /* LOGO */
+    .logo{
+      width: 200px;
+    }
+
+    header{
+      text-align: center;
+    }
+
+  /* TITRE */
+    h1{
+      color:#D1371D;
+      margin-top:100px;
+    }
+
+    h2{
+      font-size:16px;
+      margin-bottom:80px;
+    }
+
+/*TABLEAU*/
+  .statistiques{
+      border-collapse: collapse;
+      width: 100%;
+  }
+
+  .titre{
+    background-color:#A578AE;
+    border:none;
+    color:#fff;
+    font-weight: 500;
+    padding:5px;
+  }
+
+  .info-stat{
+    border: solid 1.5px #A578AE;
+    border-bottom: none;
+    text-align: center;
+    padding:5px;
+  }
+
+  .total{
+    background-color:#D7D0D8;
+    border:none;
+    padding:5px;
+  }
+
+/* FOOTER */
+  footer{
+    position: absolute;
+    bottom:0px;
+    left:0px;
+    background-color: #D7D0D8;
+    width:100%;
+    padding:10px;
+  }
+
+  .logo-elise{
+    display: inline-block;
+  }
+
+  .infos{
+    text-align: right;
+    padding-left:57%;
+    font-size:12px;
+  }
