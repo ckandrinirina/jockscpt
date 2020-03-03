@@ -32,6 +32,12 @@ class  ClientModel extends CI_Model
             ->result_array();
     }
 
+    public function saveClient($data, $client_id)
+    {
+        $this->db->where('client_id', $client_id)
+            ->update($this->table, $data);
+    }
+
     public function saveDist($data)
     {
         if ($data['reparateur_qualifie_is_rep_q'] == 2) {

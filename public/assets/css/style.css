@@ -281,8 +281,11 @@
       max-width: 70vw !important;
     }
     .search-dist{
-width: 120px;
-}
+      width: 120px;
+    }
+    .hide{
+      display: none;
+    }
 
   /*SCROOLBAR*/
     .cg-info {

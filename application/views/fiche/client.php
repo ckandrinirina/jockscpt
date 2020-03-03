@@ -1,45 +1,46 @@
 <div class="container">
     <img src="<?= base_url('assets/img/bubendorff.png') ?>" alt="" class="logo">
     <div class="row bloc">
-        <a href=""><img src="<?= base_url($client_logo) ?>" alt="" class="edit "></a>
+        <button class="link" id="edit_client"><img src="<?= base_url($client_logo) ?>" alt="" class="edit "></button>
         <div class="flex-client">
             <div class="col-sm-4 info-client">
                 <div class="block-puce">
                     <h6 class="info-title">Nom du contact</h6>
-                    <p class="info-content"><?= $client_name ?></p>
+                    <input class="info-content client" value="<?= $client_name ?>" id="client_name" disabled>
                 </div>
                 <div class="block-puce">
                     <h6 class="info-title">Fonction</h6>
-                    <p class="info-content"><?= $client_fonction ?></p>
+                    <input class="info-content client" value="<?= $client_fonction ?>" id="client_fonction" disabled>
                 </div>
                 <div class="block-puce">
                     <h6 class="info-title">Adresse mail</h6>
-                    <p class="info-content"><?= $client_mail ?></p>
+                    <input class="info-content client" value="<?= $client_mail ?>" id="client_mail" disabled>
                 </div>
                 <div class="block-puce">
                     <h6 class="info-title">Numéro téléphone</h6>
-                    <p class="info-content"><?= formatNumero($client_tel) ?></p>
+                    <input class="info-content client" value="<?= formatNumero($client_tel) ?>" id="client_tel" disabled>
                 </div>
             </div>
             <div class="col-sm-4 info-client">
                 <div class="block-puce">
                     <h6 class="info-title">Adresse</h6>
-                    <p class="info-content"><?= $client_adresse ?></p>
+                    <input class="info-content client" value="<?= $client_adresse ?>" id="client_adresse" disabled>
                 </div>
                 <div class="block-puce code-ville">
-                    <p class="info-content"><?= $client_code_poste ?></p>
-                    <p class="info-content"><?= $client_complement ?></p>
+                    <input class="info-content client" value="<?= $client_code_poste ?>" id="client_code_poste" disabled>
+                    <input class="info-content client" value="<?= $client_complement ?>" id="client_complement" disabled>
                 </div>
                 <div class="block-puce">
                     <h6 class="info-title">Site internet</h6>
-                    <p class="info-content"><?= $client_site ?></p>
+                    <input class="info-content client" value="<?= $client_site ?>" id="client_site" disabled>
                 </div>
                 <div class="block-puce">
                     <h6 class="info-title">Horaires</h6>
-                    <p class="info-content"><?= $client_horaires ?></p>
+                    <input class="info-content client" value="<?= $client_horaires ?>" id="client_horaires" disabled>
                 </div>
             </div>
         </div>
+        <button id="save_client" class="hide btn">Enregistrer</button>
     </div>
     <div class="row button">
         <a class="btn btn-success" href="<?= base_url('home') ?>">Voir le script</a>

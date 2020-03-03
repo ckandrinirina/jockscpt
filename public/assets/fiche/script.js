@@ -1,7 +1,6 @@
 ACTUAL_DIST = {};
 $(document).ready(function () {
     //create date picker
-
     $('.datepicker').datepicker({
         locale: 'fr-fr',
         lang: 'fr-fr',
@@ -60,6 +59,44 @@ $(document).ready(function () {
                 'warning'
             );
         }
+    })
+
+    //edit client
+    $('#edit_client').click(() => {
+        $('.client').attr('disabled', false);
+        $('#client_name').attr('disabled',true);
+        $('#save_client').removeClass('hide');
+    })
+
+    $('#save_client').click(() => {
+        var data = $('[id^=client_]');
+        var client = {};
+        var url = base_url + 'fiche/saveClient';
+        //get all data from input
+        $.each(data, function (indexInArray, valueOfElement) {
+            element = $(valueOfElement);
+            client[element.prop('id')] = element.val();
+        });
+
+        //send and save data with ajax
+        $.ajax({
+            type: "post",
+            url: url,
+            data: {
+                data: client,
+                client_id: DATA_CLIENT.client_id
+            },
+            async: false,
+            success: function (response) {
+                Swal.fire(
+                    'Succès',
+                    'Distributeur enregistrer avec succés',
+                    'success'
+                );
+                $('#save_client').addClass('hide');
+                $('.client').attr('disabled', true);
+            }
+        });
     })
 
     //create distributeur
