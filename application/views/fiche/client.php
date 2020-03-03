@@ -1,7 +1,7 @@
 <div class="container">
     <img src="<?= base_url('assets/img/bubendorff.png') ?>" alt="" class="logo">
     <div class="row bloc">
-        <a href=""><img src="<?= base_url('assets/img/edit.svg') ?>" alt="" class="edit "></a>
+        <a href=""><img src="<?= base_url($client_logo) ?>" alt="" class="edit "></a>
         <div class="flex-client">
             <div class="col-sm-4 info-client">
                 <div class="block-puce">
@@ -18,7 +18,7 @@
                 </div>
                 <div class="block-puce">
                     <h6 class="info-title">Numéro téléphone</h6>
-                    <p class="info-content"><?= $client_tel ?></p>
+                    <p class="info-content"><?= formatNumero($client_tel) ?></p>
                 </div>
             </div>
             <div class="col-sm-4 info-client">
@@ -50,38 +50,39 @@
         <div class="col-sm-6 bloc-2">
             <h3 class="info-title">Rechercher un distributeur</h3>
             <a href=""><img src="<?= base_url('assets/img/edit.svg') ?>" alt="" class="edit"></a>
-            <div class="block-puce">
-                <p class=""><input type="text" id="agence"></p>
+            <div class="block-puce search-dist">
+                <input type="text" id="agence">
+                <button class="btn">Rechercher</button>
             </div>
             <div class="block-puce">
                 <h6 class="info-title">Nom de l'agence</h6>
-                <p class="info-content" id="nom_agence"></p>
+                <input type="text" class="info-content" disabled id="nom_agence">
             </div>
             <div class="block-puce">
                 <h6 class="info-title">Nom du contact</h6>
-                <p class="info-content" id="contact_agence"></p>
+                <input type="text" class="info-content" disabled id="contact_agence">
             </div>
             <div class="block-puce">
                 <h6 class="info-title">Fonction</h6>
-                <p class="info-content" id="fonction_agence"></p>
+                <input type="text" class="info-content" disabled id="fonction_agence">
             </div>
             <div class="block-puce">
                 <h6 class="info-title">Adresse mail</h6>
-                <p class="info-content" id="mail_agence"></p>
+                <input type="text" class="info-content" disabled id="mail_agence">
             </div>
             <div class="block-puce">
                 <h6 class="info-title">Numéro de téléphone</h6>
-                <p class="info-content" id="tel_agence"></p>
+                <input type="text" class="info-content" disabled id="tel_agence">
             </div>
             <div class="block-puce">
                 <h6 class="info-title">Adresse</h6>
-                <p class="info-content" id="adresse_agence"></p>
+                <input type="text" class="info-content" disabled id="adresse_agence">
             </div>
             <div class="block-puce">
                 <h6 class="info-title">Horaires</h6>
-                <p class="info-content" id="horraire_agence"></p>
+                <input type="text" class="info-content" disabled id="horraire_agence">
             </div>
-            <a class="btn btn-warning btn-center" href="#">Ajouter un distributeur</a>
+            <button class="btn btn-warning btn-center" id="add-distributeur">Ajouter un distributeur</button>
         </div>
         <div class="col-sm-6 bloc-2">
             <h3 class="text-center text-danger">CONSIGNES GENERALES</h3>
@@ -143,4 +144,7 @@
 </div>
 </div>
 <!-- <script src="https://unpkg.com/gijgo@1.9.13/js/messages/messages.fr-fr.js" type="text/javascript"> -->
+<script>
+    DATA_CLIENT = JSON.parse(`<?= $json_data ?>`);
+</script>
 <script src="<?= base_url('assets/fiche/script.js') ?>"></script>

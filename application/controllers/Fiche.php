@@ -1,4 +1,4 @@
-<?php 
+<?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class Fiche extends CI_Controller
@@ -11,51 +11,76 @@ class Fiche extends CI_Controller
         $this->load->model('ClientModel', 'client');
         $this->load->model('StatModel', 'statistique');
         $this->load->helper('pdf');
+        $this->load->helper('string');
     }
 
     public function client($client)
     {
         $data = $this->client->findClientByName($client);
+        $finalData = $data[0];
+        $finalData['json_data'] = json_encode($finalData);
         $this->layout->views('default/navbar')
-                    ->view('fiche/client', $data[0]);
+            ->view('fiche/client', $finalData);
     }
 
     public function ajaxGetStat()
     {
         $start = $this->input->get('start');
         $end = $this->input->get('end');
-        $stat = $this->stat->generateStat($start,$end);
+        $stat = $this->stat->generateStat($start, $end);
         header('Content-type:application/json');
         echo json_encode([
             'stat' => $stat
         ]);
     }
 
-    public function generateStat($start,$end)
+    public function generateStat($start, $end)
     {
-        $start = $this->stat->explodeDate($start,'-');
-        $end = $this->stat->explodeDate($end,'-');
+        $start = $this->stat->explodeDate($start, '-');
+        $end = $this->stat->explodeDate($end, '-');
         //get all page jaune point conseil
-        $pjpc = count($this->statistique->findpjpc($start,$end));
+        $pjpc = count($this->statistique->findpjpc($start, $end));
         //get all page jaune reparateur qualifié
-        $pjrq = count($this->statistique->findpjrq($start,$end));
+        $pjrq = count($this->statistique->findpjrq($start, $end));
         //get all mini site point conseil
-        $mspc = count($this->statistique->findmspc($start,$end));
+        $mspc = count($this->statistique->findmspc($start, $end));
         //get all mini site reparateur qualifié
-        $msrq = count($this->statistique->findmsrq($start,$end));
+        $msrq = count($this->statistique->findmsrq($start, $end));
         $data = [
-            'pjpc'=>$pjpc,
-            'pjrq'=>$pjrq,
-            'mspc'=>$mspc,
-            'msrq'=>$msrq,
+            'pjpc' => $pjpc,
+            'pjrq' => $pjrq,
+            'mspc' => $mspc,
+            'msrq' => $msrq,
         ];
         $option = [
-            'stylesheet_url'=>'default',
-            'filename' => 'stat_'.$start.$end,
+            'stylesheet_url' => 'default',
+            'filename' => 'stat_' . $start . $end,
             'action' => 'download',
-            'save_folder'=>__DIR__ . '/../../uploads/pdf_temp/'
+            'save_folder' => __DIR__ . '/../../uploads/pdf_temp/'
         ];
-        $html = $this->load->view('stat/stat',$data)->output->final_output;
-        generate_pdf($html,$option);
+        $html = $this->load->view('stat/stat', $data)->output->final_output;
+        generate_pdf($html, $option);
+    }
+
+    public function ajaxFindAllClient()
+    {
+        $client_id = $this->input->get('client_id');
+        $allDist = $this->client->findAllDistByIdClient($client_id);
+        header('Content-type:application/json');
+        echo json_encode([
+            'data' => $allDist
+        ]);
+    }
+
+    public function ajaxGetDistByName()
+    {
+        $reparateur_qualifie_nom = $this->input->get('reparateur_qualifie_nom');
+        $data = $this->client->findDistByName($reparateur_qualifie_nom)[0];
+        $count = count($this->client->findDistByName($reparateur_qualifie_nom));
+        header('Content-type:application/json');
+        echo json_encode([
+            'data' => $data,
+            'count' => $count
+        ]);
     }
 }
