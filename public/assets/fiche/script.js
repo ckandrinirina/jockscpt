@@ -27,7 +27,6 @@ $(document).ready(function () {
                 },
                 async: false,
                 success: function (response) {
-                    console.log(response);
                     $('#pc').val(response.stat.pc + '%');
                     $('#rq').val(response.stat.rq + '%');
                     $('#typage').val(response.stat.typage + '%');
@@ -394,4 +393,8 @@ function generateDataList() {
     });
     var datalist = '<datalist id="datalist">' + datalist + '</datalist>';
     $(datalist).insertAfter('#agence');
+}
+
+function openInNewWindow(url){
+    window.open(url);
 }
