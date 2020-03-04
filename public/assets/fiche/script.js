@@ -330,7 +330,7 @@ $(document).ready(function () {
     })
 
     //get data on keyup
-    $('#agence').on('keyup', (e) => {
+    $('#agence').on('change', (e) => {
         $input = $(e.target);
         var value = $('#' + $input.prop('id')).val();
         url = base_url + 'fiche/ajaxGetDistByName';
