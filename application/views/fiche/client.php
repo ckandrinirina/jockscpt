@@ -99,17 +99,17 @@
             <h3 class="text-center text-danger">STATISTIQUES</h3>
             <h6 class="text-center date-stat block-puce">du
                 <input type="text" id="start" class="span2 datepicker form-control" placeholder="Date debut" name="date"> au
-                <input type="text" id="end" class="span2 datepicker form-control" placeholder="Date debut" name="date"> 
+                <input type="text" id="end" class="span2 datepicker form-control" placeholder="Date debut" name="date" disabled> 
                 <button id="get-stat" class="link"><img src="<?= base_url('assets/img/calendar.svg') ?>" alt="" class="calendar"></a>
             </h6>
             <div class="statistique">
                 <div class="col-sm-6">
-                    <div class="block-puce"><input class="hidden-input-stat" type="text" id="appel" disabled> appel</div>
+                    <div class="block-puce"><input class="hidden-input-stat" type="text" id="appel" value="0" disabled> appel</div>
                 </div>
                 <div class="col-sm-6">
-                    <div class="block-puce"><span class="stat"><input class="hidden-input-stat" name="" id='pc' disabled></span> point conseil</div>
-                    <div class="block-puce"><span class="stat"><input class="hidden-input-stat" name="" id='rq' disabled></span> réparateur qualifié</div>
-                    <div class="block-puce"><span class="stat"><input class="hidden-input-stat" name="" id='typage' disabled></span> typage</div>
+                    <div class="block-puce"><span class="stat"><input class="hidden-input-stat" name="" id='pc' value="0%" disabled></span> point conseil</div>
+                    <div class="block-puce"><span class="stat"><input class="hidden-input-stat" name="" id='rq' value="0%" disabled></span> réparateur qualifié</div>
+                    <div class="block-puce"><span class="stat"><input class="hidden-input-stat" name="" id='typage' value="0%" disabled></span> typage</div>
                 </div>
             </div>
             <br>

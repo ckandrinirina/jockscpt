@@ -44,15 +44,21 @@ class Fiche extends CI_Controller
         $pjpc = count($this->statistique->findpjpc($start, $end));
         //get all page jaune reparateur qualifié
         $pjrq = count($this->statistique->findpjrq($start, $end));
+        //get all page jaune typqge
+        $pjtp = count($this->statistique->findpjtp($start, $end));
         //get all mini site point conseil
         $mspc = count($this->statistique->findmspc($start, $end));
         //get all mini site reparateur qualifié
         $msrq = count($this->statistique->findmsrq($start, $end));
+        //get all mini site typage
+        $mstp = count($this->statistique->findmstp($start, $end));
         $data = [
             'pjpc' => $pjpc,
             'pjrq' => $pjrq,
+            'pjtp' => $pjtp,
             'mspc' => $mspc,
             'msrq' => $msrq,
+            'mstp' => $mstp,
             'start' => $start,
             'end' => $end
         ];

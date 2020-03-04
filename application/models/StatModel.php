@@ -58,6 +58,16 @@ class StatModel extends CI_Model
             ->get()
             ->result_array();
     }
+    public function findpjtp($start, $end)
+    {
+        return $this->db->select('*')
+            ->from($this->table)
+            ->where('script_data_date_creation BETWEEN "' . $start . '" AND "' . $end . '"')
+            ->where('script_data_is_pq', '2')
+            ->where('script_data_is_mini_site','0')
+            ->get()
+            ->result_array();
+    }
     public function findmspc($start, $end)
     {
         return $this->db->select('*')
@@ -74,6 +84,16 @@ class StatModel extends CI_Model
             ->from($this->table)
             ->where('script_data_date_creation BETWEEN "' . $start . '" AND "' . $end . '"')
             ->where('script_data_is_pq', '0')
+            ->where('script_data_is_mini_site','1')
+            ->get()
+            ->result_array();
+    }
+    public function findmstp($start, $end)
+    {
+        return $this->db->select('*')
+            ->from($this->table)
+            ->where('script_data_date_creation BETWEEN "' . $start . '" AND "' . $end . '"')
+            ->where('script_data_is_pq', '2')
             ->where('script_data_is_mini_site','1')
             ->get()
             ->result_array();

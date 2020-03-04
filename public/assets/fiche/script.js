@@ -27,6 +27,7 @@ $(document).ready(function () {
                 },
                 async: false,
                 success: function (response) {
+                    console.log(response);
                     $('#pc').val(response.stat.pc + '%');
                     $('#rq').val(response.stat.rq + '%');
                     $('#typage').val(response.stat.typage + '%');
@@ -42,6 +43,15 @@ $(document).ready(function () {
         }
     })
 
+    $('#start').on('change',()=>{
+        $('#end').attr('disabled',false);
+        if($('#end').val() != ''){
+            $('#get-stat').trigger('click');
+        }
+    })
+    $('#end').on('change',()=>{
+        $('#get-stat').trigger('click');
+    })
     //generate pdf stat
     $('#generate-stat').click(() => {
         var start = $('#start').val();
