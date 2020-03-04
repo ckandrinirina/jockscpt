@@ -44,7 +44,7 @@
     </div>
     <div class="row button">
         <a class="btn btn-success" href="<?= base_url('home') ?>">Voir le script</a>
-        <a class="btn btn-warning" href="#">Accéder au dossier</a>
+        <a class="btn btn-warning" href="<?= $client_dossier ?>">Accéder au dossier</a>
         <a class="btn btn-warning" href="#">Créer une consigne temporaire</a>
     </div>
     <div class="row flex-client">
