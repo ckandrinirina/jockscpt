@@ -14,9 +14,12 @@ class Fiche extends CI_Controller
         $this->load->helper('pdf');
         $this->load->helper('string');
     }
-
+    public function index()
+    {
+        $this->client();
+    }
     //Page d'accueil du fiche
-    public function client($client)
+    public function client($client = 'Bunbendorff')
     {
         $data = $this->client->findClientByName($client);
         $finalData = $data[0];
