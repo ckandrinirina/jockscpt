@@ -17,7 +17,12 @@ class Home extends CI_Controller
     }
 
     //default home page
-    public function index($client = 'Bunbendorff')
+    public function index()
+    {
+        $this->script();
+    }
+
+    public function script($client)
     {
         //get initial step and render view
         $data['title'] = $this->script->FindByStep(0);
@@ -27,7 +32,6 @@ class Home extends CI_Controller
         $this->layout->views('default/navbar')
             ->view('home/index', $data);
     }
-
     //get content by ajax
     public function ajaxGetContentByStep()
     {

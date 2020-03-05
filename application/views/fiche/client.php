@@ -43,7 +43,7 @@
         <button id="save_client" class="hide btn">Enregistrer</button>
     </div>
     <div class="row button">
-        <a class="btn btn-success" href="<?= base_url('home') ?>">Voir le script</a>
+        <a class="btn btn-success" href="<?= base_url('home/script/'.$client_name) ?>">Voir le script</a>
         <a class="btn btn-warning" href="javascript:void(0)" onclick="openInNewWindow('<?= $client_dossier ?>')">Accéder au dossier</a>
         <a class="btn btn-warning" href="#">Créer une consigne temporaire</a>
     </div>
