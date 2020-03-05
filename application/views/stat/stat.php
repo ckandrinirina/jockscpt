@@ -48,7 +48,7 @@
                     <img src="<?= base_url('assets/img/logoelise1.png') ?>" alt="" class="logo-elise"><br>
                 </td>
                 <td class="infos">
-                    <p>SIRET : </p>
+                    <p>SIRET : 41033285200020</p>
                     <p>Tél : +33 (0) 3 83 15 16 66</p>
                     <p>Mél : contact@elise.fr</p>
                     <p>3, allée des Tilleuls - 54180 Heillecourt</p>

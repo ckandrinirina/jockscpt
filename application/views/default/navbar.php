@@ -6,7 +6,7 @@ $CI->load->model('ClientModel', 'client');
 $clients = $CI->client->findAllClient();
 ?>
 
-<nav class="navbar navbar-light bg-light">
+<!-- <nav class="navbar navbar-light bg-light">
   <a class="navbar-brand" href="#">
     <img src="<?= base_url('assets/img/logoelise.png') ?>" alt="">
   </a>
@@ -18,7 +18,7 @@ $clients = $CI->client->findAllClient();
       <img src="<?= base_url('assets/img/chat.png') ?>" alt="">
     </a>
   </div>
-</nav>
+</nav> -->
 <!-- nav with all the client links -->
 <div class="listeclient">
   <div class="flex">
