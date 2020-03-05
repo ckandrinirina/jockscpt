@@ -555,7 +555,7 @@ function getAllContact() {
                     <td>${valueOfElement.client_contact_name}</td>
                     <td>${valueOfElement.client_contact_numero}</td>
                     <td>${valueOfElement.client_contact_mail}</td>
-                    <td><button class="delete_contact" id_contact="${valueOfElement.client_contact_id}">Supprimer</button></td>
+                    <td><button class="delete_contact btn" id_contact="${valueOfElement.client_contact_id}">Supprimer</button></td>
                 </tr>`;
     });
     return html;
