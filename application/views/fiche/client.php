@@ -43,9 +43,11 @@
         <button id="save_client" class="hide btn">Enregistrer</button>
     </div>
     <div class="row button">
-        <a class="btn btn-success" href="<?= base_url('home/script/'.$client_name) ?>">Voir le script</a>
+        <a class="btn btn-success" href="<?= base_url('home/script/' . $client_name) ?>">Voir le script</a>
         <a class="btn btn-warning" href="javascript:void(0)" onclick="openInNewWindow('<?= $client_dossier ?>')">Accéder au dossier</a>
         <a class="btn btn-warning" href="#">Créer une consigne temporaire</a>
+        <button class="btn" id="add-contact" onclick="addContact()">Ajouter un contact</button>
+        <button class="btn" id="add-contact" onclick="voirContact()">Voir les contacts</button>
     </div>
     <div class="row flex-client">
         <div class="col-sm-6 bloc-2">
@@ -142,7 +144,6 @@
             </div>
         </div>
     </div>
-</div>
 </div>
 <!-- <script src="https://unpkg.com/gijgo@1.9.13/js/messages/messages.fr-fr.js" type="text/javascript"> -->
 <script>

@@ -394,7 +394,52 @@ $(document).ready(function () {
             }
         });
     })
+    //===================================================================CONTACT===========================================
+    $(document).on('click', '#add_contact', () => {
+        var data = $('[id^=client_contact_]');
+        var dist = {};
+        var url = base_url + 'fiche/addContact';
+        //get all data from input
+        $.each(data, function (indexInArray, valueOfElement) {
+            element = $(valueOfElement);
+            dist[element.prop('id')] = element.val();
+        });
 
+        dist['client_contact_client_fk'] = DATA_CLIENT.client_id;
+        //send and save data with ajax
+        $.ajax({
+            type: "post",
+            url: url,
+            data: {
+                data: dist,
+            },
+            async: false,
+            success: function (response) {
+                Swal.fire(
+                    'Succès',
+                    'Distributeur enregistrer avec succés',
+                    'success'
+                )
+            }
+        });
+    })
+
+    $(document).on('click', '.delete_contact', (e) => {
+        $element = $(e.target);
+        var client_contact_id = $element.attr('id_contact');
+        var url = base_url + 'fiche/deleteContact';
+        $.ajax({
+            type: "get",
+            url: url,
+            data: {
+                client_contact_id : client_contact_id,
+            },
+            async:false,
+            success: function (response) {
+                $(`#tr_${client_contact_id}`).remove();
+            }
+        });
+    })    
 });
 
 //fucntion to replace all value in string
@@ -437,6 +482,83 @@ function generateDataList() {
     });
     var datalist = '<datalist id="datalist">' + datalist + '</datalist>';
     $(datalist).insertAfter('#agence');
+}
+
+//Ajouter un contact
+function addContact() {
+    Swal.fire({
+        title: "<h2>Ajouter un contact</h2>",
+        html: `
+                <div class="block-puce">
+                    <h6 class="info-title add-title">Nom</h6>
+                    <input type="text" class="info-content add-content" id="client_contact_name">
+                </div>
+                <div class="block-puce">
+                    <h6 class="info-title add-title">Téléphone</h6>
+                    <input type="text" class="info-content add-content" id="client_contact_numero">
+                </div>
+                <div class="block-puce">
+                    <h6 class="info-title add-title">E-mail</h6>
+                    <input type="text" class="info-content add-content" id="client_contact_mail">
+                </div>
+                <button class="btn" id="add_contact">Enregistrer</button>
+        `,
+        showCancelButton: true,
+        showConfirmButton: false,
+        cancelButtonText: "Annuler",
+        width: '120vh',
+    });
+}
+
+function voirContact() {
+    Swal.fire({
+        title: "<h2>Liste des contacts</h2>",
+        html: `
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <td>Nom</td>
+                            <td>Téléphone</td>
+                            <td>Email</td>
+                            <td>Action</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${getAllContact()}
+                    </tbody>
+                </table>
+        `,
+        showCancelButton: true,
+        showConfirmButton: false,
+        cancelButtonText: "Annuler",
+        width: '120vh',
+    });
+}
+
+function getAllContact() {
+    var url = base_url + 'fiche/getAllContact';
+    var clients = [];
+    var html = '';
+    $.ajax({
+        type: "get",
+        url: url,
+        data: {
+            client_id: DATA_CLIENT.client_id
+        },
+        async: false,
+        success: function (response) {
+            clients = response.data;
+        }
+    });
+    $.each(clients, function (indexInArray, valueOfElement) {
+        html += `<tr id="tr_${valueOfElement.client_contact_id}">
+                    <td>${valueOfElement.client_contact_name}</td>
+                    <td>${valueOfElement.client_contact_numero}</td>
+                    <td>${valueOfElement.client_contact_mail}</td>
+                    <td><button class="delete_contact" id_contact="${valueOfElement.client_contact_id}">Supprimer</button></td>
+                </tr>`;
+    });
+    return html;
 }
 
 function openInNewWindow(url) {
