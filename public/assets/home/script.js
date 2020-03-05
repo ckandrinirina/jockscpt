@@ -262,7 +262,8 @@ function initByStep(step) {
         url: url,
         async: false,
         data: {
-            step: step
+            step: step,
+            champs_client_id: DATA_CLIENT.client_id
         },
         success: function (response) {
             //append view to content html

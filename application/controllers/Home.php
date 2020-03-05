@@ -25,7 +25,6 @@ class Home extends CI_Controller
     public function script($client)
     {
         //get initial step and render view
-        $data['title'] = $this->script->FindByStep(0);
         $dataClient = $this->client->findClientByName($client);
         $finalData = $dataClient[0];
         $data['json_data'] = json_encode($finalData);
@@ -36,7 +35,8 @@ class Home extends CI_Controller
     public function ajaxGetContentByStep()
     {
         $step = $this->input->get('step');
-        $data = $this->script->FindByStep($step);
+        $champs_client_id = $this->input->get('champs_client_id');
+        $data = $this->script->FindByStep($step,$champs_client_id);
         // var_dump($data);die();
         $this->generateViewFromData($data);
     }
