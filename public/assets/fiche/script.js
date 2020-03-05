@@ -393,7 +393,6 @@ $(document).ready(function () {
                 )
             }
         });
-        client_id: DATA_CLIENT.client_id
     })
 
 });
