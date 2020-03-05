@@ -34,6 +34,7 @@ $(document).ready(function () {
                 data: {
                     start: start,
                     end: end,
+                    client_id: DATA_CLIENT.client_id
                 },
                 async: false,
                 success: function (response) {
@@ -60,7 +61,7 @@ $(document).ready(function () {
         if (start != '' && end != '') {
             var start = $('#start').val();
             var end = $('#end').val();
-            window.open(base_url + "fiche/generateStat/" + start.replaceAll('/', '-') + "/" + end.replaceAll('/', '-'));
+            window.open(base_url + "fiche/generateStat/" + DATA_CLIENT.client_id + "/" + start.replaceAll('/', '-') + "/" + end.replaceAll('/', '-'));
         } else {
             Swal.fire(
                 'Attention!',

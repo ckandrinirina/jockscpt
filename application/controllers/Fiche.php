@@ -29,29 +29,30 @@ class Fiche extends CI_Controller
     {
         $start = $this->input->get('start');
         $end = $this->input->get('end');
-        $stat = $this->stat->generateStat($start, $end);
+        $client_id = $this->input->get('client_id');
+        $stat = $this->stat->generateStat($start, $end, $client_id);
         header('Content-type:application/json');
         echo json_encode([
             'stat' => $stat
         ]);
     }
 
-    public function generateStat($start, $end)
+    public function generateStat($client_id, $start, $end)
     {
         $start = $this->stat->explodeDate($start, '-');
         $end = $this->stat->explodeDate($end, '-');
         //get all page jaune point conseil
-        $pjpc = count($this->statistique->findpjpc($start, $end));
+        $pjpc = count($this->statistique->findpjpc($start, $end, $client_id));
         //get all page jaune reparateur qualifié
-        $pjrq = count($this->statistique->findpjrq($start, $end));
+        $pjrq = count($this->statistique->findpjrq($start, $end, $client_id));
         //get all page jaune typqge
-        $pjtp = count($this->statistique->findpjtp($start, $end));
+        $pjtp = count($this->statistique->findpjtp($start, $end, $client_id));
         //get all mini site point conseil
-        $mspc = count($this->statistique->findmspc($start, $end));
+        $mspc = count($this->statistique->findmspc($start, $end, $client_id));
         //get all mini site reparateur qualifié
-        $msrq = count($this->statistique->findmsrq($start, $end));
+        $msrq = count($this->statistique->findmsrq($start, $end, $client_id));
         //get all mini site typage
-        $mstp = count($this->statistique->findmstp($start, $end));
+        $mstp = count($this->statistique->findmstp($start, $end, $client_id));
         $data = [
             'pjpc' => $pjpc,
             'pjrq' => $pjrq,

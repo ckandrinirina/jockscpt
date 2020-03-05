@@ -1,7 +1,7 @@
 <div class="container">
-    <img src="<?= base_url('assets/img/bubendorff.png') ?>" alt="" class="logo">
+    <img src="<?= base_url($client_logo) ?>" alt="" class="logo">
     <div class="row bloc">
-        <button class="link" id="edit_client"><img src="<?= base_url($client_logo) ?>" alt="" class="edit "></button>
+        <button class="link" id="edit_client"><img src="<?= base_url('assets/img/edit.svg') ?>" alt="" class="edit "></button>
         <div class="flex-client">
             <div class="col-sm-4 info-client">
                 <div class="block-puce">

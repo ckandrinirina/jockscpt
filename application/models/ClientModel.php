@@ -5,6 +5,14 @@ class  ClientModel extends CI_Model
     private $table = 'client';
     private $table2 = 'reparateur_qualifie';
 
+    public function findAllClient()
+    {
+        return $this->db->select('*')
+            ->from($this->table)
+            ->get()
+            ->result_array();
+    }
+
     public function findClientByName($client)
     {
         return $this->db->select('*')

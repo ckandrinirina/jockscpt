@@ -125,7 +125,8 @@ $(document).ready(function () {
             script_data_reparateur_qualifie_fk: dataClient.reparateur_qualifie_id,
             script_data_numero_client: dataClient.reparateur_qualifie_numero,
             script_data_commentaires: commentaires,
-            script_data_timer: totalSeconds
+            script_data_timer: totalSeconds,
+            script_data_client_fk: DATA_CLIENT.client_id
         }
         saveData(cordAppelant, param);
     })
@@ -180,6 +181,9 @@ function generateDataList() {
     $.ajax({
         type: "get",
         url: url,
+        data:{
+            client_id:DATA_CLIENT.client_id,
+        },
         async: false,
         success: function (response) {
             response.data.forEach(element => {

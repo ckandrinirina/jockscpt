@@ -10,16 +10,20 @@ class Home extends CI_Controller
         $this->load->model('ScriptModel', 'script');
         $this->load->model('ScriptSave', 'save');
         $this->load->model('AppelSurModel', 'appelSur');
+        $this->load->model('ClientModel', 'client');
         $this->load->helper('pdf');
         $this->load->helper('mail');
         $this->load->helper('string');
     }
 
     //default home page
-    public function index()
+    public function index($client = 'Bunbendorff')
     {
         //get initial step and render view
         $data['title'] = $this->script->FindByStep(0);
+        $dataClient = $this->client->findClientByName($client);
+        $finalData = $dataClient[0];
+        $data['json_data'] = json_encode($finalData);
         $this->layout->views('default/navbar')
             ->view('home/index', $data);
     }
@@ -170,7 +174,8 @@ class Home extends CI_Controller
     //prendre tous le numero
     public function ajaxFindAllNumero()
     {
-        $data = $this->appelSur->findAllNumero();
+        $reparateur_qualifie_client_fk = $this->input->get('client_id');
+        $data = $this->appelSur->findAllNumero($reparateur_qualifie_client_fk);
         header('Content-type:application/json');
         echo json_encode([
             'data' => $data,
