@@ -432,14 +432,14 @@ $(document).ready(function () {
             type: "get",
             url: url,
             data: {
-                client_contact_id : client_contact_id,
+                client_contact_id: client_contact_id,
             },
-            async:false,
+            async: false,
             success: function (response) {
                 $(`#tr_${client_contact_id}`).remove();
             }
         });
-    })    
+    })
 });
 
 //fucntion to replace all value in string
@@ -559,6 +559,102 @@ function getAllContact() {
                 </tr>`;
     });
     return html;
+}
+
+//================consigne temporary================
+function openAddConsigneTemp() {
+    Swal.fire({
+        title: "<h2>Ajouter un consigne temporaire</h2>",
+        html: `
+                <div class="block-puce">
+                    <h6 class="info-title add-title">Titre</h6>
+                    <input type="text" class="info-content add-content" id="consigne_temporaire_title">
+                </div>
+                <div class="block-puce">
+                    <h6 class="info-title add-title">Début</h6>
+                    <input type="text" class="info-content add-content datepicker" id="consigne_temporaire_start_at">
+                </div>
+                <div class="block-puce">
+                    <h6 class="info-title add-title">Fin</h6>
+                    <input type="text" class="info-content add-content datepicker" id="consigne_temporaire_end_at">
+                </div>
+                <div class="block-puce">
+                    <h6 class="info-title add-title">Contenu : </h6><br>
+                    <textarea id="consigne_temporaire_content" rows="20" cols="70"></textarea><br>
+                </div>
+                <button class="btn" onClick="validateConsigneTemp()">Enregistrer</button>
+        `,
+        showCancelButton: true,
+        showConfirmButton: false,
+        cancelButtonText: "Annuler",
+        width: '120vh',
+    });
+    $('.datepicker').datepicker({
+        locale: 'fr-fr',
+        lang: 'fr-fr',
+        format: 'dd/mm/yyyy',
+    });
+}
+
+function validateConsigneTemp() {
+    var data = $('[id^=consigne_temporaire_]');
+    var dist = {};
+    var url = base_url + 'fiche/saveConsigneTemp';
+    var html = ``;
+    //get all data from input
+    $.each(data, function (indexInArray, valueOfElement) {
+        element = $(valueOfElement);
+        dist[element.prop('id')] = element.val();
+    });
+    dist['consigne_temporaire_client_fk'] = DATA_CLIENT.client_id;
+    //send and save data with ajax
+    $.ajax({
+        type: "post",
+        url: url,
+        data: {
+            data: dist,
+        },
+        async: false,
+        success: function (response) {
+            Swal.fire(
+                'Succès',
+                'Consigne temporaire ajouter',
+                'success'
+            );
+            html = `
+            <div class="col-sm-6 bloc-3" id='cons_${response.id}'>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h4 class="text-center">${dist.consigne_temporaire_title}</h4>
+                        <h6 class="date-ct">Valable du ${dist.consigne_temporaire_start_at} au ${dist.consigne_temporaire_end_at}</h6>
+                        <p class="ct-info">${dist.consigne_temporaire_content}<p>
+                                <a href="javascript:void(0)" class="pj-texte" onclick="deleteConsigne(${response.id})"><img src="${base_url}assets/img/bin.svg" alt="" class="bin "></a>
+                                <a href="javascript:void(0)" class="pj-texte"><img src="${base_url}assets/img/clip-outline.svg" alt="" class="pj">
+                                    <p>Voir la pièce jointe</p>
+                                </a>
+                    </div>
+                </div>
+            </div>
+            `;
+            $('#consign-temp-block').append(html);
+        }
+    });
+}
+
+function deleteConsigne(consigne_temporaire_id)
+{
+    var url = base_url + 'fiche/deleteConsigne';
+    $.ajax({
+        type: "get",
+        url: url,
+        data: {
+            consigne_temporaire_id:consigne_temporaire_id
+        },
+        async:false,
+        success: function (response) {
+            $('#cons_'+consigne_temporaire_id).remove();
+        }
+    });
 }
 
 function openInNewWindow(url) {

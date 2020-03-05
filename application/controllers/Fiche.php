@@ -24,6 +24,7 @@ class Fiche extends CI_Controller
         $data = $this->client->findClientByName($client);
         $finalData = $data[0];
         $finalData['json_data'] = json_encode($finalData);
+        $finalData['consigne_temp'] = $this->client->findAllConsigneTemp($finalData['client_id']);
         $this->layout->views('default/navbar')
             ->view('fiche/client', $finalData);
     }
@@ -144,5 +145,23 @@ class Fiche extends CI_Controller
     {
         $client_contact_id = $this->input->get('client_contact_id');
         $this->client->deleteContact($client_contact_id);
+    }
+
+    public function saveConsigneTemp()
+    {
+        $data = $this->input->post('data');
+        $data['consigne_temporaire_start_at'] = $this->stat->explodeDate($data['consigne_temporaire_start_at'], '/');
+        $data['consigne_temporaire_end_at'] = $this->stat->explodeDate($data['consigne_temporaire_end_at'], '/');
+        $id = $this->client->insertConsigneTemp($data);
+        header('Content-type:application/json');
+        echo json_encode([
+            'id' => $id
+        ]);
+    }
+
+    public function deleteConsigne()
+    {
+        $consigne_temporaire_id = $this->input->get('consigne_temporaire_id');
+        $this->client->deleteConsigne($consigne_temporaire_id);
     }
 }

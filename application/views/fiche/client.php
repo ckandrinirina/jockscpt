@@ -45,7 +45,7 @@
     <div class="row button">
         <a class="btn btn-success" href="<?= base_url('home/script/' . $client_name) ?>">Voir le script</a>
         <a class="btn btn-warning" href="javascript:void(0)" onclick="openInNewWindow('<?= $client_dossier ?>')">Accéder au dossier</a>
-        <a class="btn btn-warning" href="#">Créer une consigne temporaire</a>
+        <a class="btn btn-warning" href="javascript:void(0)" onclick="openAddConsigneTemp()">Créer une consigne temporaire</a>
         <button class="btn" id="add-contact" onclick="addContact()">Ajouter un contact</button>
         <button class="btn" id="add-contact" onclick="voirContact()">Voir les contacts</button>
     </div>
@@ -97,6 +97,25 @@
         </div>
     </div>
     <div class="row flex-client">
+        <div>
+            <div class="row" id="consign-temp-block">
+                <?php foreach ($consigne_temp as $consigne) : ?>
+                    <div class="col-sm-6 bloc-3" id='cons_<?= $consigne['consigne_temporaire_id'] ?>'>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <h4 class="text-center"><?= $consigne['consigne_temporaire_title'] ?></h4>
+                                <h6 class="date-ct">Valable du <?= date("d/m/Y", strtotime($consigne['consigne_temporaire_start_at'])) ?> au <?= date("d/m/Y", strtotime($consigne['consigne_temporaire_end_at'])) ?></h6>
+                                <p class="ct-info"><?= $consigne['consigne_temporaire_content'] ?><p>
+                                        <a href="javascript:void(0)" class="pj-texte" onclick="deleteConsigne(<?= $consigne['consigne_temporaire_id'] ?>)"><img src="<?= base_url('assets/img/bin.svg') ?>" alt="" class="bin "></a>
+                                        <a href="javascript:void(0)" class="pj-texte"><img src="<?= base_url('assets/img/clip-outline.svg') ?>" alt="" class="pj">
+                                            <p>Voir la pièce jointe</p>
+                                        </a>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach ?>
+            </div>
+        </div>
         <div class="col-sm-6 bloc-2-3">
             <h3 class="text-center text-danger">STATISTIQUES</h3>
             <h6 class="text-center date-stat block-puce">du
@@ -116,32 +135,6 @@
             </div>
             <br>
             <button class="btn btn-warning btn-stat" id="generate-stat">Générer les statistiques</button>
-        </div>
-        <div class="col-sm-6 bloc-3">
-            <div class="row">
-                <div class="col-sm-6">
-                    <h4 class="text-center">Titre consigne</h4>
-                    <h6 class="date-ct">Valable du 01/02/2020 au 29/02/2020</h6>
-                    <p class="ct-info">Brave heart, Clara. Goodbye, Clara. Geronimo! No idea. Just do what I do: hold tight and pretend it's a plan. There are fixed points throughout time where things must stay exactly the way they are. This is not one of them. This is an opportunity! Whatever happens here will create its own timeline, its own reality, a temporal tipping point. The future revolves around you, here, now, so do good! Thank you, Strax. And if I'm ever in need of advice from a psychotic potato dwarf, you'll certainly be the first to know.<p>
-                            <a href="" class="pj-texte"><img src="<?= base_url('assets/img/bin.svg') ?>" alt="" class="bin "></a>
-                            <a href="" class="pj-texte"><img src="<?= base_url('assets/img/clip-outline.svg') ?>" alt="" class="pj">
-                                <p>Voir la pièce jointe</p>
-                            </a>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 bloc-3">
-            <div class="row">
-                <div class="col-sm-6">
-                    <h4 class="text-center">Titre consigne</h4>
-                    <h6 class=" date-ct">Valable du 01/02/2020 au 29/02/2020</h6>
-                    <p class="ct-info">Brave heart, Clara. Goodbye, Clara. Geronimo! No idea. Just do what I do: hold tight and pretend it's a plan. There are fixed points throughout time where things must stay exactly the way they are. This is not one of them. This is an opportunity! Whatever happens here will create its own timeline, its own reality, a temporal tipping point. The future revolves around you, here, now, so do good! Thank you, Strax. And if I'm ever in need of advice from a psychotic potato dwarf, you'll certainly be the first to know.<p>
-                            <a href="" class="pj-texte"><img src="<?= base_url('assets/img/bin.svg') ?>" alt="" class="bin"></a>
-                            <a href="" class="pj-texte"><img src="<?= base_url('assets/img/clip-outline.svg') ?>" alt="" class="pj">
-                                <p>Voir la pièce jointe</p>
-                            </a>
-                </div>
-            </div>
         </div>
     </div>
 </div>

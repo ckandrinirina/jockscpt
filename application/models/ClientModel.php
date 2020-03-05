@@ -5,6 +5,7 @@ class  ClientModel extends CI_Model
     private $table = 'client';
     private $table1 = 'client_contact';
     private $table2 = 'reparateur_qualifie';
+    private $table3 = 'consigne_temporaire';
 
     public function findAllClient()
     {
@@ -90,5 +91,26 @@ class  ClientModel extends CI_Model
     {
         $this->db->where('client_contact_id', $client_contact_id)
             ->delete($this->table1);
+    }
+
+    public function insertConsigneTemp($data)
+    {
+        $this->db->insert($this->table3,$data);
+        return $this->db->insert_id();
+    }
+
+    public function findAllConsigneTemp($client_id)
+    {
+        return $this->db->select('*')
+                    ->from($this->table3)
+                    ->where('consigne_temporaire_client_fk',$client_id)
+                    ->get()
+                    ->result_array();
+    }
+
+    public function deleteConsigne($consigne_temporaire_id)
+    {
+        $this->db->where('consigne_temporaire_id', $consigne_temporaire_id)
+            ->delete($this->table3);
     }
 }
