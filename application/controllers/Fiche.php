@@ -104,13 +104,20 @@ class Fiche extends CI_Controller
     {
         $data = $this->input->post('data');
         $client_id = $this->input->post('client_id');
-        $this->client->saveClient($data,$client_id);
+        $this->client->saveClient($data, $client_id);
     }
 
     public function editDist()
     {
         $data = $this->input->post('data');
         $lastData = $this->appelSur->findIsRqByNumero($data['reparateur_qualifie_numero']);
-        $this->client->editDist($data,$lastData);
+        $this->client->editDist($data, $lastData);
+    }
+
+    public function ajaxUpdateConsigneGl()
+    {
+        $client_id = $this->input->post('client_id');
+        $client_consigne_gl = $this->input->post('client_consigne_gl');
+        $this->client->updateConsigneGl($client_id, ['client_consigne_gl' => $client_consigne_gl]);
     }
 }

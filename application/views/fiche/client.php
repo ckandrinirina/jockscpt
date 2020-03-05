@@ -87,8 +87,8 @@
         </div>
         <div class="col-sm-6 bloc-2">
             <h3 class="text-center text-danger">CONSIGNES GENERALES</h3>
-            <p class="cg-info" id="consigne-general">Brave heart, Clara. Goodbye, Clara. Geronimo! No idea. Just do what I do: hold tight and pretend it's a plan. There are fixed points throughout time where things must stay exactly the way they are. This is not one of them. This is an opportunity! Whatever happens here will create its own timeline, its own reality, a temporal tipping point. The future revolves around you, here, now, so do good! Thank you, Strax. And if I'm ever in need of advice from a psychotic potato dwarf, you'll certainly be the first to know. <br><br>Brave heart, Clara. Goodbye, Clara. Geronimo! No idea. Just do what I do: hold tight and pretend it's a plan. There are fixed points throughout time where things must stay exactly the way they are. This is not one of them. This is an opportunity! Whatever happens here will create its own timeline, its own reality, a temporal tipping point. The future revolves around you, here, now, so do good! Thank you, Strax. And if I'm ever in need of advice from a psychotic potato dwarf, you'll certainly be the first to know.<p>
-                    <a href=""><img src="<?= base_url('assets/img/edit.svg') ?>" alt="" class="edit"></a>
+            <p class="cg-info" id="consigne-general"><?= $client_consigne_gl ?><p>
+                    <a href="javascript:void(0)" onclick="editConsigneGl()"><img src="<?= base_url('assets/img/edit.svg') ?>" alt="" class="edit"></a>
                     <a href="" class="pj-texte"><img src="<?= base_url('assets/img/clip-outline.svg') ?>" alt="" class="pj">
                         <p>Voir la pièce jointe</p>
                     </a>
@@ -99,7 +99,7 @@
             <h3 class="text-center text-danger">STATISTIQUES</h3>
             <h6 class="text-center date-stat block-puce">du
                 <input type="text" id="start" class="span2 datepicker form-control" placeholder="Date debut" name="date"> au
-                <input type="text" id="end" class="span2 datepicker form-control" placeholder="Date debut" name="date" disabled> 
+                <input type="text" id="end" class="span2 datepicker form-control" placeholder="Date debut" name="date" disabled>
                 <button id="get-stat" class="link"><img src="<?= base_url('assets/img/calendar.svg') ?>" alt="" class="calendar"></a>
             </h6>
             <div class="statistique">

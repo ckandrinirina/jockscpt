@@ -10,6 +10,16 @@ $(document).ready(function () {
     //generate datalist for autocomplet
     generateDataList();
 
+    //=========================================stat==================================
+    $('#start').on('change', () => {
+        $('#end').attr('disabled', false);
+        if ($('#end').val() != '') {
+            $('#get-stat').trigger('click');
+        }
+    })
+    $('#end').on('change', () => {
+        $('#get-stat').trigger('click');
+    })
     //generate statistique in view
     $('#get-stat').click(() => {
         var start = $('#start').val();
@@ -41,16 +51,6 @@ $(document).ready(function () {
             );
         }
     })
-
-    $('#start').on('change',()=>{
-        $('#end').attr('disabled',false);
-        if($('#end').val() != ''){
-            $('#get-stat').trigger('click');
-        }
-    })
-    $('#end').on('change',()=>{
-        $('#get-stat').trigger('click');
-    })
     //generate pdf stat
     $('#generate-stat').click(() => {
         var start = $('#start').val();
@@ -69,11 +69,13 @@ $(document).ready(function () {
             );
         }
     })
+    //===========================================stat===================================================
 
+    //===========================================client===================================================
     //edit client
     $('#edit_client').click(() => {
         $('.client').attr('disabled', false);
-        $('#client_name').attr('disabled',true);
+        $('#client_name').attr('disabled', true);
         $('#save_client').removeClass('hide');
     })
 
@@ -107,7 +109,9 @@ $(document).ready(function () {
             }
         });
     })
+    //===========================================client===================================================
 
+    //===========================================distributeur=============================================
     //create distributeur
     $('#add-distributeur').click(() => {
         Swal.fire({
@@ -366,11 +370,51 @@ $(document).ready(function () {
             }
         });
     })
+    //===========================================distributeur=============================================
+
+    $(document).on('click', '#edit_consigne_gl', () => {
+        var client_consigne_gl = $('#consigne_gl_value').val();
+        var url = `${base_url}fiche/ajaxUpdateConsigneGl`
+        $.ajax({
+            type: "post",
+            url: url,
+            data: {
+                client_id: DATA_CLIENT.client_id,
+                client_consigne_gl: client_consigne_gl
+            },
+            async: false,
+            success: function (response) {
+                $('#consigne-general').text(client_consigne_gl);
+                Swal.fire(
+                    'Succès',
+                    'Consigne général modifier avec succés',
+                    'success'
+                )
+            }
+        });
+        client_id: DATA_CLIENT.client_id
+    })
+
 });
 
 //fucntion to replace all value in string
 String.prototype.replaceAll = function (str1, str2, ignore) {
     return this.replace(new RegExp(str1.replace(/([\/\,\!\\\^\$\{\}\[\]\(\)\.\*\+\?\|\<\>\-\&])/g, "\\$&"), (ignore ? "gi" : "g")), (typeof (str2) == "string") ? str2.replace(/\$/g, "$$$$") : str2);
+}
+
+function editConsigneGl() {
+    var lastText = $('#consigne-general').text();
+    Swal.fire({
+        title: "<h2>Modifier un distributeur</h2>",
+        html: `
+                <textarea id="consigne_gl_value" rows="20">${lastText}</textarea><br>
+                <button class="btn" id="edit_consigne_gl">Enregistrer</button>
+        `,
+        showCancelButton: true,
+        showConfirmButton: false,
+        cancelButtonText: "Annuler",
+        width: '120vh',
+    });
 }
 
 //used to get content of auto completion from the back-end
@@ -395,6 +439,6 @@ function generateDataList() {
     $(datalist).insertAfter('#agence');
 }
 
-function openInNewWindow(url){
+function openInNewWindow(url) {
     window.open(url);
 }

@@ -59,4 +59,10 @@ class  ClientModel extends CI_Model
                 ->update($this->table2, $data);
         }
     }
+
+    public function updateConsigneGl($client_id, $data)
+    {
+        $this->db->where('client_id', $client_id)
+            ->update($this->table, $data);
+    }
 }
