@@ -3,6 +3,7 @@
 class  ClientModel extends CI_Model
 {
     private $table = 'client';
+    private $table1 = 'client_contact';
     private $table2 = 'reparateur_qualifie';
 
     public function findAllClient()
@@ -72,5 +73,22 @@ class  ClientModel extends CI_Model
     {
         $this->db->where('client_id', $client_id)
             ->update($this->table, $data);
+    }
+
+    public function addContact($data)
+    {
+        $this->db->insert($this->table1, $data);
+    }
+
+    public function getAllContact($client_id)
+    {
+        return $this->db->get_where($this->table1, ['client_contact_client_fk' => $client_id])
+            ->result_array();
+    }
+
+    public function deleteContact($client_contact_id)
+    {
+        $this->db->where('client_contact_id', $client_contact_id)
+            ->delete($this->table1);
     }
 }

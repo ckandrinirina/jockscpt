@@ -124,4 +124,25 @@ class Fiche extends CI_Controller
         $client_consigne_gl = $this->input->post('client_consigne_gl');
         $this->client->updateConsigneGl($client_id, ['client_consigne_gl' => $client_consigne_gl]);
     }
+
+    public function addContact()
+    {
+        $data = $this->input->post('data');
+        $this->client->addContact($data);
+    }
+
+    public function getAllContact()
+    {
+        $client_id = $this->input->get('client_id');
+        header('Content-type:application/json');
+        echo json_encode([
+            'data' => $this->client->getAllContact($client_id)
+        ]);
+    }
+
+    public function deleteContact()
+    {
+        $client_contact_id = $this->input->get('client_contact_id');
+        $this->client->deleteContact($client_contact_id);
+    }
 }
