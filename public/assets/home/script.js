@@ -254,6 +254,7 @@ function testIfReQualifie(value) {
     });
 }
 
+
 function initByStep(step) {
     var url = base_url + 'home/ajaxGetContentByStep';
     var dataStep;
