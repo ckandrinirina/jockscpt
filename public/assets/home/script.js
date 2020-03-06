@@ -7,6 +7,7 @@ $(document).ready(function () {
     dataClient = [];
     initByStep(1);
     initByStep(2);
+    $('#2').trigger('click');
     generateDataList();
     //click on next step
     $('#content').on('click', '.next', (e, v) => {
