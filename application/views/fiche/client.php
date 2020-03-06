@@ -1,3 +1,8 @@
+<div class="tooltip_templates">
+    <span id="tooltip_content">
+        <p>ok</p>
+    </span>
+</div>
 <div class="container">
     <img src="<?= base_url($client_logo) ?>" alt="" class="logo">
     <div class="row bloc">
@@ -6,7 +11,7 @@
             <div class="col-sm-4 info-client">
                 <div class="block-puce">
                     <h6 class="info-title">Nom du contact</h6>
-                    <input class="info-content client" value="<?= $client_name ?>" id="client_name" disabled>
+                    <input class="info-content client" value="<?= $client_name ?>" id="client_name" data-tooltip-content="#tooltip_content" disabled>
                 </div>
                 <div class="block-puce">
                     <h6 class="info-title">Fonction</h6>
@@ -57,35 +62,37 @@
                 <input type="text" id="agence">
                 <button class="btn">Rechercher</button>
             </div>
-            <div class="block-puce">
+            <div class="block-puce nom-agence">
                 <h6 class="info-title">Nom de l'agence</h6>
                 <input type="text" class="info-content" disabled id="nom_agence">
             </div>
-            <div class="block-puce">
-                <h6 class="info-title">Nom du contact</h6>
-                <input type="text" class="info-content" disabled id="contact_agence">
+            <div class="add-distributeur"><button class="btn btn-warning btn-center" id="add-distributeur">Ajouter un distributeur</button></div>
+            <div class="dynamic-hide hide">
+                <div class="block-puce">
+                    <h6 class="info-title">Nom du contact</h6>
+                    <input type="text" class="info-content" disabled id="contact_agence">
+                </div>
+                <div class="block-puce">
+                    <h6 class="info-title">Fonction</h6>
+                    <input type="text" class="info-content bulle" disabled id="fonction_agence">
+                </div>
+                <div class="block-puce">
+                    <h6 class="info-title">Adresse mail</h6>
+                    <input type="text" class="info-content bulle" disabled id="mail_agence">
+                </div>
+                <div class="block-puce">
+                    <h6 class="info-title">Numéro de téléphone</h6>
+                    <input type="text" class="info-content bulle" disabled id="tel_agence">
+                </div>
+                <div class="block-puce">
+                    <h6 class="info-title">Adresse</h6>
+                    <input type="text" class="info-content bulle" disabled id="adresse_agence">
+                </div>
+                <div class="block-puce">
+                    <h6 class="info-title">Horaires</h6>
+                    <input type="text" class="info-content bulle" disabled id="horraire_agence">
+                </div>
             </div>
-            <div class="block-puce">
-                <h6 class="info-title">Fonction</h6>
-                <input type="text" class="info-content" disabled id="fonction_agence">
-            </div>
-            <div class="block-puce">
-                <h6 class="info-title">Adresse mail</h6>
-                <input type="text" class="info-content" disabled id="mail_agence">
-            </div>
-            <div class="block-puce">
-                <h6 class="info-title">Numéro de téléphone</h6>
-                <input type="text" class="info-content" disabled id="tel_agence">
-            </div>
-            <div class="block-puce">
-                <h6 class="info-title">Adresse</h6>
-                <input type="text" class="info-content" disabled id="adresse_agence">
-            </div>
-            <div class="block-puce">
-                <h6 class="info-title">Horaires</h6>
-                <input type="text" class="info-content" disabled id="horraire_agence">
-            </div>
-            <button class="btn btn-warning btn-center" id="add-distributeur">Ajouter un distributeur</button>
         </div>
         <div class="col-sm-6 bloc-2">
             <h3 class="text-center text-danger">CONSIGNES GENERALES</h3>

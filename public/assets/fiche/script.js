@@ -6,6 +6,17 @@ $(document).ready(function () {
         lang: 'fr-fr',
         format: 'dd/mm/yyyy',
     });
+    $('.dynamic-hide').addClass('hide');
+
+    $('.nom-agence').mouseenter(function () { 
+        $('.dynamic-hide').removeClass('hide');
+        $('.add-distributeur').addClass('hide');
+    });
+
+    $('.nom-agence').mouseleave(function () { 
+        $('.dynamic-hide').addClass('hide');
+        $('.add-distributeur').removeClass('hide');
+    });
 
     //generate datalist for autocomplet
     generateDataList();

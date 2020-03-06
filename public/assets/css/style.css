@@ -522,4 +522,9 @@
       #consigne_gl_value{
         width:40vw;
       }
-
+      /* TOOLTIP*/
+      .dynamic-hide {
+        background-color: whitesmoke;
+        border-radius: 6px;
+        padding: 3px;
+      }
