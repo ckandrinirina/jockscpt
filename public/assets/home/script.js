@@ -208,14 +208,14 @@ function testIfReQualifie(value) {
         success: function (response) {
             if (response.size == 2) {
                 $('#7').trigger('click');
-                var type = 'Réparateur qualifié et Point conseil';
+                var type = 'RQ et PC';
             } else {
                 if (response.data.reparateur_qualifie_is_rep_q == 1) {
                     $('#5').trigger('click');
-                    var type = 'Reparateur qualifié';
+                    var type = 'RQ';
                 } else if (response.data.reparateur_qualifie_is_rep_q == 0) {
                     $('#7').trigger('click');
-                    var type = 'Point conseil';
+                    var type = 'PC';
                 }
             }
             dataClient = response.data;

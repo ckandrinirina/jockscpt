@@ -349,11 +349,11 @@ $(document).ready(function () {
             success: function (response) {
                 var count = response.count;
                 if (count == 2) {
-                    var fonction = "Réparateur qualifié et point conseil";
+                    var fonction = "RQ et PC";
                 } else if (response.data.reparateur_qualifie_is_rep_q == 1) {
-                    var fonction = "Réparateur qualifié";
+                    var fonction = "RQ";
                 } else if (response.data.reparateur_qualifie_is_rep_q == 0) {
-                    var fonction = "Point conseil";
+                    var fonction = "PC";
                 }
                 ACTUAL_DIST = response.data;
                 if (ACTUAL_DIST)
