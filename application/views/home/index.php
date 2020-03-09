@@ -7,6 +7,9 @@
   <h5 class="text-center">Service d'accueil Bubendorff, Elise Bonjour.</h5>
   <!-- dynamic content -->
   <div id="content" class="row"></div>
+  <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-html="true" title="<em>Tooltip</em> <u>with</u> <b>HTML</b>">
+    Tooltip with HTML
+  </button>
   <!-- dynamic content -->
   <script>
     DATA_CLIENT = JSON.parse(`<?= $json_data ?>`);

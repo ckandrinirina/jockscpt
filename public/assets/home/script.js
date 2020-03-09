@@ -7,7 +7,6 @@ $(document).ready(function () {
     dataClient = [];
     initByStep(1);
     initByStep(2);
-    $('#2').trigger('click');
     generateDataList();
     //click on next step
     $('#content').on('click', '.next', (e, v) => {
@@ -111,29 +110,37 @@ $(document).ready(function () {
         else
             var commentaires = '';
 
-        var cordAppelant = {
-            script_data_c_app_nom: nom_client,
-            script_data_c_app_prenom: prenom_client,
-            script_data_c_app_adresse: adresse_client,
-            script_data_c_app_tel: telephone_client,
-            script_data_c_app_cp: cp_client,
-            script_data_c_app_ville: ville_client,
-            script_data_nbr_volet: nbr_volet,
-            script_data_is_mini_site: isMinisite,
-            script_data_is_pq: isPq,
-            script_data_n_serie: numero_serie,
-            script_data_info_comp: info_comp,
-            script_data_reparateur_qualifie_fk: dataClient.reparateur_qualifie_id,
-            script_data_numero_client: dataClient.reparateur_qualifie_numero,
-            script_data_commentaires: commentaires,
-            script_data_timer: totalSeconds,
-            script_data_client_fk: DATA_CLIENT.client_id
+        if (typeof isMinisite == 'undefined') {
+            Swal.fire(
+                'Attention!',
+                'Il faut choisir si c\'est mini-site ou page jaunes',
+                'warning'
+            );
+        } else {
+            var cordAppelant = {
+                script_data_c_app_nom: nom_client,
+                script_data_c_app_prenom: prenom_client,
+                script_data_c_app_adresse: adresse_client,
+                script_data_c_app_tel: telephone_client,
+                script_data_c_app_cp: cp_client,
+                script_data_c_app_ville: ville_client,
+                script_data_nbr_volet: nbr_volet,
+                script_data_is_mini_site: isMinisite,
+                script_data_is_pq: isPq,
+                script_data_n_serie: numero_serie,
+                script_data_info_comp: info_comp,
+                script_data_reparateur_qualifie_fk: dataClient.reparateur_qualifie_id,
+                script_data_numero_client: dataClient.reparateur_qualifie_numero,
+                script_data_commentaires: commentaires,
+                script_data_timer: totalSeconds,
+                script_data_client_fk: DATA_CLIENT.client_id
+            }
+            saveData(cordAppelant, param);
         }
-        saveData(cordAppelant, param);
     })
 });
 //timer pour la calcul du durée d'un appel
-function setTime(){
+function setTime() {
     totalSeconds++;
 }
 //function to save script
@@ -141,16 +148,16 @@ function saveData(cordAppelant, param) {
     var url = base_url + 'home/saveData';
     var message = '';
     if (typeof $('.message')) {
-        if($('.message').length > 1){
+        if ($('.message').length > 1) {
             arrayMessage = $('.message');
             for (var i = 0; i < arrayMessage.length; i++) {
                 message += arrayMessage[i].innerText;
                 message += '<br>'
             }
-        }else{
+        } else {
             var message = $('.message').text();
         }
-    } 
+    }
     $.ajax({
         type: "POST",
         url: url,
@@ -182,8 +189,8 @@ function generateDataList() {
     $.ajax({
         type: "get",
         url: url,
-        data:{
-            client_id:DATA_CLIENT.client_id,
+        data: {
+            client_id: DATA_CLIENT.client_id,
         },
         async: false,
         success: function (response) {
@@ -271,10 +278,10 @@ function initByStep(step) {
             //append view to content html
             $('#content').append(response.html);
             dataStep = response.data;
-            if(response.isSave == 1)
-                $('#content').append('<div class="col-md-4 step_'+step+'"><button class="btn save" id="save">Enregistrer et envoyer message</button></div>');
-            if(response.isSave == 2)
-                $('#content').append('<div class="col-md-4 step_'+step+'"><button class="btn save" id="rq_dem">Enregistrer et envoyer message</button></div>');
+            if (response.isSave == 1)
+                $('#content').append('<div class="col-md-4 step_' + step + '"><button class="btn save" id="save">Enregistrer et envoyer message</button></div>');
+            if (response.isSave == 2)
+                $('#content').append('<div class="col-md-4 step_' + step + '"><button class="btn save" id="rq_dem">Enregistrer et envoyer message</button></div>');
         }
     });
     return dataStep;
