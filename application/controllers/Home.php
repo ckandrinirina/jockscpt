@@ -237,6 +237,7 @@ class Home extends CI_Controller
         $message .= '<p>Élise Secrétariat </p><br><br>';
         $message .= '<p>Pour le compte :  ' . $dataClient['reparateur_qualifie_nom'] . '</p><br>';
         $message .= '<p>Le '.date('d/m/Y').' à '.date('H:i:s').'</p><br>';
+        $message .= 'Envoyer à  '.$to;
         sendEmail($to, 'fiche@elise.fr', 'FICHE ELISE BUBENDORFF', $message);
         sendEmail('fiche@elise.fr', 'fiche@elise.fr', 'FICHE ELISE BUBENDORFF', $message);
     }
@@ -255,6 +256,7 @@ class Home extends CI_Controller
         $message .= '<p>Élise Secrétariat </p><br><br>';
         $message .= '<p>Pour le compte :  ' . $dataClient['reparateur_qualifie_nom'] . '</p><br>';
         $message .= '<p>Le '.date('d/m/Y').' à '.date('H:i:s').'</p><br>';
+        $message .= 'Envoyer à  '.$to;
         sendEmail($to, 'fiche@elise.fr', 'RQ demande d’installation', $message);
         sendEmail('fiche@elise.fr', 'fiche@elise.fr', 'RQ demande d’installation', $message);
     }
