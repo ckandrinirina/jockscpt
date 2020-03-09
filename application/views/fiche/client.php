@@ -1,8 +1,3 @@
-<div class="tooltip_templates">
-    <span id="tooltip_content">
-        <p>ok</p>
-    </span>
-</div>
 <div class="container">
     <img src="<?= base_url($client_logo) ?>" alt="" class="logo">
     <div class="row bloc">
