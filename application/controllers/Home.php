@@ -221,25 +221,25 @@ class Home extends CI_Controller
     public function send_mail_script($script_data_child, $to, $message_plus, $script_data, $dataClient)
     {
         $to = str_replace (' ','',$to);
-        var_dump($to);die();
-    //     $message = '';
-    //     $message = '<p>Bonjour</p><br><br>'
-    //         . '<p>Je vous prie de trouver ci-dessous les informations clients : </p><br><br>';
+        $message = '';
+        $message = '<p>Bonjour</p><br><br>'
+            . '<p>Je vous prie de trouver ci-dessous les informations clients : </p><br><br>';
 
-    //     foreach ($script_data_child as $data) {
-    //         $message .= '<div style="display:flex"><p>' . $data['script_data_child_choix'] . ' : ' . $data['script_data_child_libelle'] . '</p></div></br>';
-    //     }
+        foreach ($script_data_child as $data) {
+            $message .= '<div style="display:flex"><p>' . $data['script_data_child_choix'] . ' : ' . $data['script_data_child_libelle'] . '</p></div></br>';
+        }
 
-    //     if ($script_data["script_data_c_app_nom"] != '' && $script_data["script_data_c_app_prenom"] != '')
-    //         $message .= '<p>De Mme/Mr ' . $script_data["script_data_c_app_prenom"] . ' ' . $script_data["script_data_c_app_nom"] . '</p>';
-    //     if ($script_data["script_data_c_app_tel"] != '')
-    //         $message  .= '<p>T.privé:  ' . $script_data['script_data_c_app_tel'] . '</p>';
-    //     $message .= '<p>' . $message_plus . '</p><br><br>';
-    //     $message .= '<p>Bien à vous </p><br><br>';
-    //     $message .= '<p>Élise Secrétariat </p><br><br>';
-    //     $message .= '<p>Pour le compte :  ' . $dataClient['reparateur_qualifie_nom'] . '</p><br><br>';
-    //     sendEmail($to, 'fiche@elise.fr', 'FICHE ELISE BUNDENDORFF', $message);
-    //     sendEmail('fiche@elise.fr', 'fiche@elise.fr', 'FICHE ELISE BUNDENDORFF', $message);
+        if ($script_data["script_data_c_app_nom"] != '' && $script_data["script_data_c_app_prenom"] != '')
+            $message .= '<p>De Mme/Mr ' . $script_data["script_data_c_app_prenom"] . ' ' . $script_data["script_data_c_app_nom"] . '</p>';
+        if ($script_data["script_data_c_app_tel"] != '')
+            $message  .= '<p>T.privé:  ' . $script_data['script_data_c_app_tel'] . '</p>';
+        $message .= '<p>' . $message_plus . '</p><br><br>';
+        $message .= '<p>Bien à vous </p><br><br>';
+        $message .= '<p>Élise Secrétariat </p><br><br>';
+        $message .= '<p>Pour le compte :  ' . $dataClient['reparateur_qualifie_nom'] . '</p><br>';
+        $message .= '<p>Le '.date('d/m/Y').' à '.date('H:i:s').'</p><br>';
+        sendEmail($to, 'fiche@elise.fr', 'FICHE ELISE BUNDENDORFF', $message);
+        sendEmail('fiche@elise.fr', 'fiche@elise.fr', 'FICHE ELISE BUNDENDORFF', $message);
     }
 
     public function send_mail_rq($script_data_child, $to, $message_plus, $script_data, $dataClient)
@@ -255,6 +255,7 @@ class Home extends CI_Controller
         $message .= '<p>Bien à vous </p><br><br>';
         $message .= '<p>Élise Secrétariat </p><br><br>';
         $message .= '<p>Pour le compte :  ' . $dataClient['reparateur_qualifie_nom'] . '</p><br><br>';
+        $message .= '<p>Le '.date('d/m/Y').' à '.date('H:i:s').'</p><br>';
         sendEmail($to, 'fiche@elise.fr', 'RQ demande d’installation', $message);
         sendEmail('fiche@elise.fr', 'fiche@elise.fr', 'RQ demande d’installation', $message);
     }
