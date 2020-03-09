@@ -171,7 +171,7 @@ function saveData(cordAppelant, param) {
         async: false,
         success: function (response) {
             alert('Script enregistrer');
-            location.reload();
+            //location.reload();
         },
         erorr: function () {
             alert('Adresse mail invalide');
