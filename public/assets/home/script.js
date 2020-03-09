@@ -213,6 +213,7 @@ function testIfReQualifie(value) {
         },
         async: false,
         success: function (response) {
+            statusShow = 0;
             if (response.size == 2) {
                 $('#7').trigger('click');
                 var type = 'RQ et PC';
@@ -235,21 +236,21 @@ function testIfReQualifie(value) {
                 </tr>
                 <tr>
                     <th scope="row">NOM</th>
-                    <td>` + dataClient.reparateur_qualifie_nom + `</td>
+                    <td>` + dataClient.reparateur_qualifie_nom + `  <button onClick="showContent()" style="margin-left:20px"><img src="${base_url}assets/svg/chevron-bottom.svg"></button></td>
                 </tr>
-                <tr>
+                <tr class="content-row hide">
                     <th scope="row">ADRESSE</th>
                     <td>` + dataClient.reparateur_qualifie_num_adresse + ` ` + dataClient.reparateur_qualifie_adresse_complement + ` ` + dataClient.reparateur_qualifie_rue + `</td>
                 </tr>
-                <tr>
+                <tr class="content-row hide">
                     <th scope="row">Ville et code postal</th>
                     <td>` + dataClient.reparateur_qualifie_ville + ` ` + dataClient.reparateur_qualifie_code_postal + `</td>
                 </tr>
-                <tr>
+                <tr class="content-row hide">
                     <th scope="row">Telephone</th>
                     <td>` + dataClient.reparateur_qualifie_tel + `</td>
                 </tr>
-                <tr>
+                <tr class="content-row hide">
                     <th scope="row">Mail responsable</th>
                     <td>` + dataClient.reparateur_qualifie_mail_resp + `</td>
                 </tr>
@@ -262,7 +263,16 @@ function testIfReQualifie(value) {
     });
 }
 
-
+function showContent()
+{
+    if(statusShow == 0){
+        $('.content-row').removeClass('hide');
+        statusShow = 1;
+    }else{
+        $('.content-row').addClass('hide');
+        statusShow = 0;
+    }
+}
 function initByStep(step) {
     var url = base_url + 'home/ajaxGetContentByStep';
     var dataStep;
