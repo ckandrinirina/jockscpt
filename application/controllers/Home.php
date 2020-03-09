@@ -220,6 +220,7 @@ class Home extends CI_Controller
 
     public function send_mail_script($script_data_child, $to, $message_plus, $script_data, $dataClient)
     {
+        $to = str_replace (' ','',$to);
         $message = '';
         $message = '<p>Bonjour</p><br><br>'
             . '<p>Je vous prie de trouver ci-dessous les informations clients : </p><br><br>';
@@ -242,6 +243,7 @@ class Home extends CI_Controller
 
     public function send_mail_rq($script_data_child, $to, $message_plus, $script_data, $dataClient)
     {
+        $to = str_replace (' ','',$to);
         $message = '';
         $message = '<p>Bonjour</p><br><br>'
             . '<p>Je vous prie de trouver ci-dessous les informations clients : </p><br><br>';
